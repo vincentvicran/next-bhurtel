@@ -2,12 +2,16 @@ import styled from 'styled-components'
 import Theme from 'theme'
 
 export const DescContainer = styled.div`
-  cursor: pointer;
-  transition: 0.3s ease-in-out;
+  display: block;
+  gap: ${Theme.space.$6};
 
-  &:hover {
-    transform: translateY(-5px);
+  @media screen and (min-width: 700px) {
+    display: flex;
   }
+`
+
+export const ImgContainer = styled.div`
+  flex: 1.2;
 `
 export const DescImg = styled.img`
   display: block;
@@ -31,4 +35,7 @@ export const DescAuthor = styled.p`
   &:hover {
     text-decoration: underline;
   }
+`
+export const RightSection = styled.div`
+  flex: 1.5;
 `
