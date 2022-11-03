@@ -53,7 +53,6 @@ export interface IconBtnProps extends React.ButtonHTMLAttributes<any> {
   background?: string
   icon: React.ReactNode
   style?: React.CSSProperties
-  active: boolean
 }
 
 export type VariantType = 'text' | 'contained' | 'outlined'
