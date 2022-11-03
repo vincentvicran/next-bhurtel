@@ -3,7 +3,7 @@ import styled, {css} from 'styled-components'
 import Theme from 'theme'
 
 import {colors} from './constants'
-import {StyledButtonProps} from './button.type'
+import {IconBtnProps, StyledButtonProps} from './button.type'
 
 const {colorOptions, variantOptions} = colors
 
@@ -205,6 +205,26 @@ const RippleItem = styled.div<StyledButtonProps>`
     `}
 `
 
+const IconButtonCont = styled.button<IconBtnProps>`
+  border-radius: 100%;
+  border: 1px solid ${(props) => props.background ?? Theme.colors.$primary};
+  background-color: ${(props) =>
+    props.active ? props.background ?? Theme.colors.$primary : 'transparent'};
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s ease;
+  color: ${(props) =>
+    props.active ? 'white' : props.background ?? Theme.colors.$primary};
+
+  &:hover {
+    filter: brightness(80%);
+  }
+`
+
 export {
   StyledButton,
   DisabledStyledButton,
@@ -212,5 +232,6 @@ export {
   ButtonText,
   DisabledIconStyledButton,
   RippleContainer,
-  RippleItem
+  RippleItem,
+  IconButtonCont
 }
