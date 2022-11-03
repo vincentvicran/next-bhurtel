@@ -10,10 +10,11 @@ import {
   DisabledStyledButton,
   ButtonText,
   RippleContainer,
-  RippleItem
+  RippleItem,
+  IconButtonCont
 } from './button.style'
 
-import {ButtonProps, RippleProps} from './button.type'
+import {ButtonProps, IconBtnProps, RippleProps} from './button.type'
 import {ButtonLoader} from './components'
 
 const ButtonTextAnimated = makeAnimatedComponent(ButtonText)
@@ -220,6 +221,10 @@ const ButtonTextContainer = (props: ButtonProps) => {
       )}
     </ButtonTextAnimated>
   )
+}
+
+export const IconButton = (props: IconBtnProps) => {
+  return <IconButtonCont {...props}>{props.icon}</IconButtonCont>
 }
 
 export const Button = forwardRef(
