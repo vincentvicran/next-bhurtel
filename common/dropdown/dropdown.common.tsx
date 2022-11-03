@@ -19,6 +19,7 @@ type Placement =
   | 'topleft'
   | 'topright'
   | 'topmiddle'
+  | 'nestedright'
 
 const getPlacement: (pm: Placement) => React.CSSProperties = (
   placement: Placement
@@ -30,6 +31,8 @@ const getPlacement: (pm: Placement) => React.CSSProperties = (
       return {left: '50%', top: '100%', transformOrigin: '0% 0%'}
     case 'bottomright':
       return {right: 0, top: '100%', transformOrigin: '100% 0%'}
+    case 'nestedright':
+      return {left: '100%', top: '100%', transformOrigin: '100% 0%'}
     case 'topleft':
       return {left: 0, bottom: '100%', transformOrigin: '0% 100%'}
     case 'topmiddle':
