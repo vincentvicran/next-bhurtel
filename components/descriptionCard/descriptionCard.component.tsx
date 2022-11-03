@@ -8,7 +8,8 @@ import {
   DescParagraph,
   ImgContainer,
   RightSection
-} from './mainDescriptionCard.styles'
+} from './descriptionCard.styles'
+import {truncate} from 'helpers/newsPage.helper'
 
 interface DescProps {
   imgUrl?: string
@@ -16,14 +17,19 @@ interface DescProps {
   desc: string
   author: string
   date: Date
+  isHorizontal?: boolean
+  truncateDesc?: boolean
+  truncateSize?: number
 }
-export function MainDescriptionCard(props: DescProps) {
+export function DescriptionCard(props: DescProps) {
   return (
-    <DescContainer>
-      <ImgContainer style={{flex: 1.2}}>
+    <DescContainer
+      isHorizontal={props.isHorizontal ? props.isHorizontal : false}
+    >
+      <ImgContainer style={{flex: props.isHorizontal ? 1.2 : 1}}>
         <DescImg src={props.imgUrl} alt="car" />
       </ImgContainer>
-      <RightSection>
+      <RightSection style={{flex: props.isHorizontal ? 1.5 : 1}}>
         <Title
           text={moment(props.date).format('DD MMM, YYYY')}
           size="sm"
@@ -33,8 +39,12 @@ export function MainDescriptionCard(props: DescProps) {
             fontStyle: 'italic'
           }}
         />
-        <Title text={props.title} size="lg" weight="semibold" />
-        <DescParagraph>{props.desc}</DescParagraph>
+        <Title text={props.title} size="md" weight="semibold" />
+        <DescParagraph>
+          {props.truncateDesc
+            ? truncate(props.desc, props.truncateSize ?? undefined)
+            : props.desc}
+        </DescParagraph>
         <DescAuthor>{props.author}</DescAuthor>
       </RightSection>
     </DescContainer>
