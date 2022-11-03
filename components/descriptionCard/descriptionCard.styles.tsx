@@ -1,13 +1,25 @@
 import styled from 'styled-components'
 import Theme from 'theme'
 
-export const DescContainer = styled.div`
-  display: block;
-  gap: ${Theme.space.$6};
+export const DescContainer = styled.div<{isHorizontal: boolean}>`
+  ${(props) =>
+    props.isHorizontal
+      ? `
+			display: block;
+			gap: ${Theme.space.$6};
 
-  @media screen and (min-width: 700px) {
-    display: flex;
-  }
+			@media screen and (min-width: 700px) {
+				display: flex;
+			}
+			`
+      : `
+			cursor: pointer;
+			transition: 0.3s ease-in-out;
+
+			&:hover {
+				transform: translateY(-5px);
+			}
+	`}
 `
 
 export const ImgContainer = styled.div`
@@ -36,6 +48,4 @@ export const DescAuthor = styled.p`
     text-decoration: underline;
   }
 `
-export const RightSection = styled.div`
-  flex: 1.5;
-`
+export const RightSection = styled.div``
