@@ -221,8 +221,13 @@ const IconButtonCont = styled.button<IconBtnProps>`
     props.active ? 'white' : props.background ?? Theme.colors.$primary};
 
   &:hover {
-    filter: brightness(80%);
+    filter: brightness(90%);
   }
+  &:active {
+    transform: scale(0.9);
+  }
+
+  font-size: ${Theme.fontSizes.$7};
 `
 
 export {

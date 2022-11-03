@@ -17,15 +17,6 @@ const HomePage = () => {
         u. Leo tortor, habitant morbi at ut. sed eget lacinia eu. Leo tortor, habitant morbi at ut. ”"
         address="Balaju-Kathmandu"
       />
-
-      <div
-        style={{
-          display: 'flex',
-          padding: 40,
-          alignItems: 'center',
-          justifyContent: 'center'
-        }}
-      ></div>
     </div>
   )
 }
