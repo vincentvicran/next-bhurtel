@@ -14,6 +14,8 @@ export const ActiveIndicatorContainer = styled.div`
   transform: translateX(-50%);
   bottom: 50px;
   z-index: 100;
+  color: red;
+  border: 1px solid red;
 `
 // @include responsive-for(sm) {
 //   bottom: 100px;
