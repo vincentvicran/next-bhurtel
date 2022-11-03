@@ -1,6 +1,12 @@
+import {Children, CSSProperties} from 'react'
 import styled from 'styled-components'
 
 import Theme from 'theme'
+
+interface FlexProps {
+  justify?: CSSProperties['justifyContent']
+  align?: CSSProperties['alignItems']
+}
 
 export const FooterContainerStyled = styled.div`
   padding: ${Theme.space.$15} ${Theme.space.$14};
@@ -24,6 +30,6 @@ export const CategoryTitle = styled.p`
 
 `
 export const FlexBox = styled.div`
-  justify-content: center;
+  justify-content: ;
   align-items: center;
 `
