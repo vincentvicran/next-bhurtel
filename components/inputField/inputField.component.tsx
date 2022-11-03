@@ -1,5 +1,6 @@
-import {VStack} from 'common/stack'
 import React from 'react'
+
+import {VStack} from 'common/stack'
 
 import {
   InputContainerStyled,

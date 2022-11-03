@@ -1,5 +1,7 @@
 import styled from 'styled-components'
+
 import Theme from 'theme'
+
 import {TitleProps} from './title.types'
 
 export const TitleContainer = styled.h1<TitleProps>`
