@@ -1,7 +1,7 @@
 import React from 'react'
+import {FiSearch, FiChevronDown} from 'react-icons/fi'
 
 import {HStack} from 'common/stack'
-import {FiSearch, FiChevronDown} from 'react-icons/fi'
 
 import {HeaderContainer, HeaderLogo, Search, Menuitem} from './header.style'
 import {Menu, MenuItem} from 'common/menu'

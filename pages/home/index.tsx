@@ -1,5 +1,6 @@
 import {MainCarousel, Test} from '../../common/carousel'
 import {TestimonialCard} from 'components/testimonialCard'
+import {Footer} from 'components/footer'
 import {Header} from 'components/header'
 import {MainCarousel} from '../../common/carousel'
 
@@ -20,6 +21,7 @@ const HomePage = () => {
         u. Leo tortor, habitant morbi at ut. sed eget lacinia eu. Leo tortor, habitant morbi at ut. ”"
         address="Balaju-Kathmandu"
       />
+      <Footer image="https://static-cse.canva.com/_next/static/assets/logo_w2000xh641_3b021976d60d0277e95febf805ad9fe8c7d6d54f86969ec03b83299084b7cb93.png"></Footer>
     </div>
   )
 }

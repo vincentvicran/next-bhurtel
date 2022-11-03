@@ -9,7 +9,7 @@ interface UseMediaReturn {
 }
 
 export const useMedia = (): UseMediaReturn => {
-  const xs = useGenericMedia(`(max-width: 640px)`)
+  const xs = useGenericMedia(`(max-width: 480px)`)
   const sm = useGenericMedia(`(min-width: 640px)`)
   const md = useGenericMedia(`(min-width: 768px)`)
   const lg = useGenericMedia(`(min-width: 1024px)`)

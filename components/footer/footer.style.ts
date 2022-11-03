@@ -1,12 +1,6 @@
-import {Children, CSSProperties} from 'react'
 import styled from 'styled-components'
-
 import Theme from 'theme'
-
-interface FlexProps {
-  justify?: CSSProperties['justifyContent']
-  align?: CSSProperties['alignItems']
-}
+import {useMediaProps} from './footer.component'
 
 export const FooterContainerStyled = styled.div`
   padding: ${Theme.space.$15} ${Theme.space.$14};
@@ -29,7 +23,26 @@ export const CategoryTitle = styled.p`
  text-transform: uppercase;
 
 `
-export const FlexBox = styled.div`
-  justify-content: ;
-  align-items: center;
+export const FlexBox = styled.div<useMediaProps>`
+  display: flex;
+  align-items: ${(props) => (props.media.md ? 'center' : 'space-between')};
+  justify-content: center;
+  gap: ${(props) => (props.media.md ? '110px' : '40px')};
+  flex-direction: ${(props) => (props.media.md ? 'row' : 'column')};
+`
+
+export const HorizontalFlex = styled.div<useMediaProps>`
+  display: flex;
+  gap: ${(props) => (props.media.md ? '20px' : '30px')};
+  flex: 1.4;
+  justify-content: space-between;
+  // flex-direction: ${(props) => (props.media.xs ? 'column' : 'row')};
+  flex-wrap: wrap;
+`
+
+export const VericalFlex = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1;
 `
