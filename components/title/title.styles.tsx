@@ -14,11 +14,11 @@ export const TitleContainer = styled.h1<TitleProps>`
   }};
   font-size: ${(props) => {
     if (props.size === 'sm') {
-      return Theme.fontSizes.$4
+      return Theme.fontSizes.$2
     } else if (props.size === 'md') {
-      return Theme.fontSizes.$6
+      return Theme.fontSizes.$4
     } else if (props.size === 'lg') {
-      return Theme.fontSizes.$8_25
+      return Theme.fontSizes.$7
     }
   }};
 `
