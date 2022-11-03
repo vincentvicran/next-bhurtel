@@ -1,6 +1,5 @@
 import {MainCarousel, Test} from '../../common/carousel'
 import {TestimonialCard} from 'components/testimonialCard'
-import {About} from 'components/about'
 const HomePage = () => {
   return (
     <div>
@@ -17,16 +16,6 @@ const HomePage = () => {
         u. Leo tortor, habitant morbi at ut. sed eget lacinia eu. Leo tortor, habitant morbi at ut. ”"
         address="Balaju-Kathmandu"
       />
-
-      <div style={{padding: 20}}>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorem cum
-        non facere magni quisquam incidunt harum deleniti nesciunt illum
-        corporis voluptatum aliquid asperiores exercitationem dicta rem libero,
-        maxime debitis! Assumenda sit eum iste distinctio error odit voluptas ex
-        molestias! Sed minima velit itaque et consectetur molestias nihil alias
-        dolore atque.
-        <About text="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorem cum non facere magni quisquam incidunt harum deleniti nesciunt illum corporis voluptatum aliquid asperiores exercitationem dicta rem libero, maxime debitis! Assumenda sit eum iste distinctio error odit voluptas ex molestias! Sed minima velit itaque et consectetur molestias nihil alias dolore atque." />
-      </div>
     </div>
   )
 }
