@@ -1,5 +1,7 @@
 import {MainCarousel, Test} from '../../common/carousel'
 import {TestimonialCard} from 'components/testimonialCard'
+import {Header} from 'components/header'
+import {MainCarousel} from '../../common/carousel'
 
 const HomePage = () => {
   return (
