@@ -21,4 +21,9 @@ export const TitleContainer = styled.h1<TitleProps>`
       return Theme.fontSizes.$7
     }
   }};
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `
