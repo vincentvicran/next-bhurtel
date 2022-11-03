@@ -208,8 +208,7 @@ const RippleItem = styled.div<StyledButtonProps>`
 const IconButtonCont = styled.button<IconBtnProps>`
   border-radius: 100%;
   border: 1px solid ${(props) => props.background ?? Theme.colors.$primary};
-  background-color: ${(props) =>
-    props.active ? props.background ?? Theme.colors.$primary : 'transparent'};
+  background-color: transparent;
   cursor: pointer;
   width: 50px;
   height: 50px;
@@ -217,12 +216,13 @@ const IconButtonCont = styled.button<IconBtnProps>`
   align-items: center;
   justify-content: center;
   transition: 0.3s ease;
-  color: ${(props) =>
-    props.active ? 'white' : props.background ?? Theme.colors.$primary};
+  color: ${(props) => props.background ?? Theme.colors.$primary};
 
   &:hover {
-    filter: brightness(90%);
+    background: ${(props) => props.background ?? Theme.colors.$primary};
+    color: white;
   }
+
   &:active {
     transform: scale(0.9);
   }
