@@ -1,3 +1,5 @@
+import {Button} from 'common/button'
+import {HStack} from 'common/stack'
 import {DescriptionCard} from 'components/descriptionCard'
 import {modifyArrayPosition} from 'helpers/newsPage.helper'
 import styled from 'styled-components'
@@ -29,6 +31,10 @@ function News() {
             return <DescriptionCard key={id} {...el} isHorizontal={false} />
           })}
       </NewsBottomContainer>
+
+      <HStack justify={'center'} style={{marginTop: 40}}>
+        <Button title="LOAD MORE" color="primary" />
+      </HStack>
     </NewsContainer>
   )
 }
