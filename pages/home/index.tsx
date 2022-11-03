@@ -4,7 +4,7 @@ import {TestimonialCard} from 'components/testimonialCard'
 const HomePage = () => {
   return (
     <div>
-      <Header />
+      <Header image="https://static-cse.canva.com/_next/static/assets/logo_w2000xh641_3b021976d60d0277e95febf805ad9fe8c7d6d54f86969ec03b83299084b7cb93.png" />
       <MainCarousel />
       <TestimonialCard
         image="https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"

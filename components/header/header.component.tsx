@@ -6,13 +6,17 @@ import {FiSearch, FiChevronDown} from 'react-icons/fi'
 import {HeaderContainer, HeaderLogo, Search, Menuitem} from './header.style'
 import {Menu, MenuItem} from 'common/menu'
 
-export const Header = () => {
+interface HeaderProps {
+  image: string
+}
+
+export const Header = ({image}: HeaderProps) => {
   return (
     <HeaderContainer>
-      <HStack>
-        <HStack gap="$13">
-          <HeaderLogo>AttoreneyB.</HeaderLogo>
-          <HStack gap="$5">
+      <HStack align="center">
+        <HStack gap="$13" align="center">
+          <HeaderLogo src={image} />
+          <HStack gap="$5" align="center">
             <Menuitem>HOME</Menuitem>
             <Menu
               placement="bottomright"
