@@ -5,6 +5,7 @@ export const AboutCont = styled.div<{md: boolean}>`
   display: flex;
   justify-content: space-between;
   gap: ${Theme.space.$14};
+  margin: ${Theme.space.$14} 0;
   flex-direction: ${(props) => {
     if (props.md) {
       return 'row'
