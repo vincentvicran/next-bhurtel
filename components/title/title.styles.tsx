@@ -5,6 +5,7 @@ import Theme from 'theme'
 import {TitleProps} from './title.types'
 
 export const TitleContainer = styled.h1<TitleProps>`
+  display: inline-block;
   font-weight: ${(props) => {
     if (props.weight === 'bold') {
       return Theme.fontWeights.$bold
@@ -25,5 +26,4 @@ export const TitleContainer = styled.h1<TitleProps>`
       return Theme.fontSizes.$6
     }
   }};
-  cursor: pointer;
 `
