@@ -12,7 +12,6 @@ interface ContactUsTitleProps {
   description: React.ReactNode
   width: string
 }
-import {ContactUs} from 'components/contactUs'
 
 const ContactTitleContainer = styled.div`
   display: flex;
@@ -45,10 +44,6 @@ const ContactusTitle = ({title, description, width}: ContactUsTitleProps) => {
       </div>
 
       {description}
-      <Paragraph color="dark">
-        Contact Us today to start adding value to your business.
-      </Paragraph>
-      <ContactUs />
     </ContactTitleContainer>
   )
 }
@@ -77,7 +72,7 @@ const ContactUsDescription = () => {
           title="Visit"
           description={
             <>
-              <ContactParagraph color="light" wei>
+              <ContactParagraph color="light">
                 Manhattan Office
               </ContactParagraph>
               <ContactParagraph color="light">
