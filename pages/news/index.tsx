@@ -28,7 +28,15 @@ function News() {
       <NewsBottomContainer>
         {news.data &&
           news.data.map((el, id) => {
-            return <DescriptionCard key={id} {...el} isHorizontal={false} />
+            return (
+              <DescriptionCard
+                truncateSize={170}
+                truncateDesc={true}
+                key={id}
+                {...el}
+                isHorizontal={false}
+              />
+            )
           })}
       </NewsBottomContainer>
 
