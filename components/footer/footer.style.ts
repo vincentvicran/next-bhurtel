@@ -3,7 +3,7 @@ import Theme from 'theme'
 import {useMediaProps} from './footer.component'
 
 export const FooterContainerStyled = styled.div`
-  padding: ${Theme.space.$15} ${Theme.space.$14};
+  padding: ${Theme.space.$15} 0;
   background-color: ${Theme.colors.$gray100};
 `
 export const FooterLogo = styled.img`

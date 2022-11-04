@@ -36,7 +36,8 @@ export function DescriptionCard(props: DescProps) {
           style={{
             color: Theme.colors.$gray600,
             margin: '10px 0 5px',
-            fontStyle: 'italic'
+            fontStyle: 'italic',
+            display: 'block'
           }}
         />
         <Title text={props.title} size="md" weight="semibold" />
