@@ -1,5 +1,6 @@
 import {Paragraph} from 'components/Paragraph'
 import {Title} from 'components/title'
+import {useMedia} from 'hooks'
 import Image from 'next/image'
 import styled from 'styled-components'
 import Theme from 'theme'
@@ -8,7 +9,16 @@ import about from '../../assets/images/about.jpg'
 const NewsContainer = styled.div`
   padding: ${Theme.space.$10};
 `
-function News() {
+
+interface NewsProps {
+  details: object
+}
+
+// DESCRIPTION IN details PROPS WILL COME FROM
+// BACKEND TEXTEDITOR SO CURRENTLY DUMMY DATA IS ADDED
+function News(props: NewsProps) {
+  console.log(props)
+  const media = useMedia()
   return (
     <NewsContainer>
       <Paragraph color="light" style={{fontStyle: 'italic', marginBottom: 10}}>
@@ -16,9 +26,9 @@ function News() {
       </Paragraph>
       <Title
         text="What are the major Construction Accident reports in NYC?"
-        size="lg"
+        size={media.sm ? 'xl' : 'lg'}
         weight="bold"
-        style={{marginBottom: 40}}
+        style={{marginBottom: media.sm ? 40 : 20}}
       />
 
       <Paragraph color="dark" style={{marginBottom: 40}}>
@@ -69,7 +79,38 @@ function News() {
         accumsan tincidunt. Integer commodo arcu integer sagittis ipsum diam.
         Orci tristique tortor massa at at.
       </Paragraph>
+
+      {/* YOUTUBE COMPONENT */}
+      <YoutubeComp src="https://www.youtube.com/embed/YE7VzlLtp-4" />
     </NewsContainer>
+  )
+}
+
+// YOUTUBE STYLES
+const YtContainer = styled.div`
+  min-height: 200px;
+  & > iframe {
+    width: 100%;
+    display: block;
+  }
+`
+
+interface YtProps {
+  src?: string
+  style?: React.CSSProperties
+}
+function YoutubeComp(props: YtProps) {
+  const media = useMedia()
+
+  return (
+    <YtContainer style={props.style}>
+      <iframe
+        src={props.src}
+        height={media.xs ? '250px' : media.sm ? '512px' : '300px'}
+        title="YouTube video player"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      ></iframe>
+    </YtContainer>
   )
 }
 export default News
