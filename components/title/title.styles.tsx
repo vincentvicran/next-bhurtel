@@ -19,13 +19,11 @@ export const TitleContainer = styled.h1<TitleProps>`
       return Theme.fontSizes.$2
     } else if (props.size === 'md') {
       return Theme.fontSizes.$4
-    } else if (props.size === 'lg') {
+    } else if (props.size === 'xl') {
       return Theme.fontSizes.$7
+    } else if (props.size === 'lg') {
+      return Theme.fontSizes.$6
     }
   }};
   cursor: pointer;
-
-  &:hover {
-    text-decoration: underline;
-  }
 `
