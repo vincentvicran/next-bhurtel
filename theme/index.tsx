@@ -144,6 +144,9 @@ const Theme = {
     $z12: '0 12px 17px 2px rgba(0, 0, 0, 0.10), 0 5px 22px 4px rgba(0, 0, 0, 0.08), 0 7px 8px -4px rgba(0, 0, 0, 0.16)',
     $z16: '0 16px 24px 2px rgba(0, 0, 0, 0.10), 0 6px 30px 5px rgba(0, 0, 0, 0.08), 0 8px 10px -5px rgba(0, 0, 0, 0.16)',
     $z24: '0 24px 38px 3px rgba(0, 0, 0, 0.10), 0 9px 46px 8px rgba(0, 0, 0, 0.08), 0 11px 15px -7px rgba(0, 0, 0, 0.16)'
+  },
+  width: {
+    $default: '85%'
   }
 }
 
