@@ -1,9 +1,11 @@
+import styled from 'styled-components'
+import Image from 'next/image'
+
+import {useMedia} from 'hooks'
+import Theme from 'theme'
+
 import {Paragraph} from 'components/Paragraph'
 import {Title} from 'components/title'
-import {useMedia} from 'hooks'
-import Image from 'next/image'
-import styled from 'styled-components'
-import Theme from 'theme'
 import about from '../../assets/images/about.jpg'
 
 const NewsContainer = styled.div`
