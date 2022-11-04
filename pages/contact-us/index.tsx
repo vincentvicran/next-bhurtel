@@ -12,6 +12,7 @@ interface ContactUsTitleProps {
   description: React.ReactNode
   width: string
 }
+import {ContactUs} from 'components/contactUs'
 
 const ContactTitleContainer = styled.div`
   display: flex;
@@ -44,6 +45,10 @@ const ContactusTitle = ({title, description, width}: ContactUsTitleProps) => {
       </div>
 
       {description}
+      <Paragraph color="dark">
+        Contact Us today to start adding value to your business.
+      </Paragraph>
+      <ContactUs />
     </ContactTitleContainer>
   )
 }
