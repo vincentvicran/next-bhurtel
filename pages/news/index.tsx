@@ -1,9 +1,11 @@
+import styled from 'styled-components'
+
+import Theme from 'theme'
 import {Button} from 'common/button'
 import {HStack} from 'common/stack'
+
 import {DescriptionCard} from 'components/descriptionCard'
 import {modifyArrayPosition} from 'helpers/newsPage.helper'
-import styled from 'styled-components'
-import Theme from 'theme'
 
 const NewsContainer = styled.div`
   padding: 40px;
