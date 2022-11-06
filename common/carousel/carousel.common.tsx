@@ -57,7 +57,9 @@ export const MainCarousel = () => {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    speed: 900,
+    autoplay: true,
+    autoplaySpeed: 3000,
     slidesToShow: 1,
     slidesToScroll: 1,
     nextArrow: <NavArrow direction="next" onClick={nextSlide} />,

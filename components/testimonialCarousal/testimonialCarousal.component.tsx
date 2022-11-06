@@ -21,25 +21,31 @@ export function TestimonialCarousal() {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    speed: 900,
+    autoplay: true,
+    autoplaySpeed: 6000,
     slidesToShow: 3,
     slidesToScroll: 1,
+    initialSlide: 0,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
+          initialSlide: 0,
           slidesToShow: 2
         }
       },
       {
         breakpoint: 600,
         settings: {
+          initialSlide: 0,
           slidesToShow: 2
         }
       },
       {
         breakpoint: 480,
         settings: {
+          initialSlide: 0,
           slidesToShow: 1
         }
       }
