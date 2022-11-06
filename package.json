@@ -13,6 +13,7 @@
     "@emotion/styled": "^11.10.4",
     "@mui/material": "^5.10.5",
     "@reduxjs/toolkit": "^1.8.5",
+    "@types/react-slick": "^0.23.10",
     "axios": "^0.27.2",
     "chroma-js": "^2.4.2",
     "formik": "^2.2.9",
@@ -24,8 +25,10 @@
     "react-icons": "^4.4.0",
     "react-loading-skeleton": "^3.1.0",
     "react-redux": "^8.0.2",
+    "react-slick": "^0.29.0",
     "react-ui-animate": "^2.0.0",
     "react-youtube": "^10.0.0",
+    "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.5",
     "universal-cookie": "^4.0.4",
     "yup": "^0.32.11"

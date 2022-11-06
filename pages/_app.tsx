@@ -9,6 +9,9 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import {Header} from 'components/header'
 import {Footer} from 'components/footer'
 
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
+
 function MyApp({Component, pageProps}: AppProps) {
   return (
     <Provider store={store}>
