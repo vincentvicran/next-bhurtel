@@ -34,7 +34,9 @@ export const TestimonialCard = ({
           </div>
         </HStack>
 
-        <TestimonialDescription>{description}"</TestimonialDescription>
+        <TestimonialDescription>
+          &quot;{description}&quot;
+        </TestimonialDescription>
       </VStack>
     </TestimonialCardContainer>
   )

@@ -3,8 +3,6 @@ import styled from 'styled-components'
 import Theme from 'theme'
 
 export const CarouselSlider = styled(Slider)`
-  width: 99vw;
-  height: inherit;
   position: relative;
 
   .slick-prev:before,
@@ -49,7 +47,6 @@ export const CarousalContainer = styled.div`
 `
 export const CarousalItem = styled.div`
   min-height: '70px';
-  padding: 5px;
 `
 export const Dots = styled.div`
   width: 7px;

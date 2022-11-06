@@ -24,6 +24,27 @@ export function TestimonialCarousal() {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1
+        }
+      }
+    ],
+    focusOnSelect: true,
     displayArrowLeft: false,
     displayArrowRight: false,
     arrows: false,
@@ -68,10 +89,7 @@ export function TestimonialCarousal() {
               <CarousalItem key={id}>
                 <TestimonialCard
                   address="chandragiri-14, Kathamandu"
-                  description={`
-					“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id urna, ornare lacus platea malesuada ac. Malesuada ullamcorper vitae mattis in.  tortor, habitant morbi at ut. ”
-					
-					`}
+                  description={`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id urna, ornare lacus platea malesuada ac. Malesuada ullamcorper vitae mattis in.  tortor, habitant morbi at ut.`}
                   name="John Doe"
                   image={
                     'https://www.diethelmtravel.com/wp-content/uploads/2016/04/bill-gates-wealthiest-person.jpg'

@@ -1,6 +1,7 @@
 import {useEffect, useState, useMemo} from 'react'
 
-interface UseMediaReturn {
+export interface UseMediaReturn {
+  xxl?: boolean
   xl: boolean
   lg: boolean
   md: boolean
@@ -14,8 +15,12 @@ export const useMedia = (): UseMediaReturn => {
   const md = useGenericMedia(`(min-width: 768px)`)
   const lg = useGenericMedia(`(min-width: 1024px)`)
   const xl = useGenericMedia(`(min-width: 1280px)`)
+  const xxl = useGenericMedia(`(min-width: 1920px)`)
 
-  const res = useMemo(() => ({xl, lg, md, sm, xs}), [xl, lg, md, sm, xs])
+  const res = useMemo(
+    () => ({xxl, xl, lg, md, sm, xs}),
+    [xxl, xl, lg, md, sm, xs]
+  )
 
   return res
 }
