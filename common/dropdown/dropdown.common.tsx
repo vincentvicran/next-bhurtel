@@ -42,7 +42,7 @@ const getPlacement: (pm: Placement) => React.CSSProperties = (
   }
 }
 export interface DropdownProps {
-  children?: React.ReactNode
+  children?: (mounted: boolean) => React.ReactNode
   trigger: (elementArg: triggerElementArgType) => React.ReactNode
   active?: boolean
   isAnimated?: boolean
@@ -153,7 +153,7 @@ export const Dropdown = ({
                 )
               }}
             >
-              {children}
+              {children?.(mounted)}
             </AnimatedBlock>
           )
         )
