@@ -2,7 +2,7 @@ import Image from 'next/image'
 import React, {useRef} from 'react'
 import Slider from 'react-slick'
 
-import {CarouselSlider} from './carousel.style'
+import {CarousalContainer, CarouselSlider, Dots} from './carousel.style'
 import {NavArrow} from './component/navArrow'
 
 // import BackgroundImage from 'assets/images/about.jpg'
@@ -39,10 +39,12 @@ export const MainCarousel = () => {
     centerMode: true,
     adaptiveHeight: true,
     nextArrow: <NavArrow direction="next" onClick={nextSlide} />,
-    prevArrow: <NavArrow direction="prev" onClick={prevSlide} />
+    prevArrow: <NavArrow direction="prev" onClick={prevSlide} />,
+    appendDots: (dots: any) => <div>{dots}</div>,
+    customPaging: () => <Dots></Dots>
   }
   return (
-    <div>
+    <CarousalContainer>
       <CarouselSlider ref={slider} {...settings}>
         {SLIDER_IMAGES.map(({image}, index) => (
           <div key={index} style={{overflow: 'hidden'}}>
@@ -56,6 +58,6 @@ export const MainCarousel = () => {
           </div>
         ))}
       </CarouselSlider>
-    </div>
+    </CarousalContainer>
   )
 }

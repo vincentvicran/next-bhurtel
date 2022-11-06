@@ -19,7 +19,7 @@ export const CarousalContainer = styled.div`
     > div
     > div
     > div {
-    transition: 0.8s ease;
+    transition: all 0.8s ease-in-out;
     border: 1px solid ${Theme.colors.$primary};
   }
 
@@ -31,7 +31,7 @@ export const CarousalContainer = styled.div`
   .slick-dots > li.slick-active > div {
     background: ${Theme.colors.$primary};
     width: 40px;
-    transition: all 0.3s ease;
+    transition: all 0.3s 0.1s ease-in-out;
   }
 `
 export const CarousalItem = styled.div`
