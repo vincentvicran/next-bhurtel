@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import Theme from 'theme'
-import {useMediaProps} from './footer.component'
+import {MediaProps} from './footer.component'
 
 export const FooterContainerStyled = styled.div`
   padding: ${Theme.space.$15} 0;
@@ -23,7 +23,7 @@ export const CategoryTitle = styled.p`
  text-transform: uppercase;
 
 `
-export const FlexBox = styled.div<useMediaProps>`
+export const FlexBox = styled.div<MediaProps>`
   display: flex;
   align-items: ${(props) => (props.media.md ? 'center' : 'space-between')};
   justify-content: center;
@@ -31,7 +31,7 @@ export const FlexBox = styled.div<useMediaProps>`
   flex-direction: ${(props) => (props.media.md ? 'row' : 'column')};
 `
 
-export const HorizontalFlex = styled.div<useMediaProps>`
+export const HorizontalFlex = styled.div<MediaProps>`
   display: flex;
   gap: ${(props) => (props.media.md ? '20px' : '30px')};
   flex: 1.4;

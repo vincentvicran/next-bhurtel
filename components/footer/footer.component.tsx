@@ -22,7 +22,7 @@ interface SocialIconsProps {
   bgcolor: string
 }
 
-export interface useMediaProps {
+export interface MediaProps {
   media: {
     xl: boolean
     lg: boolean
