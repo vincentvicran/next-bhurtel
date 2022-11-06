@@ -33,8 +33,7 @@ export function DescriptionCard(props: DescProps) {
           <DescImg
             src={getImageUrl('commonDescription', props.imgUrl as string)}
             alt="car"
-            width="100%"
-            height="100%"
+            layout="fill"
           />
         )}
       </ImgContainer>

@@ -30,7 +30,6 @@ export const ImgContainer = styled.div`
 export const DescImg = styled(Image)`
   display: block;
   object-fit: cover;
-  width: 100%;
   border-radius: ${Theme.radius.$default};
 `
 export const DescParagraph = styled.p`
