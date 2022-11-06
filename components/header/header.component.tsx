@@ -7,6 +7,7 @@ import {HeaderContainer, HeaderLogo, Search, Menuitem} from './header.style'
 import {Menu, MenuItem} from 'common/menu'
 import {CompWrapper} from 'common/compWrapper'
 import {useMedia} from 'hooks'
+import {HeaderMenu} from 'components/headerMenu'
 
 interface HeaderProps {
   image: string
@@ -26,6 +27,7 @@ export const Header = ({image}: HeaderProps) => {
               style={{display: media.sm ? 'flex' : 'none'}}
             >
               <Menuitem href="/home">HOME</Menuitem>
+              <HeaderMenu header={'PERSONAL INJURY'} />
               <Menu
                 placement="bottomright"
                 trigger={(elementArg: {active: boolean}) => {
