@@ -44,7 +44,6 @@ export function TestimonialCarousal() {
         }
       }
     ],
-    focusOnSelect: true,
     displayArrowLeft: false,
     displayArrowRight: false,
     arrows: false,

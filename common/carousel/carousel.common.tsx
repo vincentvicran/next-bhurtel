@@ -60,16 +60,13 @@ export const MainCarousel = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    variableWidth: true,
-    centerMode: true,
-    adaptiveHeight: true,
     nextArrow: <NavArrow direction="next" onClick={nextSlide} />,
     prevArrow: <NavArrow direction="prev" onClick={prevSlide} />,
     appendDots: (dots: any) => <div>{dots}</div>,
     customPaging: () => <Dots></Dots>
   }
   return (
-    <CarousalContainer>
+    <CarousalContainer media={media}>
       <CarouselSlider ref={slider} {...settings}>
         {SLIDER_IMAGES.map(({image}, index) => (
           <CarousalItem key={index} style={{overflow: 'hidden'}}>

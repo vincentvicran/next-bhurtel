@@ -1,3 +1,5 @@
+import {UseMediaReturn} from 'hooks'
+import React from 'react'
 import Slider from 'react-slick'
 import styled from 'styled-components'
 import Theme from 'theme'
@@ -11,17 +13,21 @@ export const CarouselSlider = styled(Slider)`
   }
 `
 
-export const CarousalContainer = styled.div`
+interface CarousalContainerProps extends React.ComponentPropsWithoutRef<'div'> {
+  media: UseMediaReturn
+}
+
+export const CarousalContainer = styled.div<CarousalContainerProps>`
   min-height: 100px;
-  margin-bottom: 40px;
   position: relative;
+  padding: 0;
 
   .slick-dots {
     display: flex;
     width: max-content;
     align-items: center;
     /* bottom: 10px; */
-    left: 47%;
+    left: ${({media}) => (media.md ? `47%` : `40%`)};
     bottom: 27px;
   }
 
