@@ -67,4 +67,13 @@ declare namespace Api {
       category_details: CommonCategory
       user_details: User
     }> {}
+
+  interface CaseResult {
+    total_count: string
+    id: number
+    created_at: Date
+    updated_at: Date
+    title: string
+    description: string
+  }
 }
