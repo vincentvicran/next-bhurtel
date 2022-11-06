@@ -3,7 +3,6 @@ import Slider from 'react-slick'
 import {IoIosArrowRoundBack, IoIosArrowRoundForward} from 'react-icons/io'
 
 import {TestimonialCard} from 'components/testimonialCard'
-
 import {IconButton} from 'common/button'
 import {Title} from 'components/title'
 import Theme from 'theme'
