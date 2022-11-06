@@ -1,46 +1,63 @@
+import {UseMediaReturn} from 'hooks'
+import React from 'react'
+import Slider from 'react-slick'
 import styled from 'styled-components'
+import Theme from 'theme'
 
-export const Test = styled.div`
-  cursor: pointer;
-`
-export const CarouselContainer = styled.div`
-  height: 70vh;
+export const CarouselSlider = styled(Slider)`
   position: relative;
-`
 
-export const ActiveIndicatorContainer = styled.div`
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 50px;
-  z-index: 100;
-`
-// @include responsive-for(sm) {
-//   bottom: 100px;
-// }
-export const CarouselText = styled.div`
-  width: 85%;
-  margin-left: 7.5%;
-  top: 50%;
-  transform: translate(0, -50%);
-  position: absolute;
-  z-index: 10;
-`
-export const TextMain = styled.div`
-  font-family: $avertaBold;
-  color: $white;
-  font-size: $large_heading;
-`
-export const ImageSliderContainer = styled.div`
-  display: flex;
-  position: relative;
+  .slick-prev:before,
+  .slick-next:before {
+    display: none;
+  }
 `
 
-export const ImageSlider = styled.div`
+interface CarousalContainerProps extends React.ComponentPropsWithoutRef<'div'> {
+  media: UseMediaReturn
+}
+
+export const CarousalContainer = styled.div<CarousalContainerProps>`
+  min-height: 100px;
   position: relative;
-  flex: 1 0 100%;
-  height: 70vh;
+  padding: 0;
+
+  .slick-dots {
+    display: flex;
+    width: max-content;
+    align-items: center;
+    /* bottom: 10px; */
+    left: ${({media}) => (media.md ? `47%` : `40%`)};
+    bottom: 27px;
+  }
+
+  .slick-slide.slick-active.slick-current
+    + .slick-slide.slick-active
+    > div
+    > div
+    > div {
+    transition: all 0.8s ease-in-out;
+    border: 1px solid ${Theme.colors.$primary};
+  }
+
+  .slick-dots > li {
+    width: 100%;
+    height: 100%;
+  }
+
+  .slick-dots > li.slick-active > div {
+    background: ${Theme.colors.$primary};
+    width: 40px;
+    transition: all 0.3s 0.1s ease-in-out;
+  }
 `
-export const HideOverFlow = styled.div`
-  overflow: hidden;
+export const CarousalItem = styled.div`
+  min-height: '70px';
+`
+export const Dots = styled.div`
+  width: 7px;
+  height: 7px;
+
+  border-radius: 25px;
+  background: ${Theme.colors.$gray300};
 `

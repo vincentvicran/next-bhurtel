@@ -1,5 +1,13 @@
+import React from 'react'
 import Slider from 'react-slick'
-import {BsArrowLeft, BsArrowRight} from 'react-icons/bs'
+import {IoIosArrowRoundBack, IoIosArrowRoundForward} from 'react-icons/io'
+
+import {TestimonialCard} from 'components/testimonialCard'
+
+import {IconButton} from 'common/button'
+import {Title} from 'components/title'
+import Theme from 'theme'
+
 import {
   ArrowBtnContainer,
   CarousalContainer,
@@ -7,33 +15,47 @@ import {
   Dots,
   HeaderContainer
 } from './testimonialCarousal.styles'
-import {TestimonialCard} from 'components/testimonialCard'
-import {useEffect} from 'react'
-import {IconButton} from 'common/button'
-import {Title} from 'components/title'
-import Theme from 'theme'
 
 export function TestimonialCarousal() {
   let ref: Slider | null
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    speed: 900,
+    autoplay: true,
+    autoplaySpeed: 6000,
     slidesToShow: 3,
     slidesToScroll: 1,
-    nextArrow: <BsArrowRight color={'black'} />,
-    prevArrow: <BsArrowLeft color="black" />,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          initialSlide: 0,
+          slidesToShow: 2
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          initialSlide: 0,
+          slidesToShow: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          initialSlide: 0,
+          slidesToShow: 1
+        }
+      }
+    ],
     displayArrowLeft: false,
     displayArrowRight: false,
     arrows: false,
     appendDots: (dots: any) => <div>{dots}</div>,
     customPaging: () => <Dots></Dots>
   }
-
-  useEffect(() => {
-    console.log(ref)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
 
   return (
     <CarousalContainer>
@@ -52,17 +74,15 @@ export function TestimonialCarousal() {
         />
       </HeaderContainer>
       <ArrowBtnContainer>
-        {/* <button onClick={() => ref?.slickPrev()}>Prev</button>
-        <button onClick={() => ref?.slickNext()}>Next</button> */}
         <IconButton
-          style={{width: 30, height: 30}}
+          style={{width: 40, height: 40}}
           onClick={() => ref?.slickPrev()}
-          icon={<BsArrowLeft size={16} />}
+          icon={<IoIosArrowRoundBack size={24} />}
         />
         <IconButton
-          style={{width: 30, height: 30}}
+          style={{width: 40, height: 40}}
           onClick={() => ref?.slickNext()}
-          icon={<BsArrowRight size={16} />}
+          icon={<IoIosArrowRoundForward size={24} />}
         />
       </ArrowBtnContainer>
 
@@ -74,10 +94,7 @@ export function TestimonialCarousal() {
               <CarousalItem key={id}>
                 <TestimonialCard
                   address="chandragiri-14, Kathamandu"
-                  description={`
-					“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id urna, ornare lacus platea malesuada ac. Malesuada ullamcorper vitae mattis in.  tortor, habitant morbi at ut. ”
-					
-					`}
+                  description={`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id urna, ornare lacus platea malesuada ac. Malesuada ullamcorper vitae mattis in.  tortor, habitant morbi at ut.`}
                   name="John Doe"
                   image={
                     'https://www.diethelmtravel.com/wp-content/uploads/2016/04/bill-gates-wealthiest-person.jpg'

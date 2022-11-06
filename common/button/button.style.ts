@@ -220,7 +220,8 @@ const IconButtonCont = styled.button<IconBtnProps>`
 
   &:hover {
     background: ${(props) => props.background ?? Theme.colors.$primary};
-    color: white;
+
+    color: ${(props) => props.hoverColor ?? Theme.colors.$white};
   }
 
   &:active {
