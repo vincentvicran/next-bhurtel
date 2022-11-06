@@ -3,29 +3,32 @@ import {InputField, Textarea} from 'components/inputField'
 import React from 'react'
 import {ContactContainer, HFlex} from './contactUs.styled'
 import {Button} from 'common/button'
-import {useMedia} from 'hooks'
+
+import {Paragraph} from 'components/Paragraph'
+import {Title} from 'components/title'
 
 export const ContactUs = () => {
-  const media = useMedia()
   return (
     <ContactContainer>
-      <VStack gap={media.xs ? '$3' : '$8'}>
-        <VStack gap="$3">
-          <HFlex media={media}>
-            <InputField labelName="First Name"></InputField>
-            <InputField labelName="Last Name"></InputField>
-          </HFlex>
-          <InputField labelName="Email"></InputField>
-          <InputField labelName="Phone Number"></InputField>
-          <Textarea labelName="Message"></Textarea>
+      <VStack gap="$7">
+        <VStack gap="$5">
+          <Paragraph color="light">CONTACT</Paragraph>
+          <Title text="Let's talk" size="lg" weight="bold"></Title>
+          <Paragraph color="light" style={{textAlign: 'left'}}>
+            Contact Us today to start adding value to your business.
+          </Paragraph>
         </VStack>
+        <VStack gap="$5">
+          <InputField placeholder="Full Name"></InputField>
+          <InputField placeholder="Email Address"></InputField>
+          <Textarea placeholder="Type your message here..."></Textarea>
 
-        <Button
-          title="Submit"
-          color="primary"
-          variant="contained"
-          style={{width: '100%'}}
-        ></Button>
+          <Button
+            title="Send Message"
+            color="primary"
+            variant="contained"
+          ></Button>
+        </VStack>
       </VStack>
     </ContactContainer>
   )
