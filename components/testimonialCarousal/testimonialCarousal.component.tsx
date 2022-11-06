@@ -39,7 +39,7 @@ export function TestimonialCarousal() {
     <CarousalContainer>
       <HeaderContainer>
         <Title
-          text="TESTIMONIAL"
+          text="TESTIMONIALS"
           size="sm"
           style={{color: Theme.colors.$gray600, display: 'block'}}
         />
