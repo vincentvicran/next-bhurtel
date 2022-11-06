@@ -5,7 +5,6 @@ import Theme from 'theme'
 
 export const ContactContainer = styled.div`
   padding: ${Theme.space.$6} ${Theme.space.$7};
-  backgorund-color: ${Theme.colors.$gray300};
   border-radius: ${Theme.radius.$default};
 
   border: 1px solid ${Theme.colors.$gray200};
