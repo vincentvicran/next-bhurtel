@@ -19,4 +19,52 @@ declare namespace Api {
     }
     token: string
   }
+
+  interface PaginatedData<T> {
+    total: string
+    rows: Array<T>
+    isLast: boolean
+  }
+
+  interface User {
+    id: number
+    email: string
+  }
+
+  interface CommonCategory {
+    id: number
+    type: string
+    title: string
+    sub_categories: null
+    common_category_id: number
+    is_description_only: boolean
+  }
+  interface AllCategories
+    extends PaginatedData<{
+      total_count: string
+      category_details: CommonCategory
+    }> {}
+
+  interface CommonDescription {
+    title: string
+    posted_at: Date
+    common_category_id: number
+    short_description: string
+    main_description: string
+    video_link?: string
+    posted_by: number
+    slug: string
+    id: number
+    created_at: Date
+    updated_at: Date
+    thumbnail: string | null
+  }
+
+  interface AllCommonDescription
+    extends PaginatedData<{
+      total_count: string
+      description_details: CommonDescription
+      category_details: CommonCategory
+      user_details: User
+    }> {}
 }

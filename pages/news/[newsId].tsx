@@ -9,19 +9,27 @@ import {Title} from 'components/title'
 import about from '../../assets/images/about.jpg'
 import {CompWrapper} from 'common/compWrapper'
 import {Youtube} from 'common/youtube'
+import {commonDescriptionServices} from 'redux/commonDescription/commonDescription.service'
+import {GetServerSideProps} from 'next'
+import moment from 'moment'
 
 const NewsContainer = styled.div`
   padding: ${Theme.space.$10} 0;
 `
 
-interface NewsProps {
-  details: object
-}
-
 // DESCRIPTION IN details PROPS WILL COME FROM
 // BACKEND TEXTEDITOR SO CURRENTLY DUMMY DATA IS ADDED
-function News(props: NewsProps) {
+function News({
+  news
+}: {
+  news: {
+    description_details: Api.CommonDescription
+    category_details: Api.CommonCategory
+    user_details: Api.User
+  }
+}) {
   const media = useMedia()
+
   return (
     <CompWrapper>
       <NewsContainer>
@@ -29,63 +37,22 @@ function News(props: NewsProps) {
           color="light"
           style={{fontStyle: 'italic', marginBottom: 10}}
         >
-          June 30, 2021
+          {moment(news.description_details.posted_at).format(`DD MMM, YYYY`)}
         </Paragraph>
         <Title
-          text="What are the major Construction Accident reports in NYC?"
+          text={news.description_details.title}
           size={media.sm ? 'xl' : 'lg'}
           weight="bold"
           style={{marginBottom: media.sm ? 40 : 20}}
         />
 
         <Paragraph color="dark" style={{marginBottom: 40}}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed massa eu,
-          aliquam gravida quis. Convallis urna amet aenean mi habitant a, non
-          eu. A elementum leo ultrices morbi malesuada. Eget enim rhoncus aenean
-          tempus mauris nibh. Lorem ipsum dolor sit amet, consectetur adipiscing
-          elit. Sed massa eu, aliquam gravida quis. Convallis urna amet aenean
-          mi habitant a, non eu. A elementum leo ultrices morbi malesuada. Eget
-          enim Convallis urna amet aenean mi habitant a, non eu...
+          {news.description_details.short_description}
         </Paragraph>
 
         <Image alt="accident" src={about} />
         <Paragraph color="dark" style={{margin: '40px 0px'}}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-          habitasse aliquet enim, ut feugiat dolor tristique sapien. Mi nunc
-          massa ipsum orci sed. Turpis amet condimentum quis diam. Suscipit
-          lectus volutpat quam dolor, egestas enim turpis mauris quam. Ut
-          mauris, viverra ut in est egestas ut. Quis malesuada eget in tortor
-          vestibulum non. Lacus, quam semper lectus velit, eu. Massa et
-          elementum at pellentesque neque tellus ultrices. Netus in rutrum mi
-          non sed eu facilisis elementum proin. Tempus feugiat et eu et
-          pellentesque habitasse tellus consectetur in. Nulla massa aenean ipsum
-          lacus. Rhoncus suscipit condimentum mattis orci non sed. Auctor quam
-          in suscipit diam diam. Mi est ullamcorper blandit at. Vitae velit
-          ornare urna morbi accumsan tincidunt. Integer commodo arcu integer
-          sagittis ipsum diam. Orci tristique tortor massa at at. Fact: Orci
-          justo, imperdiet porttitor aenean adipiscing. Sed morbi sed egestas
-          pellentesque maecenas dis. Nec nec tristique suspendisse eu in pretium
-          nunc felis. Sit elementum aliquet nisi, quam sit aliquet. Viverra in
-          etiam aliquet at elit turpis. Viverra phasellus quis tortor nunc
-          sollicitudin urna adipiscing facilisis suspendisse. Pellentesque
-          euismod cum augue facilisis. Nisl euismod vehicula gravida nec.
-          Commodo morbi a sit blandit hendrerit vitae nunc. Lacus, lobortis sit
-          id ornare senectus diam id aliquam. Volutpat nisl nisl, pulvinar
-          sagittis, condimentum. Morbi orci odio pharetra ut potenti gravida.
-          Quisque laoreet amet, integer morbi. At id fermentum urna ultrices.
-          Mauris at dui imperdiet sem urna. Lorem ipsum dolor sit amet,
-          consectetur adipiscing elit. Nunc habitasse aliquet enim, ut feugiat
-          dolor tristique sapien. Mi nunc massa ipsum orci sed. Turpis amet
-          condimentum quis diam. Suscipit lectus volutpat quam dolor, egestas
-          enim turpis mauris quam. Ut mauris, viverra ut in est egestas ut. Quis
-          malesuada eget in tortor vestibulum non. Lacus, quam semper lectus
-          velit, eu. Massa et elementum at pellentesque neque tellus ultrices.
-          Netus in rutrum mi non sed eu facilisis elementum proin. Tempus
-          feugiat et eu et pellentesque habitasse tellus consectetur in. Nulla
-          massa aenean ipsum lacus. Rhoncus suscipit condimentum mattis orci non
-          sed. Auctor quam in suscipit diam diam. Mi est ullamcorper blandit at.
-          Vitae velit ornare urna morbi accumsan tincidunt. Integer commodo arcu
-          integer sagittis ipsum diam. Orci tristique tortor massa at at.
+          {news.description_details.main_description}
         </Paragraph>
 
         {/* YOUTUBE COMPONENT */}
@@ -93,6 +60,16 @@ function News(props: NewsProps) {
       </NewsContainer>
     </CompWrapper>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const response = await commonDescriptionServices.getCommonDescriptionById(
+    Number(context?.params?.newsId as string)
+  )
+
+  return {
+    props: {news: response} // will be passed to the page component as props
+  }
 }
 
 export default News

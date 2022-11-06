@@ -7,7 +7,8 @@ import {HStack} from 'common/stack'
 import {DescriptionCard} from 'components/descriptionCard'
 import {modifyArrayPosition} from 'helpers/newsPage.helper'
 import {CompWrapper} from 'common/compWrapper'
-import accident from '../../assets/images/accident.jpg'
+import {newsServices} from 'redux/news/news.service'
+import {commonDescriptionServices} from 'redux/commonDescription/commonDescription.service'
 
 const NewsContainer = styled.div`
   /* padding: 40px; */
@@ -21,25 +22,41 @@ const NewsBottomContainer = styled.div`
   grid-gap: ${Theme.space.$10};
 `
 
-function News() {
-  const news = modifyArrayPosition(data)
+function News({news: fetchedNews}: {news: Api.AllCommonDescription[`rows`]}) {
+  const news =
+    modifyArrayPosition<Api.AllCommonDescription[`rows`][0]>(fetchedNews)
 
   return (
     <CompWrapper>
       <NewsContainer>
         {news.initialData && (
-          <DescriptionCard isHorizontal={true} {...news.initialData} />
+          <DescriptionCard
+            isHorizontal={true}
+            author={news.initialData.user_details.email}
+            date={news.initialData.description_details.posted_at}
+            desc={news.initialData.description_details.main_description}
+            title={news.initialData.description_details.title}
+            imgUrl={news.initialData.description_details.thumbnail as string}
+          />
         )}
 
         <NewsBottomContainer>
-          {news.data &&
-            news.data.map((el, id) => {
+          {fetchedNews &&
+            fetchedNews.map((el, id) => {
               return (
-                <a key={id} href={`/news/${id}`} style={{color: 'inherit'}}>
+                <a
+                  key={id}
+                  href={`/news/${el.description_details.id}`}
+                  style={{color: 'inherit'}}
+                >
                   <DescriptionCard
                     truncateSize={170}
                     truncateDesc={true}
-                    {...el}
+                    author={el.user_details.email}
+                    date={el.description_details.posted_at}
+                    desc={el.description_details.main_description}
+                    title={el.description_details.title}
+                    imgUrl={el.description_details.thumbnail as string}
                     isHorizontal={false}
                   />
                 </a>
@@ -55,49 +72,19 @@ function News() {
   )
 }
 
-const data = [
-  {
-    title: 'What are the major Construction Accident reports in NYC?',
-    author: 'binay6014',
-    date: new Date(),
-    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed massa eu, aliquam gravida quis. Convallis urna amet aenean mi habitant a, non eu. A elementum leo ultrices morbi malesuada. Eget enim rhoncus aenean tempus mauris nibhLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed massa eu, aliquam gravida quis. Convallis urna amet aenean mi habitant a, non eu. A elementum leo ultrices morbi malesuada. Eget enim Convallis urna amet aenean mi habitant a, non eu...',
-    imgUrl: accident
-  },
-  {
-    title: 'What are the major Construction Accident reports in NYC?',
-    author: 'binay6014',
-    date: new Date(),
-    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed massa eu, aliquam gravida quis. Convallis urna amet aenean mi habitant a, non eu. A elementum leo ultrices morbi malesuada. Eget enim rhoncus aenean tempus mauris nibhLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed massa eu, aliquam gravida quis. Convallis urna amet aenean mi habitant a, non eu. A elementum leo ultrices morbi malesuada. Eget enim Convallis urna amet aenean mi habitant a, non eu...',
-    imgUrl: accident
-  },
-  {
-    title: 'What are the major Construction Accident reports in NYC?',
-    author: 'binay6014',
-    date: new Date(),
-    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed massa eu, aliquam gravida quis. Convallis urna amet aenean mi habitant a, non eu. A elementum leo ultrices morbi malesuada. Eget enim rhoncus aenean tempus mauris nibhLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed massa eu, aliquam gravida quis. Convallis urna amet aenean mi habitant a, non eu. A elementum leo ultrices morbi malesuada. Eget enim Convallis urna amet aenean mi habitant a, non eu...',
-    imgUrl: accident
-  },
-  {
-    title: 'What are the major Construction Accident reports in NYC?',
-    author: 'binay6014',
-    date: new Date(),
-    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed massa eu, aliquam gravida quis. Convallis urna amet aenean mi habitant a, non eu. A elementum leo ultrices morbi malesuada. Eget enim rhoncus aenean tempus mauris nibhLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed massa eu, aliquam gravida quis. Convallis urna amet aenean mi habitant a, non eu. A elementum leo ultrices morbi malesuada. Eget enim Convallis urna amet aenean mi habitant a, non eu...',
-    imgUrl: accident
-  },
-  {
-    title: 'What are the major Construction Accident reports in NYC?',
-    author: 'binay6014',
-    date: new Date(),
-    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed massa eu, aliquam gravida quis. Convallis urna amet aenean mi habitant a, non eu. A elementum leo ultrices morbi malesuada. Eget enim rhoncus aenean tempus mauris nibhLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed massa eu, aliquam gravida quis. Convallis urna amet aenean mi habitant a, non eu. A elementum leo ultrices morbi malesuada. Eget enim Convallis urna amet aenean mi habitant a, non eu...',
-    imgUrl: accident
-  },
-  {
-    title: 'What are the major Construction Accident reports in NYC?',
-    author: 'binay6014',
-    date: new Date(),
-    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed massa eu, aliquam gravida quis. Convallis urna amet aenean mi habitant a, non eu. A elementum leo ultrices morbi malesuada. Eget enim rhoncus aenean tempus mauris nibhLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed massa eu, aliquam gravida quis. Convallis urna amet aenean mi habitant a, non eu. A elementum leo ultrices morbi malesuada. Eget enim Convallis urna amet aenean mi habitant a, non eu...',
-    imgUrl: accident
+export async function getServerSideProps() {
+  const newsCategory = await newsServices.getNewsCategories()
+  const categoryArr = newsCategory.data.data.data
+
+  const cmnDescription =
+    await commonDescriptionServices.getCommonDescriptionByCategoryId(
+      categoryArr.rows[0].category_details.id,
+      {}
+    )
+
+  return {
+    props: {news: cmnDescription.rows} // will be passed to the page component as props
   }
-]
+}
 
 export default News
