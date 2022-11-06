@@ -7,6 +7,7 @@ import {HStack} from 'common/stack'
 import {DescriptionCard} from 'components/descriptionCard'
 import {modifyArrayPosition} from 'helpers/newsPage.helper'
 import {CompWrapper} from 'common/compWrapper'
+import accident from '../../assets/images/accident.jpg'
 
 const NewsContainer = styled.div`
   /* padding: 40px; */
@@ -60,33 +61,43 @@ const data = [
     author: 'binay6014',
     date: new Date(),
     desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed massa eu, aliquam gravida quis. Convallis urna amet aenean mi habitant a, non eu. A elementum leo ultrices morbi malesuada. Eget enim rhoncus aenean tempus mauris nibhLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed massa eu, aliquam gravida quis. Convallis urna amet aenean mi habitant a, non eu. A elementum leo ultrices morbi malesuada. Eget enim Convallis urna amet aenean mi habitant a, non eu...',
-    imgUrl:
-      'https://m.economictimes.com/thumb/msid-72127445,width-1200,height-900,resizemode-4,imgsize-293587/road-accident.jpg'
+    imgUrl: accident
   },
   {
     title: 'What are the major Construction Accident reports in NYC?',
     author: 'binay6014',
     date: new Date(),
     desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed massa eu, aliquam gravida quis. Convallis urna amet aenean mi habitant a, non eu. A elementum leo ultrices morbi malesuada. Eget enim rhoncus aenean tempus mauris nibhLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed massa eu, aliquam gravida quis. Convallis urna amet aenean mi habitant a, non eu. A elementum leo ultrices morbi malesuada. Eget enim Convallis urna amet aenean mi habitant a, non eu...',
-    imgUrl:
-      'https://m.economictimes.com/thumb/msid-72127445,width-1200,height-900,resizemode-4,imgsize-293587/road-accident.jpg'
+    imgUrl: accident
   },
   {
     title: 'What are the major Construction Accident reports in NYC?',
     author: 'binay6014',
     date: new Date(),
     desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed massa eu, aliquam gravida quis. Convallis urna amet aenean mi habitant a, non eu. A elementum leo ultrices morbi malesuada. Eget enim rhoncus aenean tempus mauris nibhLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed massa eu, aliquam gravida quis. Convallis urna amet aenean mi habitant a, non eu. A elementum leo ultrices morbi malesuada. Eget enim Convallis urna amet aenean mi habitant a, non eu...',
-    imgUrl:
-      'https://m.economictimes.com/thumb/msid-72127445,width-1200,height-900,resizemode-4,imgsize-293587/road-accident.jpg'
+    imgUrl: accident
+  },
+  {
+    title: 'What are the major Construction Accident reports in NYC?',
+    author: 'binay6014',
+    date: new Date(),
+    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed massa eu, aliquam gravida quis. Convallis urna amet aenean mi habitant a, non eu. A elementum leo ultrices morbi malesuada. Eget enim rhoncus aenean tempus mauris nibhLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed massa eu, aliquam gravida quis. Convallis urna amet aenean mi habitant a, non eu. A elementum leo ultrices morbi malesuada. Eget enim Convallis urna amet aenean mi habitant a, non eu...',
+    imgUrl: accident
+  },
+  {
+    title: 'What are the major Construction Accident reports in NYC?',
+    author: 'binay6014',
+    date: new Date(),
+    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed massa eu, aliquam gravida quis. Convallis urna amet aenean mi habitant a, non eu. A elementum leo ultrices morbi malesuada. Eget enim rhoncus aenean tempus mauris nibhLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed massa eu, aliquam gravida quis. Convallis urna amet aenean mi habitant a, non eu. A elementum leo ultrices morbi malesuada. Eget enim Convallis urna amet aenean mi habitant a, non eu...',
+    imgUrl: accident
+  },
+  {
+    title: 'What are the major Construction Accident reports in NYC?',
+    author: 'binay6014',
+    date: new Date(),
+    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed massa eu, aliquam gravida quis. Convallis urna amet aenean mi habitant a, non eu. A elementum leo ultrices morbi malesuada. Eget enim rhoncus aenean tempus mauris nibhLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed massa eu, aliquam gravida quis. Convallis urna amet aenean mi habitant a, non eu. A elementum leo ultrices morbi malesuada. Eget enim Convallis urna amet aenean mi habitant a, non eu...',
+    imgUrl: accident
   }
-  // {
-  //   title: 'What are the major Construction Accident reports in NYC?',
-  //   author: 'binay6014',
-  //   date: new Date(),
-  //   desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed massa eu, aliquam gravida quis. Convallis urna amet aenean mi habitant a, non eu. A elementum leo ultrices morbi malesuada. Eget enim rhoncus aenean tempus mauris nibhLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed massa eu, aliquam gravida quis. Convallis urna amet aenean mi habitant a, non eu. A elementum leo ultrices morbi malesuada. Eget enim Convallis urna amet aenean mi habitant a, non eu...',
-  //   imgUrl:
-  //     'https://m.economictimes.com/thumb/msid-72127445,width-1200,height-900,resizemode-4,imgsize-293587/road-accident.jpg'
-  // }
 ]
 
 export default News

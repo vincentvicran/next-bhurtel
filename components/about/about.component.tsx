@@ -29,7 +29,7 @@ export function About(props: AboutProps) {
           }}
         />
         <Title
-          text="Lorem ipsum dolor ?"
+          text="Learn more about us"
           size="lg"
           weight="bold"
           style={{marginBottom: 20}}

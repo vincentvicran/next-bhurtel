@@ -5,7 +5,7 @@ export const AboutCont = styled.div<{md: boolean}>`
   display: flex;
   justify-content: space-between;
   gap: ${Theme.space.$14};
-  margin: ${Theme.space.$14} 0;
+  margin-bottom: ${Theme.space.$14};
   flex-direction: ${(props) => {
     if (props.md) {
       return 'row'
@@ -15,8 +15,8 @@ export const AboutCont = styled.div<{md: boolean}>`
   }};
 `
 export const LeftCont = styled.div`
-  flex: 1.3;
+  flex: 1;
 `
 export const RightCont = styled.div`
-  flex: 1;
+  flex: 1.2;
 `
