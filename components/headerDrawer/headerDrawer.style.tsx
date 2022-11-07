@@ -33,7 +33,7 @@ export const Logo = styled(FlexCenter)`
 `
 
 export const LogoIcon = styled(FlexCenter)`
-  width: 55px;
+  width: 250px;
   height: 55px;
 `
 

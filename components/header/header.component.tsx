@@ -8,6 +8,7 @@ import {Menu, MenuItem} from 'common/menu'
 import {CompWrapper} from 'common/compWrapper'
 import {useMedia} from 'hooks'
 import {HeaderMenu} from 'components/headerMenu'
+import {HeaderDrawer} from 'components/headerDrawer'
 
 interface HeaderProps {
   image: string
@@ -20,130 +21,133 @@ export const Header = ({image}: HeaderProps) => {
       <CompWrapper>
         <HStack align="center">
           <HStack gap="$13" align="center">
+            <HeaderDrawer image={image} />
             <HeaderLogo src={image} />
-            <HStack
-              gap="$5"
-              align="center"
-              style={{display: media.sm ? 'flex' : 'none'}}
-            >
-              <Menuitem href="/home">HOME</Menuitem>
-              <HeaderMenu header={'PERSONAL INJURY'} />
-              <Menu
-                placement="bottomright"
-                trigger={(elementArg: {active: boolean}) => {
-                  return (
-                    <HStack justify="center" align="center" gap="$2">
-                      <Menuitem href="#">
-                        PERSONAL INJURY
-                        <FiChevronDown
-                          style={{
-                            cursor: 'pointer',
-                            height: '12px',
-                            width: '14px'
-                          }}
-                        />
-                      </Menuitem>
-                    </HStack>
-                  )
-                }}
+            {media.md && (
+              <HStack
+                gap="$5"
+                align="center"
+                style={{display: media.sm ? 'flex' : 'none'}}
               >
-                <MenuItem onClick={() => console.log('menu item1 clicked')}>
-                  <p>item1</p>
-                </MenuItem>
-                <MenuItem onClick={() => console.log('menu item2 clicked')}>
-                  <p>item2</p>
-                </MenuItem>
-                <MenuItem onClick={() => console.log('menu item3 clicked')}>
-                  <p>item3</p>
-                </MenuItem>
-              </Menu>
-
-              <Menu
-                placement="bottomright"
-                trigger={(elementArg: {active: boolean}) => {
-                  console.log(elementArg)
-                  return (
-                    <HStack justify="center" align="center" gap="$2">
-                      <Menuitem href="#">
-                        PRACTICE AREAS
-                        <FiChevronDown
-                          style={{
-                            cursor: 'pointer',
-                            height: '12px',
-                            width: '14px'
-                          }}
-                        />
-                      </Menuitem>
-                    </HStack>
-                  )
-                }}
-              >
-                {/* start */}
-                {data.map((item) => {
-                  if (item?.category_details?.is_description_only) {
+                <Menuitem href="/home">HOME</Menuitem>
+                <HeaderMenu header={'PERSONAL INJURY'} />
+                <Menu
+                  placement="bottomright"
+                  trigger={(elementArg: {active: boolean}) => {
                     return (
-                      <MenuItem
-                        key={item?.category_details.id}
-                        onClick={() => console.log('menu item1 clicked')}
-                      >
-                        <p>{item.category_details.title}</p>
-                      </MenuItem>
+                      <HStack justify="center" align="center" gap="$2">
+                        <Menuitem href="#">
+                          PERSONAL INJURY
+                          <FiChevronDown
+                            style={{
+                              cursor: 'pointer',
+                              height: '12px',
+                              width: '14px'
+                            }}
+                          />
+                        </Menuitem>
+                      </HStack>
                     )
-                  } else {
+                  }}
+                >
+                  <MenuItem onClick={() => console.log('menu item1 clicked')}>
+                    <p>item1</p>
+                  </MenuItem>
+                  <MenuItem onClick={() => console.log('menu item2 clicked')}>
+                    <p>item2</p>
+                  </MenuItem>
+                  <MenuItem onClick={() => console.log('menu item3 clicked')}>
+                    <p>item3</p>
+                  </MenuItem>
+                </Menu>
+
+                <Menu
+                  placement="bottomright"
+                  trigger={(elementArg: {active: boolean}) => {
+                    console.log(elementArg)
                     return (
-                      <Menu
-                        key={item?.category_details.id}
-                        placement="nestedright"
-                        trigger={(elementArg: {active: boolean}) => {
-                          console.log(elementArg)
-                          return (
-                            <MenuItem
-                              onClick={() => console.log('it is clicked')}
-                              style={{minWidth: '200px', width: '100%'}}
-                            >
-                              <HStack
-                                justify="flex-start"
-                                align="center"
-                                gap="$2"
-                              >
-                                <p>{item.category_details.title}</p>
-                                <FiChevronDown
-                                  style={{
-                                    cursor: 'pointer',
-                                    height: '12px',
-                                    width: '14px'
-                                  }}
-                                />
-                              </HStack>
-                            </MenuItem>
-                          )
-                        }}
-                      >
+                      <HStack justify="center" align="center" gap="$2">
+                        <Menuitem href="#">
+                          PRACTICE AREAS
+                          <FiChevronDown
+                            style={{
+                              cursor: 'pointer',
+                              height: '12px',
+                              width: '14px'
+                            }}
+                          />
+                        </Menuitem>
+                      </HStack>
+                    )
+                  }}
+                >
+                  {/* start */}
+                  {data.map((item) => {
+                    if (item?.category_details?.is_description_only) {
+                      return (
                         <MenuItem
+                          key={item?.category_details.id}
                           onClick={() => console.log('menu item1 clicked')}
                         >
-                          <p>item1</p>
+                          <p>{item.category_details.title}</p>
                         </MenuItem>
-                        <MenuItem
-                          onClick={() => console.log('menu item2 clicked')}
+                      )
+                    } else {
+                      return (
+                        <Menu
+                          key={item?.category_details.id}
+                          placement="nestedright"
+                          trigger={(elementArg: {active: boolean}) => {
+                            console.log(elementArg)
+                            return (
+                              <MenuItem
+                                onClick={() => console.log('it is clicked')}
+                                style={{minWidth: '200px', width: '100%'}}
+                              >
+                                <HStack
+                                  justify="flex-start"
+                                  align="center"
+                                  gap="$2"
+                                >
+                                  <p>{item.category_details.title}</p>
+                                  <FiChevronDown
+                                    style={{
+                                      cursor: 'pointer',
+                                      height: '12px',
+                                      width: '14px'
+                                    }}
+                                  />
+                                </HStack>
+                              </MenuItem>
+                            )
+                          }}
                         >
-                          <p>item2</p>
-                        </MenuItem>
-                        <MenuItem
-                          onClick={() => console.log('menu item3 clicked')}
-                        >
-                          <p>item3</p>
-                        </MenuItem>
-                      </Menu>
-                    )
-                  }
-                })}
-              </Menu>
+                          <MenuItem
+                            onClick={() => console.log('menu item1 clicked')}
+                          >
+                            <p>item1</p>
+                          </MenuItem>
+                          <MenuItem
+                            onClick={() => console.log('menu item2 clicked')}
+                          >
+                            <p>item2</p>
+                          </MenuItem>
+                          <MenuItem
+                            onClick={() => console.log('menu item3 clicked')}
+                          >
+                            <p>item3</p>
+                          </MenuItem>
+                        </Menu>
+                      )
+                    }
+                  })}
+                </Menu>
 
-              <Menuitem href="/contact-us">CONTACTS</Menuitem>
-              <Menuitem href="/case-results">CASE RESULTS</Menuitem>
-              <Menuitem href="/news">NEWS</Menuitem>
-            </HStack>
+                <Menuitem href="/contact-us">CONTACTS</Menuitem>
+                <Menuitem href="/case-results">CASE RESULTS</Menuitem>
+                <Menuitem href="/news">NEWS</Menuitem>
+              </HStack>
+            )}
           </HStack>
 
           <Search>

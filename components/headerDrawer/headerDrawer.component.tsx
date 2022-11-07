@@ -6,34 +6,31 @@ import {AiOutlineMenu} from 'react-icons/ai'
 
 import {DrawerMenu} from 'components/drawerMenu'
 import {HStack, VStack} from 'common/stack'
-import logoIcon from 'assets/icons/logo1.png'
 
 import {
-  HeaderName,
   Logo,
-  LogoIcon,
   DrawerMenuBody,
   DrawerMenuItem,
   HorizontalMenuBreak,
   DrawerMenuFooterText
 } from './headerDrawer.style'
 
-export const HeaderDrawerMenu = () => {
+export const HeaderDrawer = ({image}: {image: string}) => {
   return (
     <DrawerMenu
-      inDismiss
       trigger={<AiOutlineMenu size={24} />}
       header={
-        <Logo>
-          <Link href={'/'}>
-            <>
-              <LogoIcon>
-                <Image src={logoIcon} alt="" />
-              </LogoIcon>
-              <HeaderName>Codniv</HeaderName>
-            </>
-          </Link>
-        </Logo>
+        <Link href={'/'}>
+          <Logo>
+            <Image
+              src={image}
+              alt=""
+              objectFit="contain"
+              width="250"
+              height="55"
+            />
+          </Logo>
+        </Link>
       }
     >
       {() => (
