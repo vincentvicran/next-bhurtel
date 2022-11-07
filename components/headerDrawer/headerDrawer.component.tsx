@@ -18,6 +18,7 @@ import {
 export const HeaderDrawer = ({image}: {image: string}) => {
   return (
     <DrawerMenu
+      disableScroll
       trigger={<AiOutlineMenu size={24} />}
       header={
         <Link href={'/'}>

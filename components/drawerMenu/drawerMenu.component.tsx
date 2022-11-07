@@ -10,7 +10,7 @@ import {
 } from 'react-ui-animate'
 
 import {HStack} from 'common/stack'
-import {useMedia} from 'hooks'
+import {useDisableScroll, useMedia} from 'hooks'
 import Theme from 'theme'
 
 import {
@@ -30,6 +30,7 @@ interface DrawerMenuProps {
   trigger?: React.ReactNode
   inDismiss?: boolean
   children: (closeModal?: () => void) => React.ReactNode
+  disableScroll?: boolean
 }
 
 export const DrawerMenu: React.FC<DrawerMenuProps> = ({
@@ -37,7 +38,8 @@ export const DrawerMenu: React.FC<DrawerMenuProps> = ({
   header,
   containerStyle,
   trigger = <AiOutlineMenu size={24} />,
-  inDismiss = false
+  inDismiss = false,
+  disableScroll
 }) => {
   const [open, setOpen] = useState<boolean>(false)
   const media = useMedia()
@@ -53,6 +55,8 @@ export const DrawerMenu: React.FC<DrawerMenuProps> = ({
   const closeMenu = () => {
     setOpen(false)
   }
+
+  useDisableScroll(open && !!disableScroll)
 
   return (
     <>
