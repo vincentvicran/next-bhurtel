@@ -1,27 +1,21 @@
-// export const Carousel = () => {
-//   return <div>Carousel</div>
-// }
-
-import React, {useEffect, useState} from 'react'
-import {useRouter} from 'next/router'
-import {useAnimatedValue, AnimatedBlock, interpolate} from 'react-ui-animate'
+import React, {useCallback, useRef} from 'react'
 import Image from 'next/image'
-// COMMONS
-import {
-  ActiveIndex,
-  CarouselContainer,
-  ActiveIndicatorContainer,
-  CarouselText,
-  ImageSliderContainer,
-  ImageSlider,
-  HideOverFlow
-} from '.'
-import {Button} from '../button'
-// import { PrimaryButton } from "../../common/button/Button.common";
+import Slider from 'react-slick'
 
-// const BackgroundImage = "/assets/image/H1.webp";
-// const BackgroundImage2 = "/assets/image/H2.webp";
-// const BackgroundImage3 = "/assets/image/H3.webp";
+import {useMedia} from 'hooks'
+
+import {
+  CarousalContainer,
+  CarousalItem,
+  CarouselSlider,
+  Dots
+} from './carousel.style'
+import {NavArrow} from './component/navArrow'
+
+// import BackgroundImage from 'assets/images/about.jpg'
+// import BackgroundImage2 from 'assets/images/about.jpg'
+// import BackgroundImage3 from 'assets/images/about.jpg'
+
 const BackgroundImage = '/assets/image/H1.png'
 const BackgroundImage2 = '/assets/image/H2.jpg'
 const BackgroundImage3 = '/assets/image/H3.png'
@@ -33,62 +27,61 @@ const SLIDER_IMAGES = [
 ]
 
 export const MainCarousel = () => {
-  const router = useRouter()
-  const [activeImageIndex, setActiveImageIndex] = useState(0)
-  const animation = useAnimatedValue(activeImageIndex)
-  useEffect(() => {
-    const interval = setInterval(function () {
-      setActiveImageIndex((prev) => (prev + 1) % 3)
-    }, 5000)
+  const media = useMedia()
 
-    return () => clearInterval(interval)
-  }, [])
+  const getImageBox = useCallback(() => {
+    let resolution: {width: number; height: number} = {width: 1280, height: 400}
 
+    if (media) {
+      if (media.xxl) return {width: 2000, height: 600}
+      if (media.xl) return {width: 1400, height: 400}
+      if (media.lg) return {width: 1200, height: 400}
+      if (media.md) return {width: 900, height: 400}
+      if (media.sm) return {width: 750, height: 400}
+      if (media.xs) return {width: 600, height: 400}
+    }
+    return resolution
+  }, [media])
+
+  const {width, height} = getImageBox()
+
+  const slider = useRef<Slider>(null)
+
+  const prevSlide = () => {
+    slider.current?.slickPrev()
+  }
+  const nextSlide = () => {
+    slider.current?.slickNext()
+  }
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 900,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    nextArrow: <NavArrow direction="next" onClick={nextSlide} />,
+    prevArrow: <NavArrow direction="prev" onClick={prevSlide} />,
+    appendDots: (dots: any) => <div>{dots}</div>,
+    customPaging: () => <Dots></Dots>
+  }
   return (
-    <CarouselContainer>
-      <ActiveIndicatorContainer>
-        <ActiveIndex
-          length={SLIDER_IMAGES.length}
-          activeIndex={activeImageIndex}
-          setActiveIndex={setActiveImageIndex}
-        />
-      </ActiveIndicatorContainer>
-
-      <CarouselText></CarouselText>
-      {/* IMAGE SLIDER */}
-      {/* <div style={{overflow: 'hidden'}}> */}
-      <HideOverFlow>
-        {/* <AnimatedBlock
-          className="image-slider-container"
-          style={{
-            left: interpolate(
-              animation.value,
-              SLIDER_IMAGES.map((_, i) => i),
-              SLIDER_IMAGES.map((_, i) => -1 * i * 100 + '%')
-            )
-          }}
-        > */}
-        <ImageSliderContainer
-          style={{
-            left: interpolate(
-              animation.value,
-              SLIDER_IMAGES.map((_, i) => i),
-              SLIDER_IMAGES.map((_, i) => -1 * i * 100 + '%')
-            )
-          }}
-        >
-          {SLIDER_IMAGES.map((val, index) => (
-            <ImageSlider key={index}>
-              <Image src={val.image} objectFit="cover" layout="fill" priority />
-            </ImageSlider>
-          ))}
-        </ImageSliderContainer>
-        {/* </AnimatedBlock> */}
-
-        {/* </div> */}
-      </HideOverFlow>
-
-      <div className="overlay" />
-    </CarouselContainer>
+    <CarousalContainer media={media}>
+      <CarouselSlider ref={slider} {...settings}>
+        {SLIDER_IMAGES.map(({image}, index) => (
+          <CarousalItem key={index} style={{overflow: 'hidden'}}>
+            <Image
+              src={image}
+              alt=""
+              objectFit="cover"
+              height={height}
+              width={width}
+            />
+          </CarousalItem>
+        ))}
+      </CarouselSlider>
+    </CarousalContainer>
   )
 }

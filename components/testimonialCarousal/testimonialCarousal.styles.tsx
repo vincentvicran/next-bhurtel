@@ -1,34 +1,17 @@
-import {UseMediaReturn} from 'hooks'
-import React from 'react'
-import Slider from 'react-slick'
 import styled from 'styled-components'
 import Theme from 'theme'
 
-export const CarouselSlider = styled(Slider)`
-  position: relative;
-
-  .slick-prev:before,
-  .slick-next:before {
-    display: none;
-  }
-`
-
-interface CarousalContainerProps extends React.ComponentPropsWithoutRef<'div'> {
-  media: UseMediaReturn
-}
-
-export const CarousalContainer = styled.div<CarousalContainerProps>`
+export const CarousalContainer = styled.div`
   min-height: 100px;
+  margin-bottom: 40px;
   position: relative;
-  padding: 0;
 
   .slick-dots {
     display: flex;
     width: max-content;
     align-items: center;
     /* bottom: 10px; */
-    left: ${({media}) => (media.md ? `47%` : `40%`)};
-    bottom: 27px;
+    left: 40px;
   }
 
   .slick-slide.slick-active.slick-current
@@ -53,6 +36,7 @@ export const CarousalContainer = styled.div<CarousalContainerProps>`
 `
 export const CarousalItem = styled.div`
   min-height: '70px';
+  padding: 5px;
 `
 export const Dots = styled.div`
   width: 7px;
@@ -60,4 +44,17 @@ export const Dots = styled.div`
 
   border-radius: 25px;
   background: ${Theme.colors.$gray300};
+`
+export const ArrowBtnContainer = styled.div`
+  position: absolute;
+  right: 40px;
+  bottom: -25px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+`
+
+export const HeaderContainer = styled.div`
+  text-align: center;
 `

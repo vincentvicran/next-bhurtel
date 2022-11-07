@@ -22,11 +22,15 @@ export function About(props: AboutProps) {
           text="ABOUT"
           size="sm"
           weight="normal"
-          style={{color: Theme.colors.$gray400, marginBottom: 10}}
+          style={{
+            color: Theme.colors.$gray400,
+            marginBottom: 5,
+            display: 'block'
+          }}
         />
         <Title
-          text="Lorem ipsum dolor ?"
-          size="md"
+          text="Learn more about us"
+          size="lg"
           weight="bold"
           style={{marginBottom: 20}}
         />

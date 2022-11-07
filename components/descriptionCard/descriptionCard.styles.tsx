@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import styled from 'styled-components'
 import Theme from 'theme'
 
@@ -15,6 +16,7 @@ export const DescContainer = styled.div<{isHorizontal: boolean}>`
       : `
 			cursor: pointer;
 			transition: 0.3s ease-in-out;
+			max-width: 500px;
 
 			&:hover {
 				transform: translateY(-5px);
@@ -25,7 +27,7 @@ export const DescContainer = styled.div<{isHorizontal: boolean}>`
 export const ImgContainer = styled.div`
   flex: 1.2;
 `
-export const DescImg = styled.img`
+export const DescImg = styled(Image)`
   display: block;
   object-fit: cover;
   width: 100%;

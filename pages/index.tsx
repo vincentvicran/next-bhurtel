@@ -5,7 +5,7 @@ const Home = () => {
   const {replace} = useRouter()
 
   useEffect(() => {
-    replace('/login')
+    replace('/home')
   }, [replace])
 
   return null
