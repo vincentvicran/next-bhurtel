@@ -11,6 +11,7 @@ import {
 } from './descriptionCard.styles'
 import {truncate} from 'helpers/newsPage.helper'
 import {StaticImageData} from 'next/image'
+import {getImageUrl} from 'helpers/getUrl'
 
 interface DescProps {
   imgUrl?: string | StaticImageData
@@ -28,7 +29,14 @@ export function DescriptionCard(props: DescProps) {
       isHorizontal={props.isHorizontal ? props.isHorizontal : false}
     >
       <ImgContainer style={{flex: props.isHorizontal ? 1.2 : 1}}>
-        <DescImg src={props.imgUrl as string} alt="car" />
+        {props.imgUrl && (
+          <DescImg
+            src={getImageUrl('commonDescription', props.imgUrl as string)}
+            alt="car"
+            objectFit="cover"
+            layout="fill"
+          />
+        )}
       </ImgContainer>
       <RightSection style={{flex: props.isHorizontal ? 1.5 : 1}}>
         <Title
