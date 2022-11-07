@@ -77,7 +77,7 @@ const CollapseMenuItem = ({
                     rotateZ: interpolate(animation.value, [0, 1], [0, 180])
                   }}
                 >
-                  {<FiChevronDown size={14} />}
+                  <FiChevronDown size={14} />
                 </AnimatedBlock>
               )}
             </HeaderMenuContainer>
