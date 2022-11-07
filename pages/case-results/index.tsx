@@ -1,6 +1,7 @@
 import {CompWrapper} from 'common/compWrapper'
 import {CaseResultCard} from 'components/caseResultCard'
 import {Title} from 'components/title'
+import {caseResultServices} from 'redux/caseResult/caseResult.service'
 import styled from 'styled-components'
 import Theme from 'theme'
 
@@ -12,7 +13,7 @@ const CaseResultList = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: ${Theme.space.$5};
 `
-function CaseResult() {
+function CaseResult({caseResults}: {caseResults: Api.AllCaseResults}) {
   return (
     <CompWrapper>
       <CaseResultContainer>
@@ -31,14 +32,13 @@ function CaseResult() {
 
         {/* CASE RESULT LISTS */}
         <CaseResultList>
-          {Array(10)
-            .fill('')
-            .map((_, id) => {
+          {caseResults.rows &&
+            caseResults.rows.map((el, id) => {
               return (
                 <CaseResultCard
                   key={id}
-                  title="Lead Poison to Children While Living in Rented Apartment"
-                  description="Mr. Bhurtel represented infants who were living inan apartment and ingested lead paint and sustained injuries. Claims were settled $2,870,000.00 (two million eight hundred seventy thousand dollars)."
+                  title={el.title}
+                  description={el.description}
                 />
               )
             })}
@@ -46,6 +46,12 @@ function CaseResult() {
       </CaseResultContainer>
     </CompWrapper>
   )
+}
+
+export const getServerSideProps = async () => {
+  const response = await caseResultServices.getAllCaseResult({query: {}})
+
+  return {props: {caseResults: response}}
 }
 
 export default CaseResult

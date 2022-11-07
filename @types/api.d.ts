@@ -76,4 +76,6 @@ declare namespace Api {
     title: string
     description: string
   }
+
+  interface AllCaseResults extends PaginatedData<CaseResult> {}
 }
