@@ -79,9 +79,16 @@ export async function getServerSideProps() {
 
   const cmnDescription =
     await commonDescriptionServices.getCommonDescriptionByCategoryId(
-      newsCategory.rows[0].category_details.id,
+      newsCategory.rows?.find((_, id) => id === 0)?.category_details.id ?? 1,
       {}
     )
+  console.log(
+    'category Id: --------------------------------------------------------------------',
+    newsCategory,
+
+    newsCategory.rows?.find((_, id) => id === 0)?.category_details.id,
+    cmnDescription
+  )
 
   return {
     props: {news: cmnDescription.rows} // will be passed to the page component as props
