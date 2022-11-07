@@ -19,4 +19,96 @@ export const Menuitem = styled.a`
 
 export const Search = styled.div`
   margin-left: auto;
+  cursor: pointer;
+`
+
+// REDO
+export const HeaderContent = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${Theme.space.$14};
+`
+
+export const HeaderLinks = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${Theme.space.$5};
+`
+export const HeaderItem = styled.a`
+  color: ${Theme.colors.$gray700};
+  text-transform: uppercase;
+  font-size: ${Theme.fontSizes.$3};
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  &:hover > div {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+`
+export const MainHoverContainer = styled.div`
+  position: absolute;
+  top: 130%;
+  background: white;
+  border-radius: ${Theme.radius.$default};
+  z-index: 10;
+  opacity: 0;
+  transition: 0.4s ease;
+  transform: translateY(8px);
+  width: max-content;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  border: 1px solid ${Theme.colors.$gray200};
+  /* overflow: hidden; */
+
+  &::before {
+    content: '';
+    display: block;
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: -8px;
+    right: 60px;
+    background: white;
+    transform: rotate(45deg);
+    border-top-left-radius: ${Theme.radius.$default};
+    border-top: 1px solid ${Theme.colors.$gray200};
+    border-left: 1px solid ${Theme.colors.$gray200};
+  }
+`
+export const HoverText = styled.div`
+  font-size: ${Theme.fontSizes.$3};
+  text-transform: capitalize;
+  border-bottom: 1px solid ${Theme.colors.$gray100};
+  padding: 7px 20px;
+  color: ${Theme.colors.$gray600};
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+
+  &:hover {
+    background: ${Theme.colors.$white};
+  }
+
+  &:hover > div {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+`
+export const HoverSubContainer = styled.div`
+  position: absolute;
+  top: 10px;
+  right: -105%;
+  background: white;
+  border-radius: ${Theme.radius.$default};
+  z-index: 10;
+  opacity: 0;
+  transition: 0.4s ease;
+  transform: translateY(8px);
+  width: 100%;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  overflow: hidden;
 `
