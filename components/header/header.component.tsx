@@ -22,6 +22,7 @@ import {HeaderMenu} from 'components/headerMenu'
 import Image from 'next/image'
 import attorney from 'assets/images/attorney.png'
 import {commonCategoryServices} from 'redux/commonCategory/commonCategory.service'
+import Theme from 'theme'
 
 interface HeaderProps {
   image: string
@@ -56,8 +57,8 @@ export const Header = ({image}: HeaderProps) => {
             height="30"
           />
           <HeaderLinks>
-            <HeaderItem>Home</HeaderItem>
-            <HeaderItem>
+            <HeaderItem href="/">Home</HeaderItem>
+            <HeaderItem onMouseOver={(e) => e.stopPropagation()}>
               <p>Personal Injury</p>
               <FiChevronDown
                 style={{
@@ -71,9 +72,9 @@ export const Header = ({image}: HeaderProps) => {
               <HoverElement data={personalInjury} />
             </HeaderItem>
             <HeaderItem>Practice areas</HeaderItem>
-            <HeaderItem>contacts</HeaderItem>
-            <HeaderItem>case results</HeaderItem>
-            <HeaderItem>news</HeaderItem>
+            <HeaderItem href="contact-us">contacts</HeaderItem>
+            <HeaderItem href="case-results">case results</HeaderItem>
+            <HeaderItem href="news">news</HeaderItem>
           </HeaderLinks>
           <Search>
             <FiSearch style={{height: '19px', width: '19px'}} />
@@ -88,6 +89,13 @@ function HoverElement({data}: {data: Api.AllCategories | null}) {
   return (
     <MainHoverContainer>
       <div>
+        {!data || data.rows.length === 0 ? (
+          <HoverText
+            style={{color: Theme.colors.$gray400, fontSize: Theme.fontSizes.$2}}
+          >
+            Categories not found
+          </HoverText>
+        ) : null}
         {data &&
           data.rows.map((el, id) => {
             return (
