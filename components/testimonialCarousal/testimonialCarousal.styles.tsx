@@ -35,7 +35,8 @@ export const CarousalContainer = styled.div`
   }
 `
 export const CarousalItem = styled.div`
-  min-height: '70px';
+  height: 300px;
+
   padding: 5px;
 `
 export const Dots = styled.div`

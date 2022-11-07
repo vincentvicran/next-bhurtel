@@ -14,14 +14,17 @@ import {
   Dots,
   HeaderContainer
 } from './testimonialCarousal.styles'
+import {getImageUrl} from 'helpers/getUrl'
 
-export function TestimonialCarousal() {
+export function TestimonialCarousal({data}: {data: any[]}) {
+  console.log(data)
   let ref: Slider | null
   const settings = {
     dots: true,
-    infinite: true,
+    // infinite: true,
     speed: 900,
-    autoplay: true,
+
+    // autoplay: true,
     autoplaySpeed: 6000,
     slidesToShow: 3,
     slidesToScroll: 1,
@@ -53,7 +56,8 @@ export function TestimonialCarousal() {
     displayArrowRight: false,
     arrows: false,
     appendDots: (dots: any) => <div>{dots}</div>,
-    customPaging: () => <Dots></Dots>
+    customPaging: () => <Dots></Dots>,
+    adaptiveHeight: true
   }
 
   return (
@@ -86,18 +90,18 @@ export function TestimonialCarousal() {
       </ArrowBtnContainer>
 
       <Slider {...settings} ref={(c) => (ref = c)}>
-        {Array(5)
-          .fill('')
-          .map((_, id) => {
+        {data &&
+          data.map((el, id) => {
             return (
               <CarousalItem key={id}>
                 <TestimonialCard
                   address="chandragiri-14, Kathamandu"
-                  description={`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id urna, ornare lacus platea malesuada ac. Malesuada ullamcorper vitae mattis in.  tortor, habitant morbi at ut.`}
-                  name="John Doe"
-                  image={
-                    'https://www.diethelmtravel.com/wp-content/uploads/2016/04/bill-gates-wealthiest-person.jpg'
-                  }
+                  description={el.testimonial_details.quote}
+                  name={el.testimonial_details.name}
+                  image={getImageUrl(
+                    'testimonial',
+                    el.testimonial_details.image
+                  )}
                 />
               </CarousalItem>
             )

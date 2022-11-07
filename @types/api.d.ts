@@ -78,4 +78,16 @@ declare namespace Api {
   }
 
   interface AllCaseResults extends PaginatedData<CaseResult> {}
+
+  interface Testimonial {
+    total_count: string
+    id: number
+    name: string
+    image: string
+    quote: string
+    created_at: Date
+    case_result_id: number | null
+  }
+
+  interface AllTestimonials extends PaginatedData<Testimonial> {}
 }
