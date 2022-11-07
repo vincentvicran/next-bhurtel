@@ -4,7 +4,7 @@ import Theme from 'theme'
 interface ParaProps {
   color: 'dark' | 'light'
 }
-export const ParaCont = styled.p<ParaProps>`
+export const ParaCont = styled.div<ParaProps>`
   color: ${(props) => {
     if (props.color === 'light') {
       return Theme.colors.$gray600
