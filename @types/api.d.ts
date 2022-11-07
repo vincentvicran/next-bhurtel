@@ -35,7 +35,7 @@ declare namespace Api {
     id: number
     type: string
     title: string
-    sub_categories: null
+    sub_categories?: CommonCategory[] | null
     common_category_id: number
     is_description_only: boolean
   }
