@@ -11,7 +11,7 @@ import {
 } from './descriptionCard.styles'
 import {truncate} from 'helpers/newsPage.helper'
 import {StaticImageData} from 'next/image'
-import {assets, getImageUrl} from 'helpers/getUrl'
+import {getImageUrl} from 'helpers/getUrl'
 
 interface DescProps {
   imgUrl?: string | StaticImageData
