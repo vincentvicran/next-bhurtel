@@ -25,6 +25,7 @@ const NewsBottomContainer = styled.div`
 function News({news: fetchedNews}: {news: Api.AllCommonDescription[`rows`]}) {
   const news =
     modifyArrayPosition<Api.AllCommonDescription[`rows`][0]>(fetchedNews)
+  console.log(news)
 
   return (
     <CompWrapper>
@@ -44,22 +45,17 @@ function News({news: fetchedNews}: {news: Api.AllCommonDescription[`rows`]}) {
           {fetchedNews &&
             fetchedNews.map((el, id) => {
               return (
-                <a
+                <DescriptionCard
                   key={id}
-                  href={`/news/${el.description_details.id}`}
-                  style={{color: 'inherit'}}
-                >
-                  <DescriptionCard
-                    truncateSize={170}
-                    truncateDesc={true}
-                    author={el.user_details.email}
-                    date={el.description_details.posted_at}
-                    desc={el.description_details.main_description}
-                    title={el.description_details.title}
-                    imgUrl={el.description_details.thumbnail as string}
-                    isHorizontal={false}
-                  />
-                </a>
+                  truncateSize={170}
+                  truncateDesc={true}
+                  author={el.user_details.email}
+                  date={el.description_details.posted_at}
+                  desc={el.description_details.main_description}
+                  title={el.description_details.title}
+                  imgUrl={el.description_details.thumbnail as string}
+                  isHorizontal={false}
+                />
               )
             })}
         </NewsBottomContainer>

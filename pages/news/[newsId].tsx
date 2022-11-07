@@ -6,15 +6,20 @@ import Theme from 'theme'
 
 import {Paragraph} from 'components/Paragraph'
 import {Title} from 'components/title'
-import about from '../../assets/images/about.jpg'
 import {CompWrapper} from 'common/compWrapper'
 import {Youtube} from 'common/youtube'
 import {commonDescriptionServices} from 'redux/commonDescription/commonDescription.service'
 import {GetServerSideProps} from 'next'
 import moment from 'moment'
+import {getImageUrl} from 'helpers/getUrl'
 
 const NewsContainer = styled.div`
   padding: ${Theme.space.$10} 0;
+`
+const ImgContainer = styled.div`
+  position: relative;
+  min-height: 400px;
+  width: 60vw;
 `
 
 // DESCRIPTION IN details PROPS WILL COME FROM
@@ -50,7 +55,16 @@ function News({
           {news.description_details.short_description}
         </Paragraph>
 
-        <Image alt="accident" src={about} />
+        <ImgContainer>
+          <Image
+            alt="accident"
+            src={getImageUrl(
+              `commonDescription`,
+              news.description_details.thumbnail as string
+            )}
+            layout={`fill`}
+          />
+        </ImgContainer>
         <Paragraph color="dark" style={{margin: '40px 0px'}}>
           {news.description_details.main_description}
         </Paragraph>

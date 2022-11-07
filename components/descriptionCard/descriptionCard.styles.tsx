@@ -26,6 +26,8 @@ export const DescContainer = styled.div<{isHorizontal: boolean}>`
 
 export const ImgContainer = styled.div`
   flex: 1.2;
+  position: relative;
+  min-height: 200px;
 `
 export const DescImg = styled(Image)`
   display: block;
