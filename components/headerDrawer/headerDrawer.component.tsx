@@ -12,8 +12,11 @@ import {
   DrawerMenuBody,
   DrawerMenuItem,
   HorizontalMenuBreak,
-  DrawerMenuFooterText
+  DrawerMenuFooterText,
+  DrawerMenuItemsContainer,
+  DrawerMenuFooter
 } from './headerDrawer.style'
+import {CollapseMenu} from 'components/collapseMenu'
 
 export const HeaderDrawer = ({image, data}: {image: string; data: any}) => {
   return (
@@ -37,41 +40,56 @@ export const HeaderDrawer = ({image, data}: {image: string; data: any}) => {
       {() => (
         <>
           <DrawerMenuBody>
-            <Link href="/">
-              <DrawerMenuItem>Home</DrawerMenuItem>
-            </Link>
-            <HorizontalMenuBreak />
-            <Link href="/shop">
-              <DrawerMenuItem>Shop</DrawerMenuItem>
-            </Link>
-            <HorizontalMenuBreak />
-            <Link href="/on-sale">
-              <DrawerMenuItem>On Sale</DrawerMenuItem>
-            </Link>
-            <HorizontalMenuBreak />
-            <Link href="/category">
-              <DrawerMenuItem>Category</DrawerMenuItem>
-            </Link>
-            <HorizontalMenuBreak />
+            <DrawerMenuItemsContainer>
+              <Link href="/">
+                <DrawerMenuItem>Home</DrawerMenuItem>
+              </Link>
+              <HorizontalMenuBreak />
+              <DrawerMenuItem>
+                <CollapseMenu menuType="personal_injury" />
+              </DrawerMenuItem>
+
+              <HorizontalMenuBreak />
+              <Link href="/">
+                <DrawerMenuItem>Practice Areas</DrawerMenuItem>
+              </Link>
+              <HorizontalMenuBreak />
+              <Link href="/contact-us">
+                <DrawerMenuItem>Contacts</DrawerMenuItem>
+              </Link>
+              <HorizontalMenuBreak />
+              <Link href="/case-results">
+                <DrawerMenuItem>Case Results</DrawerMenuItem>
+              </Link>
+              <HorizontalMenuBreak />
+              <Link href="/attorney-profile">
+                <DrawerMenuItem>Attorney Profile</DrawerMenuItem>
+              </Link>
+              <HorizontalMenuBreak />
+              <Link href="/news">
+                <DrawerMenuItem>News</DrawerMenuItem>
+              </Link>
+              <HorizontalMenuBreak />
+            </DrawerMenuItemsContainer>
           </DrawerMenuBody>
 
-          <div style={{flex: 1}} />
+          <DrawerMenuFooter>
+            <VStack gap="$2">
+              <HStack gap="$4">
+                <TiSocialFacebook size={24} />
+                <RiInstagramLine size={24} />
+              </HStack>
 
-          <VStack gap="$2">
-            <HStack gap="$4">
-              <TiSocialFacebook size={24} />
-              <RiInstagramLine size={24} />
-            </HStack>
-
-            <div>
-              <DrawerMenuFooterText>
-                Codniv © Copyright 2022 - All rights reserved.
-              </DrawerMenuFooterText>
-              <DrawerMenuFooterText>
-                Created by <b>Codniv</b>.
-              </DrawerMenuFooterText>
-            </div>
-          </VStack>
+              <div>
+                <DrawerMenuFooterText>
+                  Codniv © Copyright 2022 - All rights reserved.
+                </DrawerMenuFooterText>
+                <DrawerMenuFooterText>
+                  Created by <b>Codniv</b>.
+                </DrawerMenuFooterText>
+              </div>
+            </VStack>
+          </DrawerMenuFooter>
         </>
       )}
     </DrawerMenu>

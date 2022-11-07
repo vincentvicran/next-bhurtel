@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import {useState} from 'react'
 import {FiChevronDown} from 'react-icons/fi'
 import {
@@ -12,10 +13,38 @@ import styled from 'styled-components'
 
 import Theme from 'theme'
 
+interface CollapseMenuItemProps {
+  content?: React.ReactNode
+  children: React.ReactNode
+  iconVisible?: boolean
+  childrenClassName?: string
+  menuType: MenuType
+}
+
+type ValueObjType = {
+  label: string
+  value: string
+  link?: string
+}
+
+interface HeaderMenuType {
+  personal_injury: ValueObjType
+  practice_areas: ValueObjType
+  attorney_profile: ValueObjType
+  news: ValueObjType
+}
+
+type MenuType = keyof typeof headerMenu
+
+interface CollapseMenuProps {
+  menuType: MenuType
+  menuList?: typeof nestedPerInjury
+}
+
 const HeaderMenuContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   cursor: pointer;
 `
 
@@ -23,29 +52,37 @@ const HeaderMenuTitle = styled.div`
   font-size: ${Theme.fontSizes.$3};
 `
 
-const MenuBodyContainerStyled = styled.div`
-  position: absolute;
-  overflow: hidden;
-  z-index: 20;
-`
+const MenuBodyContainerStyled = styled.div``
 
 const MenuBodyStyled = styled.div`
   padding: ${Theme.space.$2};
-  background: ${Theme.colors.$backgroundPrimary};
 `
 
 const MenuBodyContainer = makeAnimatedComponent(MenuBodyContainerStyled)
 const MenuBody = makeAnimatedComponent(MenuBodyStyled)
 
+export const CollapseMenu = ({
+  menuType,
+  menuList = nestedPerInjury
+}: CollapseMenuProps) => {
+  return (
+    <CollapseMenuItem menuType={menuType}>
+      {menuList?.map(({category_details: menu}) => {
+        return <div key={menu.id}>{menu.title}</div>
+      })}
+    </CollapseMenuItem>
+  )
+}
+
 // MARK: - CollapseMenuItem
 
 const CollapseMenuItem = ({
   content,
-  header,
   children,
   iconVisible = true,
-  childrenClassName
-}: any) => {
+  childrenClassName,
+  menuType
+}: CollapseMenuItemProps) => {
   const [open, setOpen] = useState(false)
 
   const [height, setHeight] = useState<any>(0)
@@ -61,12 +98,15 @@ const CollapseMenuItem = ({
         {(animation) => (
           <AnimatedBlock
             style={{
-              position: 'relative'
+              position: 'relative',
+              width: '100%'
             }}
           >
             <HeaderMenuContainer onClick={() => setOpen((prev) => !prev)}>
-              <HeaderMenuTitle className="w-full">
-                {header ? header : 'Header'}
+              <HeaderMenuTitle>
+                <Link href={headerMenu[menuType]?.link ?? '/'}>
+                  {headerMenu[menuType].label}
+                </Link>
               </HeaderMenuTitle>
               {iconVisible && (
                 <AnimatedBlock
@@ -185,38 +225,7 @@ const headerMenu: HeaderMenuType = {
   },
   news: {
     label: 'News',
-    value: 'news'
+    value: 'news',
+    link: '/news'
   }
-}
-
-type ValueObjType = {
-  label: string
-  value: string
-}
-
-interface HeaderMenuType {
-  personal_injury: ValueObjType
-  practice_areas: ValueObjType
-  attorney_profile: ValueObjType
-  news: ValueObjType
-}
-
-type MenuType = keyof typeof headerMenu
-
-interface CollapseMenuProps {
-  menuType: MenuType
-  menuList?: typeof nestedPerInjury
-}
-
-export const CollapseMenu = ({
-  menuType,
-  menuList = nestedPerInjury
-}: CollapseMenuProps) => {
-  return (
-    <CollapseMenuItem header={headerMenu[menuType].label} trigger={open}>
-      {menuList?.map(({category_details: menu}) => {
-        return <div key={menu.id}>{menu.title}</div>
-      })}
-    </CollapseMenuItem>
-  )
 }

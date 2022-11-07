@@ -89,7 +89,7 @@ export const DrawerMenu: React.FC<DrawerMenuProps> = ({
                   position: 'absolute',
                   left: 0,
                   top: 0,
-                  height: '100%',
+                  height: '100vh',
                   width: '360px',
                   zIndex: 100,
                   backgroundColor: Theme.colors.$backgroundPrimary,
