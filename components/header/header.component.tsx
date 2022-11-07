@@ -23,7 +23,7 @@ export const Header = ({image}: HeaderProps) => {
           <HStack gap="$13" align="center">
             <HeaderDrawer image={image} />
             <HeaderLogo src={image} />
-            {media.md && (
+            {media.lg && (
               <HStack
                 gap="$5"
                 align="center"

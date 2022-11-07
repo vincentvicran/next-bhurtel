@@ -56,11 +56,12 @@ export const DrawerMenu: React.FC<DrawerMenuProps> = ({
     setOpen(false)
   }
 
+  console.log('media: ', media)
   useDisableScroll(open && !!disableScroll)
 
   return (
     <>
-      {!media.md && (
+      {!media.lg && (
         <HStack
           align="center"
           justify="center"
