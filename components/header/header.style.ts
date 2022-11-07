@@ -51,6 +51,7 @@ export const HeaderItem = styled.a`
 export const MainHoverContainer = styled.div`
   position: absolute;
   top: 130%;
+  left: 0;
   background: white;
   border-radius: ${Theme.radius.$default};
   z-index: 10;
@@ -69,7 +70,7 @@ export const MainHoverContainer = styled.div`
     height: 15px;
     position: absolute;
     top: -8px;
-    right: 60px;
+    left: 20px;
     background: white;
     transform: rotate(45deg);
     border-top-left-radius: ${Theme.radius.$default};

@@ -31,14 +31,21 @@ interface HeaderProps {
 export const Header = ({image}: HeaderProps) => {
   const [personalInjury, setPersonalInjury] =
     useState<Api.AllCategories | null>(null)
+  const [practiceAreas, setPracticeAreas] = useState<Api.AllCategories | null>(
+    null
+  )
   useEffect(() => {
     ;(async () => {
       try {
-        const response = await commonCategoryServices.getCommonCategoryByType(
+        const personal = await commonCategoryServices.getCommonCategoryByType(
           'personal_injury'
         )
+        const practice = await commonCategoryServices.getCommonCategoryByType(
+          'practice_areas'
+        )
 
-        setPersonalInjury(response)
+        setPersonalInjury(personal)
+        setPracticeAreas(practice)
       } catch (err) {
         console.log(err)
       }
@@ -71,7 +78,17 @@ export const Header = ({image}: HeaderProps) => {
               {/* MENU */}
               <HoverElement data={personalInjury} />
             </HeaderItem>
-            <HeaderItem>Practice areas</HeaderItem>
+            <HeaderItem>
+              <p>Practice areas</p>
+              <FiChevronDown
+                style={{
+                  cursor: 'pointer',
+                  height: '12px',
+                  width: '14px'
+                }}
+              />
+              <HoverElement data={practiceAreas} />
+            </HeaderItem>
             <HeaderItem href="contact-us">contacts</HeaderItem>
             <HeaderItem href="case-results">case results</HeaderItem>
             <HeaderItem href="news">news</HeaderItem>
