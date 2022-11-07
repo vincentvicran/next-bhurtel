@@ -8,6 +8,10 @@ const nextConfig = {
         protocol: 'http',
         hostname: '157.230.84.79',
         port: '8849'
+      },
+      {
+        protocol: 'https',
+        hostname: 'static-cse.canva.com'
       }
     ]
   }
