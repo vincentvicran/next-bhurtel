@@ -5,7 +5,7 @@ const getNewsCategories = async () => {
     'common-category/type/news'
   )
 
-  return response
+  return response.data.data.data
 }
 
 export const newsServices = {getNewsCategories}

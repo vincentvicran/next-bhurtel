@@ -5,7 +5,6 @@ import {Button} from 'common/button'
 import {HStack} from 'common/stack'
 
 import {DescriptionCard} from 'components/descriptionCard'
-import {modifyArrayPosition} from 'helpers/newsPage.helper'
 import {CompWrapper} from 'common/compWrapper'
 import {newsServices} from 'redux/news/news.service'
 import {commonDescriptionServices} from 'redux/commonDescription/commonDescription.service'
@@ -23,30 +22,34 @@ const NewsBottomContainer = styled.div`
 `
 
 function News({news: fetchedNews}: {news: Api.AllCommonDescription[`rows`]}) {
-  const news =
-    modifyArrayPosition<Api.AllCommonDescription[`rows`][0]>(fetchedNews)
-  console.log(news)
-
   return (
     <CompWrapper>
       <NewsContainer>
-        {news.initialData && (
-          <DescriptionCard
-            isHorizontal={true}
-            author={news.initialData.user_details.email}
-            date={news.initialData.description_details.posted_at}
-            desc={news.initialData.description_details.main_description}
-            title={news.initialData.description_details.title}
-            imgUrl={news.initialData.description_details.thumbnail as string}
-          />
-        )}
+        {fetchedNews &&
+          fetchedNews.map((el, id) => {
+            if (id === 0)
+              return (
+                <DescriptionCard
+                  key={id.toString()}
+                  isHorizontal={true}
+                  author={el.user_details.email}
+                  date={el.description_details.posted_at}
+                  desc={el.description_details.main_description}
+                  title={el.description_details.title}
+                  imgUrl={el.description_details.thumbnail as string}
+                />
+              )
+          })}
 
         <NewsBottomContainer>
           {fetchedNews &&
             fetchedNews.map((el, id) => {
+              if (id === 0) {
+                return null
+              }
               return (
                 <DescriptionCard
-                  key={id}
+                  key={id.toString()}
                   truncateSize={170}
                   truncateDesc={true}
                   author={el.user_details.email}
@@ -70,11 +73,10 @@ function News({news: fetchedNews}: {news: Api.AllCommonDescription[`rows`]}) {
 
 export async function getServerSideProps() {
   const newsCategory = await newsServices.getNewsCategories()
-  const categoryArr = newsCategory.data.data.data
 
   const cmnDescription =
     await commonDescriptionServices.getCommonDescriptionByCategoryId(
-      categoryArr.rows[0].category_details.id,
+      newsCategory.rows[0].category_details.id,
       {}
     )
 
