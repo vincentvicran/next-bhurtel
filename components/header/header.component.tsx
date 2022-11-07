@@ -34,6 +34,7 @@ export const Header = ({image}: HeaderProps) => {
   const [practiceAreas, setPracticeAreas] = useState<Api.AllCategories | null>(
     null
   )
+  const [news, setNews] = useState<Api.AllCategories | null>(null)
   useEffect(() => {
     ;(async () => {
       try {
@@ -43,9 +44,13 @@ export const Header = ({image}: HeaderProps) => {
         const practice = await commonCategoryServices.getCommonCategoryByType(
           'practice_areas'
         )
+        const news = await commonCategoryServices.getCommonCategoryByType(
+          'news'
+        )
 
         setPersonalInjury(personal)
         setPracticeAreas(practice)
+        setNews(news)
       } catch (err) {
         console.log(err)
       }
@@ -65,8 +70,10 @@ export const Header = ({image}: HeaderProps) => {
           />
           <HeaderLinks>
             <HeaderItem href="/">Home</HeaderItem>
-            <HeaderItem onMouseOver={(e) => e.stopPropagation()}>
+            <HeaderItem>
               <p>Personal Injury</p>
+              {/* MENU */}
+              <HoverElement data={personalInjury} />
               <FiChevronDown
                 style={{
                   cursor: 'pointer',
@@ -74,9 +81,6 @@ export const Header = ({image}: HeaderProps) => {
                   width: '14px'
                 }}
               />
-
-              {/* MENU */}
-              <HoverElement data={personalInjury} />
             </HeaderItem>
             <HeaderItem>
               <p>Practice areas</p>
@@ -91,7 +95,19 @@ export const Header = ({image}: HeaderProps) => {
             </HeaderItem>
             <HeaderItem href="contact-us">contacts</HeaderItem>
             <HeaderItem href="case-results">case results</HeaderItem>
-            <HeaderItem href="news">news</HeaderItem>
+            <HeaderItem href="case-results">Attorney profile</HeaderItem>
+
+            <HeaderItem href="news">
+              <p>News</p>
+              <FiChevronDown
+                style={{
+                  cursor: 'pointer',
+                  height: '12px',
+                  width: '14px'
+                }}
+              />
+              <HoverElement data={news} />
+            </HeaderItem>
           </HeaderLinks>
           <Search>
             <FiSearch style={{height: '19px', width: '19px'}} />
@@ -144,7 +160,6 @@ function HoverElement({data}: {data: Api.AllCategories | null}) {
 function HoverSubElement({data}: {data: Api.CommonCategory[]}) {
   return (
     <HoverSubContainer>
-      <HoverText>Air Accidents</HoverText>
       {data &&
         data.map((el, id) => {
           return <HoverText key={id}>{el.title}</HoverText>
