@@ -1,4 +1,3 @@
-import React from 'react'
 import {CompWrapperContainer} from './compwrapper.styles'
 
 interface ChildrenProps {
