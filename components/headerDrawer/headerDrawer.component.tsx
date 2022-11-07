@@ -15,7 +15,7 @@ import {
   DrawerMenuFooterText
 } from './headerDrawer.style'
 
-export const HeaderDrawer = ({image}: {image: string}) => {
+export const HeaderDrawer = ({image, data}: {image: string; data: any}) => {
   return (
     <DrawerMenu
       disableScroll

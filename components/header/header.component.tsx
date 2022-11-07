@@ -21,7 +21,7 @@ export const Header = ({image}: HeaderProps) => {
       <CompWrapper>
         <HStack align="center">
           <HStack gap="$13" align="center">
-            <HeaderDrawer image={image} />
+            <HeaderDrawer image={image} data={data} />
             <HeaderLogo src={image} />
             {media.lg && (
               <HStack
