@@ -56,6 +56,10 @@ export const HeaderItem = styled.a`
   &:hover > svg {
     transform: rotate(180deg);
   }
+
+  &:hover {
+    color: ${Theme.colors.$primary};
+  }
 `
 export const MainHoverContainer = styled.div`
   position: absolute;
