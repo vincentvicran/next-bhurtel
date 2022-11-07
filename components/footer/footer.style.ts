@@ -17,24 +17,23 @@ export const FooterText = styled.p`
 `
 
 export const CategoryTitle = styled.p`
- font-size:${Theme.fontSizes.$3}
- color:${Theme.colors.$gray800};
- font-weight:${Theme.fontWeights.$medium};
- text-transform: uppercase;
-
+  font-size: ${Theme.fontSizes.$3};
+  color: ${Theme.colors.$gray800};
+  font-weight: ${Theme.fontWeights.$medium};
+  text-transform: uppercase;
 `
 export const FlexBox = styled.div<MediaProps>`
   display: flex;
   align-items: ${(props) => (props.media.md ? 'center' : 'space-between')};
   justify-content: center;
-  gap: ${(props) => (props.media.md ? '110px' : '40px')};
+  gap: ${(props) => (props.media.md ? '80px' : '40px')};
   flex-direction: ${(props) => (props.media.md ? 'row' : 'column')};
 `
 
 export const HorizontalFlex = styled.div<MediaProps>`
   display: flex;
   gap: ${(props) => (props.media.md ? '20px' : '30px')};
-  flex: 1.4;
+  flex: 1.8;
   justify-content: space-between;
   // flex-direction: ${(props) => (props.media.xs ? 'column' : 'row')};
   flex-wrap: wrap;

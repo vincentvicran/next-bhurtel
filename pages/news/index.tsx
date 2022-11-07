@@ -8,6 +8,7 @@ import {DescriptionCard} from 'components/descriptionCard'
 import {CompWrapper} from 'common/compWrapper'
 import {newsServices} from 'redux/news/news.service'
 import {commonDescriptionServices} from 'redux/commonDescription/commonDescription.service'
+import {NoResultFound} from 'components/noResultsFound'
 
 const NewsContainer = styled.div`
   /* padding: 40px; */
@@ -25,6 +26,7 @@ function News({news: fetchedNews}: {news: Api.AllCommonDescription[`rows`]}) {
   return (
     <CompWrapper>
       <NewsContainer>
+        {!fetchedNews || fetchedNews.length === 0 ? <NoResultFound /> : null}
         {fetchedNews &&
           fetchedNews.map((el, id) => {
             if (id === 0)
@@ -62,10 +64,11 @@ function News({news: fetchedNews}: {news: Api.AllCommonDescription[`rows`]}) {
               )
             })}
         </NewsBottomContainer>
-
-        <HStack justify={'center'} style={{marginTop: 40}}>
-          <Button title="LOAD MORE" color="primary" />
-        </HStack>
+        {fetchedNews && fetchedNews.length !== 0 && (
+          <HStack justify={'center'} style={{marginTop: 40}}>
+            <Button title="LOAD MORE" color="primary" />
+          </HStack>
+        )}
       </NewsContainer>
     </CompWrapper>
   )
