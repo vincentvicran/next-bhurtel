@@ -21,6 +21,12 @@ interface CollapseMenuItemProps {
   menuType: MenuType
 }
 
+interface NestedCollapseMenuItemProps {
+  children: React.ReactNode
+  menuTitle: string
+  link?: string
+}
+
 type ValueObjType = {
   label: string
   value: string
@@ -50,6 +56,7 @@ const HeaderMenuContainer = styled.div`
 
 const HeaderMenuTitle = styled.div`
   font-size: ${Theme.fontSizes.$3};
+  color: black;
 `
 
 const MenuBodyContainerStyled = styled.div``
@@ -63,12 +70,28 @@ const MenuBody = makeAnimatedComponent(MenuBodyStyled)
 
 export const CollapseMenu = ({
   menuType,
-  menuList = nestedPerInjury
+  menuList = menuType === 'personal_injury' ? nestedPerInjury : nestedPracAreas
 }: CollapseMenuProps) => {
   return (
     <CollapseMenuItem menuType={menuType}>
       {menuList?.map(({category_details: menu}) => {
-        return <div key={menu.id}>{menu.title}</div>
+        return menu?.sub_categories ? (
+          <NestedCollapseMenuItem key={menu.id} menuTitle={menu.title}>
+            {menu?.sub_categories?.map((item) => (
+              <div key={item.id.toString()}>
+                <Link href={'/'}>
+                  <HeaderMenuTitle>{item.title}</HeaderMenuTitle>
+                </Link>
+              </div>
+            ))}
+          </NestedCollapseMenuItem>
+        ) : (
+          <div>
+            <Link href={headerMenu[menuType]?.link ?? '/'}>
+              <HeaderMenuTitle>{menu.title}</HeaderMenuTitle>
+            </Link>
+          </div>
+        )
       })}
     </CollapseMenuItem>
   )
@@ -103,11 +126,13 @@ const CollapseMenuItem = ({
             }}
           >
             <HeaderMenuContainer onClick={() => setOpen((prev) => !prev)}>
-              <HeaderMenuTitle>
+              <div>
                 <Link href={headerMenu[menuType]?.link ?? '/'}>
-                  {headerMenu[menuType].label}
+                  <HeaderMenuTitle>
+                    {headerMenu[menuType].label}
+                  </HeaderMenuTitle>
                 </Link>
-              </HeaderMenuTitle>
+              </div>
               {iconVisible && (
                 <AnimatedBlock
                   style={{
@@ -132,6 +157,66 @@ const CollapseMenuItem = ({
                   {content}
                   {children}
                 </>
+              </MenuBody>
+            </MenuBodyContainer>
+          </AnimatedBlock>
+        )}
+      </TransitionBlock>
+    </>
+  )
+}
+
+// MARK: - NestedCollapseMenuItem
+
+const NestedCollapseMenuItem = ({
+  link,
+  menuTitle,
+  children
+}: NestedCollapseMenuItemProps) => {
+  const [open, setOpen] = useState(false)
+
+  const [height, setHeight] = useState<any>(0)
+  const heightAnimation = useAnimatedValue(open ? height : 0)
+
+  const bind = useMeasure(({height}: any) => {
+    setHeight(height)
+  })
+
+  return (
+    <>
+      <TransitionBlock state={open}>
+        {(animation) => (
+          <AnimatedBlock
+            style={{
+              position: 'relative',
+              width: '100%'
+            }}
+          >
+            <HeaderMenuContainer onClick={() => setOpen((prev) => !prev)}>
+              <div>
+                <Link href={link ?? '/'}>
+                  <HeaderMenuTitle>{menuTitle}</HeaderMenuTitle>
+                </Link>
+              </div>
+              <AnimatedBlock
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  rotateZ: interpolate(animation.value, [0, 1], [0, 180])
+                }}
+              >
+                <FiChevronDown size={14} />
+              </AnimatedBlock>
+            </HeaderMenuContainer>
+            <MenuBodyContainer
+              style={{
+                opacity: interpolate(animation.value, [0, 1], [0, 1]),
+                height: heightAnimation.value
+              }}
+            >
+              <MenuBody {...bind()}>
+                <>{children}</>
               </MenuBody>
             </MenuBodyContainer>
           </AnimatedBlock>
@@ -206,6 +291,98 @@ const nestedPerInjury = [
       ],
       common_category_id: null,
       is_description_only: true
+    }
+  }
+]
+
+const nestedPracAreas = [
+  {
+    total_count: '7',
+    category_details: {
+      id: 32,
+      type: 'practice_areas',
+      title: 'Immigration Law',
+      sub_categories: [
+        {
+          id: 33,
+          type: 'practice_areas',
+          title: 'Green Card Through Job | Labor Certification',
+          common_category_id: 32,
+          is_description_only: true
+        }
+      ],
+      common_category_id: null,
+      is_description_only: false
+    }
+  },
+  {
+    total_count: '7',
+    category_details: {
+      id: 56,
+      type: 'practice_areas',
+      title: 'New category',
+      sub_categories: [
+        {
+          id: 57,
+          type: 'practice_areas',
+          title: 'Sub category',
+          common_category_id: 56,
+          is_description_only: false
+        }
+      ],
+      common_category_id: null,
+      is_description_only: false
+    }
+  },
+  {
+    total_count: '7',
+    category_details: {
+      id: 30,
+      type: 'practice_areas',
+      title: 'business law',
+      sub_categories: [
+        {
+          id: 42,
+          type: 'practice_areas',
+          title: 'business 1',
+          common_category_id: 30,
+          is_description_only: false
+        },
+        {
+          id: 43,
+          type: 'practice_areas',
+          title: 'business 2',
+          common_category_id: 30,
+          is_description_only: false
+        },
+        {
+          id: 44,
+          type: 'practice_areas',
+          title: 'business 3',
+          common_category_id: 30,
+          is_description_only: false
+        },
+        {
+          id: 34,
+          type: 'practice_areas',
+          title: 'Business and Commercial Law',
+          common_category_id: 30,
+          is_description_only: false
+        }
+      ],
+      common_category_id: null,
+      is_description_only: false
+    }
+  },
+  {
+    total_count: '7',
+    category_details: {
+      id: 31,
+      type: 'practice_areas',
+      title: 'Employee’s right or wages claim',
+      sub_categories: null,
+      common_category_id: null,
+      is_description_only: false
     }
   }
 ]

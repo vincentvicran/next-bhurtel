@@ -45,27 +45,32 @@ export const HeaderDrawer = ({image, data}: {image: string; data: any}) => {
                 <DrawerMenuItem>Home</DrawerMenuItem>
               </Link>
               <HorizontalMenuBreak />
+
               <DrawerMenuItem>
                 <CollapseMenu menuType="personal_injury" />
               </DrawerMenuItem>
+              <HorizontalMenuBreak />
 
+              <DrawerMenuItem>
+                <CollapseMenu menuType="practice_areas" />
+              </DrawerMenuItem>
               <HorizontalMenuBreak />
-              <Link href="/">
-                <DrawerMenuItem>Practice Areas</DrawerMenuItem>
-              </Link>
-              <HorizontalMenuBreak />
+
               <Link href="/contact-us">
                 <DrawerMenuItem>Contacts</DrawerMenuItem>
               </Link>
               <HorizontalMenuBreak />
+
               <Link href="/case-results">
                 <DrawerMenuItem>Case Results</DrawerMenuItem>
               </Link>
               <HorizontalMenuBreak />
+
               <Link href="/attorney-profile">
                 <DrawerMenuItem>Attorney Profile</DrawerMenuItem>
               </Link>
               <HorizontalMenuBreak />
+
               <Link href="/news">
                 <DrawerMenuItem>News</DrawerMenuItem>
               </Link>

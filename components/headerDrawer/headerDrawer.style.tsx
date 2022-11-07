@@ -67,9 +67,7 @@ export const DrawerMenuItem = styled(HStack)`
   padding: ${Theme.space.$3} 0;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-  &:hover {
-    color: ${Theme.colors.$primary};
-  }
+  color: black;
 `
 
 export const HorizontalMenuBreak = styled.div`
