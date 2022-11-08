@@ -58,8 +58,8 @@ function News({news: fetchedNews}: {news: Api.AllCommonDescription[`rows`]}) {
               return (
                 <div key={id} onClick={() => newsClickedHandler(el)}>
                   <DescriptionCard
-                    truncateSize={170}
-                    truncateDesc={true}
+                    // truncateSize={170}
+                    // truncateDesc={true}
                     author={el.user_details.email}
                     date={el.description_details.posted_at}
                     desc={el.description_details.main_description}
@@ -86,16 +86,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const cmnDescription =
     await commonDescriptionServices.getCommonDescriptionByCategoryId(
-      newsCategory.rows?.find((_, id) => id === 0)?.category_details.id ?? 1,
+      Number(context.query.id as string),
       {}
     )
-  console.log(
-    'category Id: --------------------------------------------------------------------',
-    newsCategory,
-
-    newsCategory.rows?.find((_, id) => id === 0)?.category_details.id,
-    cmnDescription
-  )
 
   return {
     props: {news: cmnDescription.rows} // will be passed to the page component as props
