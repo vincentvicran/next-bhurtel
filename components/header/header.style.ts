@@ -26,7 +26,7 @@ export const Search = styled.div`
 export const HeaderContent = styled.div`
   display: flex;
   align-items: center;
-  gap: ${Theme.space.$14};
+  gap: ${Theme.space.$17};
 `
 
 export const HeaderLinks = styled.div`
@@ -37,7 +37,7 @@ export const HeaderLinks = styled.div`
 export const HeaderItem = styled.a`
   color: ${Theme.colors.$gray700};
   text-transform: uppercase;
-  font-size: ${Theme.fontSizes.$3};
+  font-size: ${Theme.fontSizes.$2};
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -46,11 +46,25 @@ export const HeaderItem = styled.a`
   &:hover > div {
     opacity: 1;
     transform: translateY(0px);
+    visibility: visible;
+  }
+
+  & > svg {
+    transition: 0.4s ease;
+  }
+
+  &:hover > svg {
+    transform: rotate(180deg);
+  }
+
+  &:hover {
+    color: ${Theme.colors.$primary};
   }
 `
 export const MainHoverContainer = styled.div`
   position: absolute;
   top: 130%;
+  left: 0;
   background: white;
   border-radius: ${Theme.radius.$default};
   z-index: 10;
@@ -61,6 +75,7 @@ export const MainHoverContainer = styled.div`
   box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
   border: 1px solid ${Theme.colors.$gray200};
   /* overflow: hidden; */
+  visibility: hidden;
 
   &::before {
     content: '';
@@ -69,7 +84,7 @@ export const MainHoverContainer = styled.div`
     height: 15px;
     position: absolute;
     top: -8px;
-    right: 60px;
+    left: 20px;
     background: white;
     transform: rotate(45deg);
     border-top-left-radius: ${Theme.radius.$default};
@@ -96,12 +111,13 @@ export const HoverText = styled.div`
   &:hover > div {
     opacity: 1;
     transform: translateY(0px);
+    visibility: visible;
   }
 `
 export const HoverSubContainer = styled.div`
   position: absolute;
   top: 10px;
-  right: -105%;
+  left: 101%;
   background: white;
   border-radius: ${Theme.radius.$default};
   z-index: 10;
@@ -111,4 +127,5 @@ export const HoverSubContainer = styled.div`
   width: 100%;
   box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
   overflow: hidden;
+  visibility: hidden;
 `

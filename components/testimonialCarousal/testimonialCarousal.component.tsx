@@ -17,7 +17,6 @@ import {
 import {getImageUrl} from 'helpers/getUrl'
 
 export function TestimonialCarousal({data}: {data: any[]}) {
-  console.log(data)
   let ref: Slider | null
   const settings = {
     dots: true,
@@ -72,7 +71,10 @@ export function TestimonialCarousal({data}: {data: any[]}) {
         <Title
           text="Trusted by Hundreds of Happy Customers"
           size="lg"
-          style={{color: Theme.colors.$black, margin: `${Theme.space.$3} 0`}}
+          style={{
+            color: Theme.colors.$black,
+            margin: `${Theme.space.$3} 0 ${Theme.space.$14}`
+          }}
           weight="bold"
         />
       </HeaderContainer>

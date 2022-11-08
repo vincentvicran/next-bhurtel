@@ -72,35 +72,37 @@ export const Footer = ({image}: FooterProps) => {
 
           <HorizontalFlex media={media}>
             <VStack gap="$3">
-              <Title size="md" text="Personal Injury" weight="semibold" />
+              <Title size="md" text="Quick Links" weight="semibold" />
               <VStack gap="$1">
-                <Paragraph color="light">Auto Accidents</Paragraph>
-                <Paragraph color="light">Auto Accidents</Paragraph>
-                <Paragraph color="light">Auto Accidents</Paragraph>
-                <Paragraph color="light">Auto Accidents</Paragraph>
-                <Paragraph color="light">Auto Accidents</Paragraph>
+                <Paragraph color="light">Personal Injury</Paragraph>
+                <Paragraph color="light">Practice Areas</Paragraph>
+                <Paragraph color="light">Case Results</Paragraph>
+                <Paragraph color="light">News</Paragraph>
               </VStack>
             </VStack>
 
             <VStack gap="$3">
-              <Title size="md" weight="semibold" text="Personal Injury" />
+              <Title size="md" weight="semibold" text="Call Us" />
               <VStack gap="$1">
-                <Paragraph color="light">Auto Accidents</Paragraph>
-                <Paragraph color="light">Auto Accidents</Paragraph>
-                <Paragraph color="light">Auto Accidents</Paragraph>
-                <Paragraph color="light">Auto Accidents</Paragraph>
-                <Paragraph color="light">Auto Accidents</Paragraph>
+                <Paragraph color="light">212-461-4628</Paragraph>
               </VStack>
             </VStack>
 
             <VStack gap="$3">
-              <Title size="md" weight="semibold" text="Personal Injury" />
+              <Title size="md" weight="semibold" text="Email Us" />
               <VStack gap="$1">
-                <Paragraph color="light">Auto Accidents</Paragraph>
-                <Paragraph color="light">Auto Accidents</Paragraph>
-                <Paragraph color="light">Auto Accidents</Paragraph>
-                <Paragraph color="light">Auto Accidents</Paragraph>
-                <Paragraph color="light">Auto Accidents</Paragraph>
+                <Paragraph color="light">info@attorneybhurtel.com</Paragraph>
+              </VStack>
+            </VStack>
+            <VStack gap="$3">
+              <Title size="md" text="Visit Us" weight="semibold" />
+              <VStack gap="$1">
+                <Paragraph color="light">Manhattan Office</Paragraph>
+                <Paragraph color="light">Bhurtel Law Firm PLLC </Paragraph>
+                <Paragraph color="light">
+                  353 Lexington Avenue suite #904
+                </Paragraph>
+                <Paragraph color="light">New York NY 10016</Paragraph>
               </VStack>
             </VStack>
           </HorizontalFlex>

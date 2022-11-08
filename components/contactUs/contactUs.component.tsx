@@ -1,7 +1,7 @@
 import {VStack} from 'common/stack'
 import * as Yup from 'yup'
 import {InputField, Textarea} from 'components/inputField'
-import React from 'react'
+import React, {useState} from 'react'
 import {ContactContainer, HFlex} from './contactUs.styled'
 import {Button} from 'common/button'
 
@@ -12,6 +12,7 @@ import {useMedia} from 'hooks'
 import {contactServices} from 'redux/contact/contact.service'
 
 export const ContactUs = () => {
+  const [loading, setLoading] = useState(false)
   const contactSchema = Yup.object().shape({
     subject: Yup.string().min(6, 'Too Short!').required('Required'),
     fullname: Yup.string()
@@ -34,12 +35,13 @@ export const ContactUs = () => {
       if (values.phone === '') {
         values.phone = undefined
       }
+      setLoading(true)
       try {
-        const response = await contactServices.createContact(values)
-
-        console.log(response)
+        await contactServices.createContact(values)
       } catch (err: any) {
         console.log(err)
+      } finally {
+        setLoading(false)
       }
     },
     validationSchema: contactSchema
@@ -115,6 +117,7 @@ export const ContactUs = () => {
               title="Send Message"
               color="primary"
               variant="contained"
+              disabled={loading}
             ></Button>
           </VStack>
         </form>

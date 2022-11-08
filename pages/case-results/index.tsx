@@ -50,7 +50,6 @@ function CaseResult({caseResults}: {caseResults: Api.AllCaseResults}) {
 
 export const getServerSideProps = async () => {
   const response = await caseResultServices.getAllCaseResult({query: {}})
-
   return {props: {caseResults: response}}
 }
 

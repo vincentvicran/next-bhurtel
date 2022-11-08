@@ -35,9 +35,8 @@ export const CarousalContainer = styled.div`
   }
 `
 export const CarousalItem = styled.div`
-  height: 300px;
-
   padding: 5px;
+  margin-bottom: 20px;
 `
 export const Dots = styled.div`
   width: 7px;
@@ -49,11 +48,11 @@ export const Dots = styled.div`
 export const ArrowBtnContainer = styled.div`
   position: absolute;
   right: 40px;
-  bottom: -25px;
+  top: 100%;
   z-index: 10;
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
 `
 
 export const HeaderContainer = styled.div`
