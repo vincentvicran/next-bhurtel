@@ -59,16 +59,15 @@ export const DrawerMenuBody = styled(VStack)`
   padding: 30px 0;
   font-size: ${Theme.fontSizes.$3};
   font-weight: ${Theme.fontWeights.$normal};
+  height: 65vh;
+  overflow-y: auto;
 `
 
 export const DrawerMenuItem = styled(HStack)`
   padding: ${Theme.space.$3} 0;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-
-  &:hover {
-    color: ${Theme.colors.$primary};
-  }
+  color: black;
 `
 
 export const HorizontalMenuBreak = styled.div`
@@ -76,7 +75,15 @@ export const HorizontalMenuBreak = styled.div`
   height: 1px;
 `
 
+export const DrawerMenuFooter = styled.div`
+  position: fixed;
+  bottom: 0;
+  padding: ${Theme.space.$5} 0;
+`
+
 export const DrawerMenuFooterText = styled.div`
   font-size: ${Theme.fontSizes.$2};
   font-weight: ${Theme.fontWeights.$normal};
 `
+
+export const DrawerMenuItemsContainer = styled.div``

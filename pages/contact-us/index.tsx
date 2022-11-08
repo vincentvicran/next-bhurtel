@@ -1,4 +1,5 @@
 import React from 'react'
+import dynamic from 'next/dynamic'
 import styled from 'styled-components'
 
 import Theme from 'theme'
@@ -10,6 +11,10 @@ import {Paragraph} from 'components/Paragraph'
 import {Title} from 'components/title'
 
 import {ContactUs} from 'components/contactUs'
+
+const MapWithNoSSR = dynamic(() => import('../../common/map/map.common'), {
+  ssr: false
+})
 
 interface ContactUsTitleProps {
   title: string
@@ -140,7 +145,7 @@ const ContactUsDescription = () => {
                 353 Lexington Avenue suite #904
               </ContactParagraph>
               <ContactParagraph color="light">
-                New York NY 10016"
+                New York NY 10016&quot;
               </ContactParagraph>
             </>
           }
@@ -164,7 +169,7 @@ const ContactTitle = () => {
 }
 
 const ContactPageContainer = styled.div`
-  padding: ${Theme.space.$5} 0;
+  padding: ${Theme.space.$5} 0 0;
 `
 
 const Contact = () => {
@@ -184,6 +189,8 @@ const Contact = () => {
           <ContactUsDescription />
         </ContactRight>
       </HorStack>
+
+      <MapWithNoSSR location={[51.505, -0.09]} popupText="Attorney Bhurtel" />
     </ContactPageContainer>
   )
 }

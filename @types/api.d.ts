@@ -35,10 +35,19 @@ declare namespace Api {
     id: number
     type: string
     title: string
-    sub_categories?: CommonCategory[] | null
+    sub_categories: Array<SubCategoriesInCatId> | null
+    common_category_id: number | null
+    is_description_only: boolean
+  }
+
+  interface SubCategoriesInCatId {
+    id: number
+    type: string
+    title: string
     common_category_id: number
     is_description_only: boolean
   }
+
   interface AllCategories
     extends PaginatedData<{
       total_count: string

@@ -5,7 +5,10 @@ export const HeaderContainer = styled.div`
   padding: ${Theme.space.$10} 0;
   background-color: ${Theme.colors.$gray100};
 `
-export const HeaderLogo = styled.img`
+export const HeaderLogo = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
   height: ${Theme.space.$10};
   /* width: ${Theme.space.$17}; */
 `
@@ -26,7 +29,7 @@ export const Search = styled.div`
 export const HeaderContent = styled.div`
   display: flex;
   align-items: center;
-  gap: ${Theme.space.$17};
+  gap: ${Theme.space.$16};
 `
 
 export const HeaderLinks = styled.div`
