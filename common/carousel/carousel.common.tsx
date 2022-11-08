@@ -16,7 +16,7 @@ import {NavArrow} from './component/navArrow'
 // import BackgroundImage2 from 'assets/images/about.jpg'
 // import BackgroundImage3 from 'assets/images/about.jpg'
 
-const BackgroundImage = '/assets/image/H1.png'
+const BackgroundImage = '/assets/image/H1.jpg'
 const BackgroundImage2 = '/assets/image/H2.jpg'
 const BackgroundImage3 = '/assets/image/H3.png'
 

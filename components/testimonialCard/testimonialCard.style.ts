@@ -1,3 +1,4 @@
+import {RiDoubleQuotesL, RiDoubleQuotesR} from 'react-icons/ri'
 import styled from 'styled-components'
 
 import Theme from 'theme'
@@ -5,16 +6,16 @@ import Theme from 'theme'
 export const TestimonialCardContainer = styled.div`
   border: 1px solid ${Theme.colors.$gray200};
   border-radius: ${Theme.radius.$default};
-  padding: ${Theme.space.$9} ${Theme.space.$10};
-  margin: ${Theme.space.$5};
+  padding: ${Theme.space.$4} ${Theme.space.$6};
+  min-height: 60px;
 `
 
-export const CircularImg = styled.img`
-  border-radius: 50%;
-  width: 80px;
-  height: 80px;
-  display: block;
-  object-fit: cover;
+export const ImgContainer = styled.div`
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  overflow: hidden;
 `
 export const TestimonialName = styled.p`
   font-weight: ${Theme.fontWeights.$medium};
@@ -33,4 +34,33 @@ export const TestimonialDescription = styled.p`
   line-height: ${Theme.lineHeights.$default};
   color: ${Theme.colors.$gray800};
   text-align: justify;
+`
+
+// TESTIMONIAL TOP CONTAINER
+export const TopContainer = styled.div`
+  position: relative;
+  margin-bottom: 20px;
+`
+export const BottomContainer = styled.div`
+  display: flex;
+  gap: ${Theme.space.$4};
+  align-items: center;
+  margin-bottom: ${Theme.space.$10};
+`
+
+export const QuoteOpen = styled(RiDoubleQuotesL)`
+  color: ${Theme.colors.$gray200};
+  font-size: 20px;
+  position: absolute;
+  z-index: 4;
+  top: -10px;
+  left: -5px;
+`
+export const QuoteClose = styled(RiDoubleQuotesR)`
+  color: ${Theme.colors.$gray200};
+  font-size: 20px;
+  position: absolute;
+  z-index: 4;
+  bottom: -10px;
+  right: -5px;
 `

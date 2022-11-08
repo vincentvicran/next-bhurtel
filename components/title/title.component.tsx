@@ -3,5 +3,10 @@ import {TitleProps} from './title.types'
 
 //  sizes 36, 20, 16
 export function Title(props: TitleProps) {
-  return <TitleContainer {...props}>{props.text}</TitleContainer>
+  return (
+    <TitleContainer
+      {...props}
+      dangerouslySetInnerHTML={{__html: props.text}}
+    ></TitleContainer>
+  )
 }
