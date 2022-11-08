@@ -50,11 +50,11 @@ export function DescriptionCard(props: DescProps) {
           }}
         />
         <Title text={props.title} size="md" weight="semibold" />
-        <DescParagraph>
-          {props.truncateDesc
-            ? truncate(props.desc, props.truncateSize ?? undefined)
-            : props.desc}
-        </DescParagraph>
+        <DescParagraph
+          dangerouslySetInnerHTML={{
+            __html: props.desc
+          }}
+        ></DescParagraph>
         <DescAuthor>{props.author}</DescAuthor>
       </RightSection>
     </DescContainer>

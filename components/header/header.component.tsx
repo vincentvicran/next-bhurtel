@@ -21,6 +21,7 @@ import Theme from 'theme'
 import {useMedia} from 'hooks'
 import {HStack} from 'common/stack'
 import Link from 'next/link'
+import {useRouter} from 'next/router'
 
 interface HeaderProps {
   image: string
@@ -111,29 +112,28 @@ export const Header = ({image}: HeaderProps) => {
                   <HoverElement data={practiceAreas} />
                 </HeaderItem>
               </Link>
-              <Link href="contact-us">
+              <Link href="/contact-us">
                 <HeaderItem>Contacts</HeaderItem>
               </Link>
-              <Link href="case-results">
+              <Link href="/case-results">
                 <HeaderItem>Case Results</HeaderItem>
               </Link>
-              <Link href="home">
+              <Link href="/home">
                 <HeaderItem>Attorney Profile</HeaderItem>
               </Link>
 
-              <Link href="news">
-                <HeaderItem>
-                  <p>News</p>
-                  <FiChevronDown
-                    style={{
-                      cursor: 'pointer',
-                      height: '12px',
-                      width: '14px'
-                    }}
-                  />
-                  <HoverElement data={news} />
-                </HeaderItem>
-              </Link>
+              <HeaderItem>
+                <p>News</p>
+
+                <FiChevronDown
+                  style={{
+                    cursor: 'pointer',
+                    height: '12px',
+                    width: '14px'
+                  }}
+                />
+                <HoverElement data={news} />
+              </HeaderItem>
             </HeaderLinks>
           )}
           <Search>
@@ -146,6 +146,11 @@ export const Header = ({image}: HeaderProps) => {
 }
 
 function HoverElement({data}: {data: Api.AllCategories | null}) {
+  const router = useRouter()
+
+  const linkClickedHandler = (data: any) => {
+    router.push({pathname: '/news', query: {id: data.category_details.id}})
+  }
   return (
     <MainHoverContainer>
       <div>
@@ -159,7 +164,7 @@ function HoverElement({data}: {data: Api.AllCategories | null}) {
         {data &&
           data.rows.map((el, id) => {
             return (
-              <HoverText key={id}>
+              <HoverText key={id} onClick={() => linkClickedHandler(el)}>
                 {el.category_details.title}
 
                 {el.category_details.sub_categories && (

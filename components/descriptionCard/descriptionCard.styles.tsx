@@ -34,7 +34,7 @@ export const DescImg = styled(Image)`
   object-fit: cover;
   border-radius: ${Theme.radius.$default};
 `
-export const DescParagraph = styled.p`
+export const DescParagraph = styled.div`
   font-size: ${Theme.fontSizes.$3};
   color: ${Theme.colors.$gray600};
   margin-top: ${Theme.space.$3};
