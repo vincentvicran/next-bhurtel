@@ -60,7 +60,9 @@ export const Header = ({image}: HeaderProps) => {
       <CompWrapper>
         <HeaderContent>
           <HStack align="center" justify="space-between">
-            <HeaderDrawer image={attorney.src} />
+            <HeaderDrawer image={attorney.src} data={{
+              personalInjury, practiceAreas, news
+            }}/>
             <HeaderLogo>
               <Image
                 src={attorney}

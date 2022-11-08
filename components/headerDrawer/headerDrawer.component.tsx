@@ -19,7 +19,17 @@ import {
 import {CollapseMenu} from 'components/collapseMenu'
 import Theme from 'theme'
 
-export const HeaderDrawer = ({image, data}: {image: string; data?: any}) => {
+export const HeaderDrawer = ({
+  image,
+  data
+}: {
+  image: string
+  data?: {
+    personalInjury: Api.AllCategories | null
+    practiceAreas: Api.AllCategories | null
+    news: Api.AllCategories | null
+  }
+}) => {
   return (
     <DrawerMenu
       disableScroll
@@ -60,7 +70,7 @@ export const HeaderDrawer = ({image, data}: {image: string; data?: any}) => {
               <DrawerMenuItem>
                 <CollapseMenu
                   menuType="personal_injury"
-                  menuList={nestedPerInjury}
+                  menuList={data?.personalInjury?.rows}
                 />
               </DrawerMenuItem>
               <HorizontalMenuBreak />
@@ -68,7 +78,7 @@ export const HeaderDrawer = ({image, data}: {image: string; data?: any}) => {
               <DrawerMenuItem>
                 <CollapseMenu
                   menuType="practice_areas"
-                  menuList={nestedPracAreas}
+                  menuList={data?.practiceAreas?.rows}
                 />
               </DrawerMenuItem>
               <HorizontalMenuBreak />
@@ -89,7 +99,7 @@ export const HeaderDrawer = ({image, data}: {image: string; data?: any}) => {
               <HorizontalMenuBreak />
 
               <DrawerMenuItem>
-                <CollapseMenu menuType="news" />
+                <CollapseMenu menuType="news" menuList={data?.news?.rows} />
               </DrawerMenuItem>
               <HorizontalMenuBreak />
             </DrawerMenuItemsContainer>
@@ -117,164 +127,3 @@ export const HeaderDrawer = ({image, data}: {image: string; data?: any}) => {
     </DrawerMenu>
   )
 }
-
-const nestedPerInjury = [
-  {
-    total_count: '6',
-    category_details: {
-      id: 3,
-      type: 'personal_injury',
-      title: 'Airline accidents',
-      sub_categories: null,
-      common_category_id: null,
-      is_description_only: true
-    }
-  },
-  {
-    total_count: '6',
-    category_details: {
-      id: 4,
-      type: 'personal_injury',
-      title: 'Bus accidents',
-      sub_categories: null,
-      common_category_id: null,
-      is_description_only: true
-    }
-  },
-  {
-    total_count: '6',
-    category_details: {
-      id: 5,
-      type: 'personal_injury',
-      title: 'Construction accidents',
-      sub_categories: null,
-      common_category_id: null,
-      is_description_only: true
-    }
-  },
-  {
-    total_count: '6',
-    category_details: {
-      id: 2,
-      type: 'personal_injury',
-      title: 'Auto accident',
-      sub_categories: [
-        {
-          id: 22,
-          type: 'personal_injury',
-          title: 'category title',
-          common_category_id: 2,
-          is_description_only: true
-        },
-        {
-          id: 26,
-          type: 'personal_injury',
-          title: 'category title',
-          common_category_id: 2,
-          is_description_only: true
-        },
-        {
-          id: 28,
-          type: 'personal_injury',
-          title: 'category title',
-          common_category_id: 2,
-          is_description_only: true
-        }
-      ],
-      common_category_id: null,
-      is_description_only: true
-    }
-  }
-]
-
-const nestedPracAreas = [
-  {
-    total_count: '7',
-    category_details: {
-      id: 32,
-      type: 'practice_areas',
-      title: 'Immigration Law',
-      sub_categories: [
-        {
-          id: 33,
-          type: 'practice_areas',
-          title: 'Green Card Through Job | Labor Certification',
-          common_category_id: 32,
-          is_description_only: true
-        }
-      ],
-      common_category_id: null,
-      is_description_only: false
-    }
-  },
-  {
-    total_count: '7',
-    category_details: {
-      id: 56,
-      type: 'practice_areas',
-      title: 'New category',
-      sub_categories: [
-        {
-          id: 57,
-          type: 'practice_areas',
-          title: 'Sub category',
-          common_category_id: 56,
-          is_description_only: false
-        }
-      ],
-      common_category_id: null,
-      is_description_only: false
-    }
-  },
-  {
-    total_count: '7',
-    category_details: {
-      id: 30,
-      type: 'practice_areas',
-      title: 'business law',
-      sub_categories: [
-        {
-          id: 42,
-          type: 'practice_areas',
-          title: 'business 1',
-          common_category_id: 30,
-          is_description_only: false
-        },
-        {
-          id: 43,
-          type: 'practice_areas',
-          title: 'business 2',
-          common_category_id: 30,
-          is_description_only: false
-        },
-        {
-          id: 44,
-          type: 'practice_areas',
-          title: 'business 3',
-          common_category_id: 30,
-          is_description_only: false
-        },
-        {
-          id: 34,
-          type: 'practice_areas',
-          title: 'Business and Commercial Law',
-          common_category_id: 30,
-          is_description_only: false
-        }
-      ],
-      common_category_id: null,
-      is_description_only: false
-    }
-  },
-  {
-    total_count: '7',
-    category_details: {
-      id: 31,
-      type: 'practice_areas',
-      title: 'Employee’s right or wages claim',
-      sub_categories: null,
-      common_category_id: null,
-      is_description_only: false
-    }
-  }
-]
