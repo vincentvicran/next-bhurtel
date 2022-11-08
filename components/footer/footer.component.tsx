@@ -3,6 +3,7 @@ import {FaFacebookF, FaTwitter, FaYoutube, FaLinkedinIn} from 'react-icons/fa'
 import {useMedia} from 'hooks'
 import {Paragraph} from 'components/Paragraph'
 import {Title} from 'components/title'
+import {useRouter} from 'next/router'
 import {
   FooterContainerStyled,
   FooterLogo,
@@ -33,6 +34,8 @@ export interface MediaProps {
 }
 
 export const Footer = ({image}: FooterProps) => {
+  const router = useRouter()
+
   const media = useMedia()
   return (
     <FooterContainerStyled>
@@ -76,8 +79,16 @@ export const Footer = ({image}: FooterProps) => {
               <VStack gap="$1">
                 <Paragraph color="light">Personal Injury</Paragraph>
                 <Paragraph color="light">Practice Areas</Paragraph>
-                <Paragraph color="light">Case Results</Paragraph>
-                <Paragraph color="light">News</Paragraph>
+                <Paragraph
+                  color="light"
+                  style={{cursor: 'pointer'}}
+                  onClick={() => router.push({pathname: '/case-results'})}
+                >
+                  Case Results
+                </Paragraph>
+                <Paragraph color="light" style={{cursor: 'pointer'}}>
+                  News
+                </Paragraph>
               </VStack>
             </VStack>
 
