@@ -63,9 +63,8 @@ export const ContactUs = () => {
               value={formik.values.subject}
               name="subject"
               onChange={formik.handleChange}
-              placeholder="Your concerns"
+              placeholder="Subject"
               required
-              labelName="Subject"
               error={formik.touched.subject && formik.errors.subject}
             ></InputField>
 
@@ -75,8 +74,7 @@ export const ContactUs = () => {
                   value={formik.values.fullname}
                   name="fullname"
                   onChange={formik.handleChange}
-                  placeholder="John Doe"
-                  labelName="Full Name"
+                  placeholder="Full Name"
                   required
                   error={formik.touched.fullname && formik.errors.fullname}
                 ></InputField>
@@ -86,9 +84,8 @@ export const ContactUs = () => {
                   value={formik.values.phone}
                   name="phone"
                   onChange={formik.handleChange}
-                  placeholder="Your Phone Number"
+                  placeholder=" Phone "
                   type={`number`}
-                  labelName="Phone"
                   error={formik.touched.phone && formik.errors.phone}
                 ></InputField>
               </div>
@@ -97,8 +94,7 @@ export const ContactUs = () => {
               value={formik.values.email}
               name="email"
               onChange={formik.handleChange}
-              placeholder="your@example.com"
-              labelName="Email Address"
+              placeholder="Email Address"
               required
               error={formik.touched.email && formik.errors.email}
             ></InputField>
@@ -107,8 +103,7 @@ export const ContactUs = () => {
               value={formik.values.message}
               name="message"
               onChange={formik.handleChange}
-              placeholder="Type your message here..."
-              labelName="Your Message"
+              placeholder="Your Message"
               required
               error={formik.touched.message && formik.errors.message}
             ></Textarea>
