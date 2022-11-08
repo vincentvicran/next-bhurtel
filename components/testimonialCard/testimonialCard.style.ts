@@ -50,17 +50,17 @@ export const BottomContainer = styled.div`
 
 export const QuoteOpen = styled(RiDoubleQuotesL)`
   color: ${Theme.colors.$gray200};
-  font-size: 40px;
+  font-size: 20px;
   position: absolute;
   z-index: 4;
-  top: -30px;
-  left: -20px;
+  top: -10px;
+  left: -5px;
 `
 export const QuoteClose = styled(RiDoubleQuotesR)`
   color: ${Theme.colors.$gray200};
-  font-size: 40px;
+  font-size: 20px;
   position: absolute;
   z-index: 4;
   bottom: -10px;
-  right: -20px;
+  right: -5px;
 `

@@ -63,7 +63,9 @@ export const TestimonialCard = ({
             zIndex: 6,
             fontStyle: `italic`,
             textAlign: `left`,
-            fontSize: Theme.fontSizes.$2
+            fontSize: Theme.fontSizes.$2,
+            width: '90%',
+            margin: '0 auto'
           }}
         >
           This is demo testimonial for Bhurtel Law firm website produced by
