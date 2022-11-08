@@ -35,6 +35,25 @@ export const TestimonialCard = ({
 }: TestimonialCardProps) => {
   return (
     <TestimonialCardContainer>
+      <BottomContainer>
+        <ImgContainer>
+          <Image
+            src={image}
+            alt={`testimonial`}
+            layout={`fill`}
+            objectFit={`cover`}
+          />
+        </ImgContainer>
+        <div>
+          <Title text={name} size={`sm`} weight={`bold`} />
+          <Paragraph
+            color={`light`}
+            style={{fontSize: Theme.fontSizes.$2, marginTop: -4}}
+          >
+            Chandragiri-14, Kathmandu
+          </Paragraph>
+        </div>
+      </BottomContainer>
       <TopContainer>
         <QuoteOpen />
         <Paragraph
@@ -56,25 +75,6 @@ export const TestimonialCard = ({
         </Paragraph>
         <QuoteClose />
       </TopContainer>
-      <BottomContainer>
-        <ImgContainer>
-          <Image
-            src={image}
-            alt={`testimonial`}
-            layout={`fill`}
-            objectFit={`cover`}
-          />
-        </ImgContainer>
-        <div>
-          <Title text={name} size={`sm`} weight={`bold`} />
-          <Paragraph
-            color={`light`}
-            style={{fontSize: Theme.fontSizes.$2, marginTop: -4}}
-          >
-            Chandragiri-14, Kathmandu
-          </Paragraph>
-        </div>
-      </BottomContainer>
     </TestimonialCardContainer>
   )
 }

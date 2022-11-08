@@ -6,7 +6,7 @@ import Theme from 'theme'
 export const TestimonialCardContainer = styled.div`
   border: 1px solid ${Theme.colors.$gray200};
   border-radius: ${Theme.radius.$default};
-  padding: ${Theme.space.$8} ${Theme.space.$6};
+  padding: ${Theme.space.$4} ${Theme.space.$6};
   min-height: 60px;
 `
 
@@ -45,6 +45,7 @@ export const BottomContainer = styled.div`
   display: flex;
   gap: ${Theme.space.$4};
   align-items: center;
+  margin-bottom: ${Theme.space.$10};
 `
 
 export const QuoteOpen = styled(RiDoubleQuotesL)`
