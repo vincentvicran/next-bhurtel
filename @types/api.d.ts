@@ -99,4 +99,13 @@ declare namespace Api {
   }
 
   interface AllTestimonials extends PaginatedData<Testimonial> {}
+
+  interface Banner {
+    id: number
+    link: string
+    image: string
+    is_main: boolean
+  }
+
+  interface AllBanners extends PaginatedData<Banner> {}
 }
