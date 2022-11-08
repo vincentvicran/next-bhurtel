@@ -4,7 +4,8 @@ import Theme from 'theme'
 export const AboutCont = styled.div<{md: boolean}>`
   display: flex;
   justify-content: space-between;
-  gap: ${Theme.space.$14};
+  align-items: center;
+  gap: ${(props) => (props.md ? Theme.space.$14 : Theme.space.$7)};
   margin-bottom: ${Theme.space.$14};
   flex-direction: ${(props) => {
     if (props.md) {

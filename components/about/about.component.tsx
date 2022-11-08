@@ -42,7 +42,12 @@ export function About(props: AboutProps) {
 
       {/* RIGHT SECTION */}
       <RightCont>
-        <Image src={aboutImg} alt="verdict" />
+        <Image
+          src={aboutImg}
+          alt="verdict"
+          height={media.md ? '350px' : ''}
+          objectFit="contain"
+        />
       </RightCont>
     </AboutCont>
   )
