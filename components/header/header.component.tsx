@@ -16,6 +16,7 @@ import Image from 'next/image'
 import attorney from 'assets/images/attorney.png'
 import {commonCategoryServices} from 'redux/commonCategory/commonCategory.service'
 import Theme from 'theme'
+import {HeaderDrawer} from 'components/headerDrawer'
 
 interface HeaderProps {
   image: string
@@ -54,6 +55,7 @@ export const Header = ({image}: HeaderProps) => {
     <HeaderContainer>
       <CompWrapper>
         <HeaderContent>
+          <HeaderDrawer image={attorney.src} />
           <Image src={attorney} alt="logo" objectFit="contain" width="100" />
           <HeaderLinks>
             <HeaderItem href="/">Home</HeaderItem>
@@ -144,7 +146,7 @@ function HoverElement({data}: {data: Api.AllCategories | null}) {
   )
 }
 
-function HoverSubElement({data}: {data: Api.CommonCategory[]}) {
+function HoverSubElement({data}: {data: Api.SubCategoriesInCatId[]}) {
   return (
     <HoverSubContainer>
       {!data || data.length === 0 ? (

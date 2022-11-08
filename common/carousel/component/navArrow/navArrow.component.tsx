@@ -36,6 +36,7 @@ const NavArrowContainer = styled.div<NavArrow>`
   opacity: 0.7;
   background: #e2e2e288;
   border-radius: 50%;
+  cursor: pointer;
   ${({direction}) =>
     direction === 'next'
       ? css`

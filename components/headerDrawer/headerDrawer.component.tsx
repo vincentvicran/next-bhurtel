@@ -18,7 +18,7 @@ import {
 } from './headerDrawer.style'
 import {CollapseMenu} from 'components/collapseMenu'
 
-export const HeaderDrawer = ({image, data}: {image: string; data: any}) => {
+export const HeaderDrawer = ({image, data}: {image: string; data?: any}) => {
   return (
     <DrawerMenu
       disableScroll
