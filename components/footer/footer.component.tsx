@@ -86,11 +86,7 @@ export const Footer = ({image}: FooterProps) => {
                 >
                   Case Results
                 </Paragraph>
-                <Paragraph
-                  color="light"
-                  style={{cursor: 'pointer'}}
-                  onClick={() => router.push({pathname: '/news'})}
-                >
+                <Paragraph color="light" style={{cursor: 'pointer'}}>
                   News
                 </Paragraph>
               </VStack>
