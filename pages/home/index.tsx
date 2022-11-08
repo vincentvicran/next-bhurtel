@@ -20,7 +20,7 @@ const HomePage = ({testimonials}: {testimonials: Api.AllTestimonials}) => {
       <CompWrapper>
         <MainContainer
           style={{
-            marginTop: !media.lg ? Theme.space.$10 : Theme.space.$17
+            marginTop: !media.md ? Theme.space.$10 : Theme.space.$17
           }}
         >
           <About text="Mr. Durga Prasad Bhurtel Successfully Represented Various Clients for Injury Claims. Affects, Signs & Sources of Lead Paint (Poisoning) in Children. Your first medical diagnosis is probably wrong, according to Mayo Clinic. Construction Worker Accident and Injury? Know your rights for help you may need." />

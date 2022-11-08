@@ -60,6 +60,9 @@ const HeaderMenuTitle = styled.div`
   font-size: ${Theme.fontSizes.$3};
   color: black;
 `
+const NestedHeaderMenuTitle = styled(HeaderMenuTitle)`
+  padding: ${Theme.space.$1} 0;
+`
 
 const MenuBodyContainerStyled = styled.div``
 
@@ -77,19 +80,19 @@ export const CollapseMenu = ({menuType, menuList}: CollapseMenuProps) => {
         return menu?.sub_categories ? (
           <NestedCollapseMenuItem key={menu.id} menuTitle={menu.title}>
             {menu?.sub_categories?.map((item) => (
-              <div key={item.id.toString()}>
+              <NestedHeaderMenuTitle key={item.id.toString()}>
                 <Link href={'/'}>
                   <HeaderMenuTitle>{item.title}</HeaderMenuTitle>
                 </Link>
-              </div>
+              </NestedHeaderMenuTitle>
             ))}
           </NestedCollapseMenuItem>
         ) : (
-          <div key={menu.id.toString()}>
+          <NestedHeaderMenuTitle key={menu.id.toString()}>
             <Link href={headerMenu[menuType]?.link ?? '/'}>
               <HeaderMenuTitle>{menu.title}</HeaderMenuTitle>
             </Link>
-          </div>
+          </NestedHeaderMenuTitle>
         )
       })}
     </CollapseMenuItem>
@@ -145,19 +148,21 @@ const CollapseMenuItem = ({
                 </AnimatedBlock>
               )}
             </HeaderMenuContainer>
-            <MenuBodyContainer
-              style={{
-                opacity: interpolate(animation.value, [0, 1], [0, 1]),
-                height: heightAnimation.value
-              }}
-            >
-              <MenuBody {...bind()} className={childrenClassName}>
-                <>
-                  {content}
-                  {children}
-                </>
-              </MenuBody>
-            </MenuBodyContainer>
+            {iconVisible && (
+              <MenuBodyContainer
+                style={{
+                  opacity: interpolate(animation.value, [0, 1], [0, 1]),
+                  height: heightAnimation.value
+                }}
+              >
+                <MenuBody {...bind()} className={childrenClassName}>
+                  <>
+                    {content}
+                    {children}
+                  </>
+                </MenuBody>
+              </MenuBodyContainer>
+            )}
           </AnimatedBlock>
         )}
       </TransitionBlock>
@@ -192,11 +197,11 @@ const NestedCollapseMenuItem = ({
             }}
           >
             <HeaderMenuContainer onClick={() => setOpen((prev) => !prev)}>
-              <div>
+              <NestedHeaderMenuTitle>
                 <Link href={link ?? '/'}>
                   <HeaderMenuTitle>{menuTitle}</HeaderMenuTitle>
                 </Link>
-              </div>
+              </NestedHeaderMenuTitle>
               <AnimatedBlock
                 style={{
                   display: 'flex',
