@@ -146,6 +146,12 @@ export const Header = ({image}: HeaderProps) => {
 }
 
 function HoverElement({data}: {data: Api.AllCategories | null}) {
+  const router = useRouter()
+
+  const linkClickedHandler = (data: any) => {
+    console.log(data)
+    router.push({pathname: '/news', query: {id: data.category_details.id}})
+  }
   return (
     <MainHoverContainer>
       <div>
@@ -159,7 +165,7 @@ function HoverElement({data}: {data: Api.AllCategories | null}) {
         {data &&
           data.rows.map((el, id) => {
             return (
-              <HoverText key={id}>
+              <HoverText key={id} onClick={() => linkClickedHandler(el)}>
                 {el.category_details.title}
 
                 {el.category_details.sub_categories && (

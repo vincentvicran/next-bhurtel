@@ -19,7 +19,9 @@ const NewsContainer = styled.div`
 const ImgContainer = styled.div`
   position: relative;
   min-height: 400px;
-  width: 60vw;
+  width: 100%;
+  border-radius: ${Theme.radius.$default};
+  overflow: hidden;
 `
 
 // DESCRIPTION IN details PROPS WILL COME FROM
@@ -34,6 +36,7 @@ function News({
   }
 }) {
   const media = useMedia()
+  console.log(news)
 
   return (
     <CompWrapper>
@@ -48,10 +51,12 @@ function News({
           text={news.description_details.title}
           size={media.sm ? 'xl' : 'lg'}
           weight="bold"
-          style={{marginBottom: media.sm ? 40 : 20}}
         />
 
-        <Paragraph color="dark" style={{marginBottom: 40}}>
+        <Paragraph
+          color="light"
+          style={{marginBottom: media.sm ? 40 : 20, fontStyle: 'italic'}}
+        >
           {news.description_details.short_description}
         </Paragraph>
 
@@ -63,14 +68,21 @@ function News({
               news.description_details.thumbnail as string
             )}
             layout={`fill`}
+            objectFit="cover"
           />
         </ImgContainer>
-        <Paragraph color="dark" style={{margin: '40px 0px'}}>
-          {news.description_details.main_description}
-        </Paragraph>
+        <Paragraph
+          color="dark"
+          style={{margin: '40px 0px'}}
+          dangerouslySetInnerHTML={{
+            __html: news.description_details.main_description
+          }}
+        />
 
         {/* YOUTUBE COMPONENT */}
-        <Youtube />
+        {news.description_details.video_link && (
+          <Youtube videoId={news.description_details.video_link} />
+        )}
       </NewsContainer>
     </CompWrapper>
   )

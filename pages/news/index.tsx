@@ -6,9 +6,10 @@ import {HStack} from 'common/stack'
 
 import {DescriptionCard} from 'components/descriptionCard'
 import {CompWrapper} from 'common/compWrapper'
-import {newsServices} from 'redux/news/news.service'
 import {commonDescriptionServices} from 'redux/commonDescription/commonDescription.service'
 import {NoResultFound} from 'components/noResultsFound'
+import {GetServerSideProps} from 'next'
+import {useRouter} from 'next/router'
 
 const NewsContainer = styled.div`
   /* padding: 40px; */
@@ -23,6 +24,12 @@ const NewsBottomContainer = styled.div`
 `
 
 function News({news: fetchedNews}: {news: Api.AllCommonDescription[`rows`]}) {
+  const router = useRouter()
+  const newsClickedHandler = (data: any) => {
+    console.log(data)
+    router.push({pathname: `news/${data.description_details.id}`, query: {}})
+  }
+
   return (
     <CompWrapper>
       <NewsContainer>
@@ -31,36 +38,36 @@ function News({news: fetchedNews}: {news: Api.AllCommonDescription[`rows`]}) {
           fetchedNews.map((el, id) => {
             if (id === 0)
               return (
-                <DescriptionCard
-                  key={id.toString()}
-                  isHorizontal={true}
-                  author={el.user_details.email}
-                  date={el.description_details.posted_at}
-                  desc={el.description_details.main_description}
-                  title={el.description_details.title}
-                  imgUrl={el.description_details.thumbnail as string}
-                />
+                <div key={id} onClick={() => newsClickedHandler(el)}>
+                  <DescriptionCard
+                    key={id.toString()}
+                    isHorizontal={true}
+                    author={el.user_details.email}
+                    date={el.description_details.posted_at}
+                    desc={el.description_details.main_description}
+                    title={el.description_details.title}
+                    imgUrl={el.description_details.thumbnail as string}
+                  />
+                </div>
               )
           })}
 
         <NewsBottomContainer>
           {fetchedNews &&
             fetchedNews.map((el, id) => {
-              if (id === 0) {
-                return null
-              }
               return (
-                <DescriptionCard
-                  key={id.toString()}
-                  truncateSize={170}
-                  truncateDesc={true}
-                  author={el.user_details.email}
-                  date={el.description_details.posted_at}
-                  desc={el.description_details.main_description}
-                  title={el.description_details.title}
-                  imgUrl={el.description_details.thumbnail as string}
-                  isHorizontal={false}
-                />
+                <div key={id} onClick={() => newsClickedHandler(el)}>
+                  <DescriptionCard
+                    truncateSize={170}
+                    truncateDesc={true}
+                    author={el.user_details.email}
+                    date={el.description_details.posted_at}
+                    desc={el.description_details.main_description}
+                    title={el.description_details.title}
+                    imgUrl={el.description_details.thumbnail as string}
+                    isHorizontal={false}
+                  />
+                </div>
               )
             })}
         </NewsBottomContainer>
@@ -74,8 +81,8 @@ function News({news: fetchedNews}: {news: Api.AllCommonDescription[`rows`]}) {
   )
 }
 
-export async function getServerSideProps() {
-  const newsCategory = await newsServices.getNewsCategories()
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  // const newsCategory = await newsServices.getNewsCategories()
 
   const cmnDescription =
     await commonDescriptionServices.getCommonDescriptionByCategoryId(
