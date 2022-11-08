@@ -26,7 +26,7 @@ export const Search = styled.div`
 export const HeaderContent = styled.div`
   display: flex;
   align-items: center;
-  gap: ${Theme.space.$14};
+  gap: ${Theme.space.$17};
 `
 
 export const HeaderLinks = styled.div`
@@ -37,7 +37,7 @@ export const HeaderLinks = styled.div`
 export const HeaderItem = styled.a`
   color: ${Theme.colors.$gray700};
   text-transform: uppercase;
-  font-size: ${Theme.fontSizes.$3};
+  font-size: ${Theme.fontSizes.$2};
   cursor: pointer;
   display: flex;
   align-items: center;

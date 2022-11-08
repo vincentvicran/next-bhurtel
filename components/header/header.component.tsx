@@ -54,13 +54,7 @@ export const Header = ({image}: HeaderProps) => {
     <HeaderContainer>
       <CompWrapper>
         <HeaderContent>
-          <Image
-            src={attorney}
-            alt="logo"
-            width="100"
-            objectFit="contain"
-            height="30"
-          />
+          <Image src={attorney} alt="logo" objectFit="contain" width="100" />
           <HeaderLinks>
             <HeaderItem href="/">Home</HeaderItem>
             <HeaderItem>

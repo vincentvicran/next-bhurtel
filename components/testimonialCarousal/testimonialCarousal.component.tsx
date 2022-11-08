@@ -17,7 +17,6 @@ import {
 import {getImageUrl} from 'helpers/getUrl'
 
 export function TestimonialCarousal({data}: {data: any[]}) {
-  console.log(data)
   let ref: Slider | null
   const settings = {
     dots: true,
