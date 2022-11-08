@@ -20,7 +20,7 @@ const ContactSection = styled.div<{md: boolean}>`
   justify-content: space-between;
   gap: ${Theme.space.$8};
   margin: ${Theme.space.$16} 5px;
-  flex-direction: ${(props) => (props.md ? 'row' : 'column')}}};
+  flex-direction: ${(props) => (props.md ? 'row' : 'column')};
 `
 const LeftContact = styled.div<{md: boolean}>`
   width: 100%;
