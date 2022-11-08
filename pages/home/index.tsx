@@ -9,6 +9,7 @@ import Theme from 'theme'
 import {useMedia} from 'hooks'
 import {ContactUs} from 'components/contactUs'
 import dynamic from 'next/dynamic'
+import {bannerServices} from 'redux/banner/banner.service'
 
 const MainContainer = styled.div`
   margin: ${Theme.space.$17} 0;
@@ -38,7 +39,13 @@ const MapWithNoSSR = dynamic(() => import('../../common/map/map.common'), {
   ssr: false
 })
 
-const HomePage = ({testimonials}: {testimonials: Api.AllTestimonials}) => {
+const HomePage = ({
+  testimonials,
+  banners
+}: {
+  testimonials: Api.AllTestimonials
+  banners: Api.AllBanners
+}) => {
   const media = useMedia()
 
   return (
@@ -71,8 +78,9 @@ const HomePage = ({testimonials}: {testimonials: Api.AllTestimonials}) => {
 
 export const getServerSideProps = async () => {
   const testimonials = await testimonialServices.getAllTestimonialsHomepage()
+  const banners = await bannerServices.getBanners()
 
-  return {props: {testimonials}}
+  return {props: {testimonials, banners}}
 }
 
 export default HomePage
