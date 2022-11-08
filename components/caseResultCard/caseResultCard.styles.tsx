@@ -10,6 +10,8 @@ export const CaseResCard = styled.div`
   transition: 0.3s ease-in-out;
 
   &:hover {
-    border-color: ${Theme.colors.$gray400};
+    box-shadow: 4px 5px 4px -4px rgba(89, 57, 57, 0.75);
+    -webkit-box-shadow: 4px 5px 4px -4px rgba(89, 57, 57, 0.75);
+    -moz-box-shadow: 4px 5px 4px -4px rgba(89, 57, 57, 0.75);
   }
 `
