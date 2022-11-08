@@ -216,7 +216,8 @@ const NestedCollapseMenuItem = ({
             <MenuBodyContainer
               style={{
                 opacity: interpolate(animation.value, [0, 1], [0, 1]),
-                height: heightAnimation.value
+                height: heightAnimation.value,
+                visibility: animation.value === 0 ? 'hidden' : 'visible'
               }}
             >
               <MenuBody {...bind()}>
