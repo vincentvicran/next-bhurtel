@@ -20,6 +20,7 @@ import attorney from 'assets/images/attorney.png'
 import Theme from 'theme'
 import {useMedia} from 'hooks'
 import {HStack} from 'common/stack'
+import Link from 'next/link'
 
 interface HeaderProps {
   image: string
@@ -60,9 +61,14 @@ export const Header = ({image}: HeaderProps) => {
       <CompWrapper>
         <HeaderContent>
           <HStack align="center" justify="space-between">
-            <HeaderDrawer image={attorney.src} data={{
-              personalInjury, practiceAreas, news
-            }}/>
+            <HeaderDrawer
+              image={attorney.src}
+              data={{
+                personalInjury,
+                practiceAreas,
+                news
+              }}
+            />
             <HeaderLogo>
               <Image
                 src={attorney}
@@ -75,45 +81,59 @@ export const Header = ({image}: HeaderProps) => {
           </HStack>
           {media.lg && (
             <HeaderLinks>
-              <HeaderItem href="/">Home</HeaderItem>
-              <HeaderItem>
-                <p>Personal Injury</p>
-                {/* MENU */}
-                <HoverElement data={personalInjury} />
-                <FiChevronDown
-                  style={{
-                    cursor: 'pointer',
-                    height: '12px',
-                    width: '14px'
-                  }}
-                />
-              </HeaderItem>
-              <HeaderItem>
-                <p>Practice areas</p>
-                <FiChevronDown
-                  style={{
-                    cursor: 'pointer',
-                    height: '12px',
-                    width: '14px'
-                  }}
-                />
-                <HoverElement data={practiceAreas} />
-              </HeaderItem>
-              <HeaderItem href="contact-us">contacts</HeaderItem>
-              <HeaderItem href="case-results">case results</HeaderItem>
-              <HeaderItem href="case-results">Attorney profile</HeaderItem>
+              <Link href="home">
+                <HeaderItem>Home</HeaderItem>
+              </Link>
+              <Link href="home">
+                <HeaderItem>
+                  <p>Personal Injury</p>
+                  {/* MENU */}
+                  <HoverElement data={personalInjury} />
+                  <FiChevronDown
+                    style={{
+                      cursor: 'pointer',
+                      height: '12px',
+                      width: '14px'
+                    }}
+                  />
+                </HeaderItem>
+              </Link>
+              <Link href="home">
+                <HeaderItem>
+                  <p>Practice areas</p>
+                  <FiChevronDown
+                    style={{
+                      cursor: 'pointer',
+                      height: '12px',
+                      width: '14px'
+                    }}
+                  />
+                  <HoverElement data={practiceAreas} />
+                </HeaderItem>
+              </Link>
+              <Link href="contact-us">
+                <HeaderItem>Contacts</HeaderItem>
+              </Link>
+              <Link href="case-results">
+                <HeaderItem>Case Results</HeaderItem>
+              </Link>
+              <Link href="home">
+                <HeaderItem>Attorney Profile</HeaderItem>
+              </Link>
 
-              <HeaderItem href="news">
-                <p>News</p>
-                <FiChevronDown
-                  style={{
-                    cursor: 'pointer',
-                    height: '12px',
-                    width: '14px'
-                  }}
-                />
-                <HoverElement data={news} />
-              </HeaderItem>
+              <Link href="news">
+                <HeaderItem>
+                  <p>News</p>
+                  <FiChevronDown
+                    style={{
+                      cursor: 'pointer',
+                      height: '12px',
+                      width: '14px'
+                    }}
+                  />
+                  <HoverElement data={news} />
+                </HeaderItem>
+              </Link>
             </HeaderLinks>
           )}
           <Search>

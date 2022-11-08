@@ -6,9 +6,9 @@ export const HeaderContainer = styled.div`
   background-color: ${Theme.colors.$gray100};
 `
 export const HeaderLogo = styled.div`
-display: flex;
-justify-content: center;
-align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: ${Theme.space.$10};
   /* width: ${Theme.space.$17}; */
 `
@@ -37,7 +37,7 @@ export const HeaderLinks = styled.div`
   align-items: center;
   gap: ${Theme.space.$5};
 `
-export const HeaderItem = styled.a`
+export const HeaderItem = styled.div`
   color: ${Theme.colors.$gray700};
   text-transform: uppercase;
   font-size: ${Theme.fontSizes.$2};
