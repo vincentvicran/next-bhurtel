@@ -9,7 +9,11 @@ import Theme from 'theme'
 import {useMedia} from 'hooks'
 import {ContactUs} from 'components/contactUs'
 import dynamic from 'next/dynamic'
-import {bannerServices} from 'redux/banner/banner.service'
+
+const HomeContainer = styled.div`
+  width: 100%;
+  height: 100%;
+`
 
 const MainContainer = styled.div`
   margin: ${Theme.space.$17} 0;
@@ -39,17 +43,11 @@ const MapWithNoSSR = dynamic(() => import('../../common/map/map.common'), {
   ssr: false
 })
 
-const HomePage = ({
-  testimonials,
-  banners
-}: {
-  testimonials: Api.AllTestimonials
-  banners: Api.AllBanners
-}) => {
+const HomePage = ({testimonials}: {testimonials: Api.AllTestimonials}) => {
   const media = useMedia()
 
   return (
-    <>
+    <HomeContainer>
       <MainCarousel />
       <CompWrapper>
         <MainContainer
@@ -72,15 +70,14 @@ const HomePage = ({
           </ContactSection>
         </MainContainer>
       </CompWrapper>
-    </>
+    </HomeContainer>
   )
 }
 
 export const getServerSideProps = async () => {
   const testimonials = await testimonialServices.getAllTestimonialsHomepage()
-  const banners = await bannerServices.getBanners()
 
-  return {props: {testimonials, banners}}
+  return {props: {testimonials}}
 }
 
 export default HomePage

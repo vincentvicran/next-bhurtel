@@ -1,5 +1,4 @@
 import React, {useCallback, useRef} from 'react'
-import Image from 'next/image'
 import Slider from 'react-slick'
 
 import {useMedia} from 'hooks'
@@ -60,6 +59,7 @@ export const MainCarousel = () => {
     speed: 900,
     autoplay: true,
     autoplaySpeed: 3000,
+    adaptiveHeight: true,
     slidesToShow: 1,
     slidesToScroll: 1,
     nextArrow: <NavArrow direction="next" onClick={nextSlide} />,
@@ -72,12 +72,11 @@ export const MainCarousel = () => {
       <CarouselSlider ref={slider} {...settings}>
         {SLIDER_IMAGES.map(({image}, index) => (
           <CarousalItem key={index} style={{overflow: 'hidden'}}>
-            <Image
+            <img
               src={image}
               alt=""
-              objectFit="cover"
-              height={height}
-              width={width}
+              // height={'inherit'}
+              // width={'inherit'}
             />
           </CarousalItem>
         ))}
