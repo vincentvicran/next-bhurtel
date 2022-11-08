@@ -29,11 +29,13 @@ export const NavArrow = ({direction, ...props}: NavArrow) => {
 }
 
 const NavArrowContainer = styled.div<NavArrow>`
-  width: 60px;
-  height: 60px;
+  width: max-content;
+  height: max-content;
   position: absolute;
   z-index: 2;
   opacity: 0.7;
+  background: #e2e2e288;
+  border-radius: 50%;
   ${({direction}) =>
     direction === 'next'
       ? css`
