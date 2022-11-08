@@ -2,7 +2,11 @@ import React from 'react'
 import YouTube, {YouTubeProps} from 'react-youtube'
 import {YoutubeContainer} from './youtube.style'
 
-export const Youtube = () => {
+interface YoutubeUserProps {
+  videoId: string
+}
+
+export const Youtube = ({videoId}: YoutubeUserProps) => {
   const onPlayerReady: YouTubeProps['onReady'] = (event) => {
     event.target.pauseVideo()
   }
@@ -11,13 +15,13 @@ export const Youtube = () => {
     height: '390',
     width: '100%',
     playerVars: {
-      autoplay: 1
+      autoplay: 0
     }
   }
 
   return (
     <YoutubeContainer>
-      <YouTube videoId="2g811Eo7K8U" opts={opts} onReady={onPlayerReady} />
+      <YouTube videoId={videoId} opts={opts} onReady={onPlayerReady} />
     </YoutubeContainer>
   )
 }

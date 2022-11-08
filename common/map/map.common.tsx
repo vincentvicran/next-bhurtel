@@ -9,7 +9,7 @@ interface MapProps {
   popupText?: string
 }
 
-export const Map = ({location, height = 400, popupText}: MapProps) => {
+const Map = ({location, height = 400, popupText}: MapProps) => {
   return (
     <MapContainer
       center={location}
@@ -27,3 +27,5 @@ export const Map = ({location, height = 400, popupText}: MapProps) => {
     </MapContainer>
   )
 }
+
+export default Map

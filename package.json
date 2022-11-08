@@ -14,6 +14,7 @@
     "@mui/material": "^5.10.5",
     "@reduxjs/toolkit": "^1.8.5",
     "@types/leaflet": "^1.9.0",
+    "@types/react-leaflet": "^2.8.2",
     "@types/react-slick": "^0.23.10",
     "axios": "^0.27.2",
     "chroma-js": "^2.4.2",
