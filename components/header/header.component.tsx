@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from 'react'
+import Image from 'next/image'
 import {FiSearch, FiChevronDown} from 'react-icons/fi'
 
 import {
   HeaderContainer,
   Search,
+  HeaderLogo,
   HeaderContent,
   HeaderItem,
   HeaderLinks,
@@ -12,17 +14,19 @@ import {
   HoverSubContainer
 } from './header.style'
 import {CompWrapper} from 'common/compWrapper'
-import Image from 'next/image'
-import attorney from 'assets/images/attorney.png'
-import {commonCategoryServices} from 'redux/commonCategory/commonCategory.service'
-import Theme from 'theme'
 import {HeaderDrawer} from 'components/headerDrawer'
+import {commonCategoryServices} from 'redux/commonCategory/commonCategory.service'
+import attorney from 'assets/images/attorney.png'
+import Theme from 'theme'
+import {useMedia} from 'hooks'
+import {HStack} from 'common/stack'
 
 interface HeaderProps {
   image: string
 }
 
 export const Header = ({image}: HeaderProps) => {
+  const media = useMedia()
   const [personalInjury, setPersonalInjury] =
     useState<Api.AllCategories | null>(null)
   const [practiceAreas, setPracticeAreas] = useState<Api.AllCategories | null>(
@@ -55,49 +59,61 @@ export const Header = ({image}: HeaderProps) => {
     <HeaderContainer>
       <CompWrapper>
         <HeaderContent>
-          <HeaderDrawer image={attorney.src} />
-          <Image src={attorney} alt="logo" objectFit="contain" width="100" />
-          <HeaderLinks>
-            <HeaderItem href="/">Home</HeaderItem>
-            <HeaderItem>
-              <p>Personal Injury</p>
-              {/* MENU */}
-              <HoverElement data={personalInjury} />
-              <FiChevronDown
-                style={{
-                  cursor: 'pointer',
-                  height: '12px',
-                  width: '14px'
-                }}
+          <HStack align="center" justify="space-between">
+            <HeaderDrawer image={attorney.src} />
+            <HeaderLogo>
+              <Image
+                src={attorney}
+                alt="logo"
+                objectFit="contain"
+                width="150"
+                height="80"
               />
-            </HeaderItem>
-            <HeaderItem>
-              <p>Practice areas</p>
-              <FiChevronDown
-                style={{
-                  cursor: 'pointer',
-                  height: '12px',
-                  width: '14px'
-                }}
-              />
-              <HoverElement data={practiceAreas} />
-            </HeaderItem>
-            <HeaderItem href="contact-us">contacts</HeaderItem>
-            <HeaderItem href="case-results">case results</HeaderItem>
-            <HeaderItem href="case-results">Attorney profile</HeaderItem>
+            </HeaderLogo>
+          </HStack>
+          {media.lg && (
+            <HeaderLinks>
+              <HeaderItem href="/">Home</HeaderItem>
+              <HeaderItem>
+                <p>Personal Injury</p>
+                {/* MENU */}
+                <HoverElement data={personalInjury} />
+                <FiChevronDown
+                  style={{
+                    cursor: 'pointer',
+                    height: '12px',
+                    width: '14px'
+                  }}
+                />
+              </HeaderItem>
+              <HeaderItem>
+                <p>Practice areas</p>
+                <FiChevronDown
+                  style={{
+                    cursor: 'pointer',
+                    height: '12px',
+                    width: '14px'
+                  }}
+                />
+                <HoverElement data={practiceAreas} />
+              </HeaderItem>
+              <HeaderItem href="contact-us">contacts</HeaderItem>
+              <HeaderItem href="case-results">case results</HeaderItem>
+              <HeaderItem href="case-results">Attorney profile</HeaderItem>
 
-            <HeaderItem href="news">
-              <p>News</p>
-              <FiChevronDown
-                style={{
-                  cursor: 'pointer',
-                  height: '12px',
-                  width: '14px'
-                }}
-              />
-              <HoverElement data={news} />
-            </HeaderItem>
-          </HeaderLinks>
+              <HeaderItem href="news">
+                <p>News</p>
+                <FiChevronDown
+                  style={{
+                    cursor: 'pointer',
+                    height: '12px',
+                    width: '14px'
+                  }}
+                />
+                <HoverElement data={news} />
+              </HeaderItem>
+            </HeaderLinks>
+          )}
           <Search>
             <FiSearch style={{height: '19px', width: '19px'}} />
           </Search>

@@ -108,7 +108,7 @@ export const DrawerMenu: React.FC<DrawerMenuProps> = ({
                         closeMenu()
                       }}
                     >
-                      <CgClose />
+                      <CgClose size={20}/>
                     </CloseIcon>
                   </DrawerMenuHeader>
                   {children(closeMenu)}

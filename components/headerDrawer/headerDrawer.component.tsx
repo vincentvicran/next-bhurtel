@@ -17,12 +17,23 @@ import {
   DrawerMenuFooter
 } from './headerDrawer.style'
 import {CollapseMenu} from 'components/collapseMenu'
+import Theme from 'theme'
 
 export const HeaderDrawer = ({image, data}: {image: string; data?: any}) => {
   return (
     <DrawerMenu
       disableScroll
-      trigger={<AiOutlineMenu size={24} />}
+      trigger={
+        <HStack
+          justify="center"
+          align="center"
+          style={{
+            padding: `0 ${Theme.space.$2} ${Theme.space.$2} 0`
+          }}
+        >
+          <AiOutlineMenu size={20} />
+        </HStack>
+      }
       header={
         <Link href={'/'}>
           <Logo>
@@ -30,8 +41,8 @@ export const HeaderDrawer = ({image, data}: {image: string; data?: any}) => {
               src={image}
               alt=""
               objectFit="contain"
-              width="250"
-              height="55"
+              width="150"
+              height="80"
             />
           </Logo>
         </Link>
