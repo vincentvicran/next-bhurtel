@@ -22,6 +22,7 @@ import {useMedia} from 'hooks'
 import {HStack} from 'common/stack'
 import Link from 'next/link'
 import {useRouter} from 'next/router'
+import {profileServices} from 'redux/profile/profile.service'
 
 interface HeaderProps {
   image: string
@@ -35,6 +36,7 @@ export const Header = ({image}: HeaderProps) => {
     null
   )
   const [news, setNews] = useState<Api.AllCategories | null>(null)
+  const [profiles, setProfiles] = useState<Api.AllCategories | null>(null)
   useEffect(() => {
     ;(async () => {
       try {
@@ -47,10 +49,31 @@ export const Header = ({image}: HeaderProps) => {
         const news = await commonCategoryServices.getCommonCategoryByType(
           'news'
         )
+        const profileList = await profileServices.getProfiles()
+
+        const remappedProfiles: Array<{
+          total_count: string
+          category_details: Api.CommonCategory
+        }> = profileList.rows.map((profile) => {
+          return {
+            total_count: profile.total_count,
+            category_details: {
+              id: profile.profile_details.id,
+              type: 'attorney_profile',
+              title: profile.profile_details.name,
+              common_category_id: null,
+              is_description_only: true
+            }
+          } as {
+            total_count: string
+            category_details: Api.CommonCategory
+          }
+        })
 
         setPersonalInjury(personal)
         setPracticeAreas(practice)
         setNews(news)
+        setProfiles({total: '0', rows: remappedProfiles, isLast: false})
       } catch (err) {
         console.log(err)
       }
@@ -67,7 +90,8 @@ export const Header = ({image}: HeaderProps) => {
               data={{
                 personalInjury,
                 practiceAreas,
-                news
+                news,
+                profiles
               }}
             />
             <HeaderLogo>
