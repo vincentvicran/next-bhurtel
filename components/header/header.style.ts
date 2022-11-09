@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from 'styled-components'
 import Theme from 'theme'
 
@@ -65,21 +64,21 @@ export const HeaderItem = styled.div`
     color: ${Theme.colors.$primary};
   }
 `
-export const MainHoverContainer = styled.div<{style?: React.CSSProperties}>`
+export const MainHoverContainer = styled.div`
   position: absolute;
-  display: flex;
   top: 130%;
 
-  width: 40vw;
-  flex-direction: column;
-
+  width: 100%;
   max-height: 380px;
   min-height: max-content;
+
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
   gap: ${Theme.space.$3};
   flex-wrap: wrap;
-  justify-content: flex-start;
-
   flex: 1;
+
   background: white;
   border-radius: ${Theme.radius.$default};
   z-index: 10;

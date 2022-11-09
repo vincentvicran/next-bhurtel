@@ -114,10 +114,7 @@ export const Header = ({image}: HeaderProps) => {
                 <HeaderItem>
                   <p>Personal Injury</p>
                   {/* MENU */}
-                  <HoverElement
-                    data={personalInjury}
-                    style={{width: 'max-content'}}
-                  />
+                  <HoverElement data={personalInjury} />
                   <FiChevronDown
                     style={{
                       cursor: 'pointer',
