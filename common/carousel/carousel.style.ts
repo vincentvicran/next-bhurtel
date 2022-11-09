@@ -52,9 +52,17 @@ export const CarousalContainer = styled.div<CarousalContainerProps>`
   }
 `
 export const CarousalItem = styled.div`
-  height: 100%;
-  width: 100%;
+  object-fit: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
+
+export const CarousalImage = styled.img`
+  width: 100vw;
+  object-fit: cover;
+`
+
 export const Dots = styled.div`
   width: 7px;
   height: 7px;
