@@ -11,7 +11,7 @@ import {Youtube} from 'common/youtube'
 import moment from 'moment'
 import {getImageUrl} from 'helpers/getUrl'
 
-const NewsContainer = styled.div`
+const DescriptionContainer = styled.div`
   padding: ${Theme.space.$10} 0;
 `
 const ImgContainer = styled.div`
@@ -25,7 +25,7 @@ const ImgContainer = styled.div`
 export const Description = ({article}: {article: Api.CommonDescription}) => {
   const media = useMedia()
   return (
-    <NewsContainer>
+    <DescriptionContainer>
       <div>
         <Paragraph
           color="light"
@@ -38,13 +38,14 @@ export const Description = ({article}: {article: Api.CommonDescription}) => {
           size={media.sm ? 'xl' : 'lg'}
           weight="bold"
         />
-
-        <Paragraph
-          color="light"
-          style={{marginBottom: media.sm ? 40 : 20, fontStyle: 'italic'}}
-        >
-          {article.short_description}
-        </Paragraph>
+        {article.short_description && (
+          <Paragraph
+            color="light"
+            style={{marginBottom: media.sm ? 40 : 20, fontStyle: 'italic'}}
+          >
+            {article.short_description}
+          </Paragraph>
+        )}
 
         <ImgContainer>
           <Image
@@ -65,6 +66,6 @@ export const Description = ({article}: {article: Api.CommonDescription}) => {
         {/* YOUTUBE COMPONENT */}
         {article.video_link && <Youtube videoId={article.video_link} />}
       </div>
-    </NewsContainer>
+    </DescriptionContainer>
   )
 }
