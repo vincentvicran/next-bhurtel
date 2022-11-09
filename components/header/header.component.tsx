@@ -1,6 +1,17 @@
 import React, {useEffect, useState} from 'react'
+import Link from 'next/link'
+import {useRouter} from 'next/router'
 import Image from 'next/image'
 import {FiSearch, FiChevronDown} from 'react-icons/fi'
+
+import {CompWrapper} from 'common/compWrapper'
+import {HeaderDrawer} from 'components/headerDrawer'
+import {commonCategoryServices} from 'redux/commonCategory/commonCategory.service'
+import attorney from 'assets/images/attorney.png'
+import Theme from 'theme'
+import {useMedia} from 'hooks'
+import {HStack} from 'common/stack'
+import {profileServices} from 'redux/profile/profile.service'
 
 import {
   HeaderContainer,
@@ -13,16 +24,6 @@ import {
   HoverText,
   NestedHoverText
 } from './header.style'
-import {CompWrapper} from 'common/compWrapper'
-import {HeaderDrawer} from 'components/headerDrawer'
-import {commonCategoryServices} from 'redux/commonCategory/commonCategory.service'
-import attorney from 'assets/images/attorney.png'
-import Theme from 'theme'
-import {useMedia} from 'hooks'
-import {HStack} from 'common/stack'
-import Link from 'next/link'
-import {useRouter} from 'next/router'
-import {profileServices} from 'redux/profile/profile.service'
 
 interface HeaderProps {
   image: string
