@@ -9,7 +9,6 @@ import {
   ImgContainer,
   RightSection
 } from './descriptionCard.styles'
-import {truncate} from 'helpers/newsPage.helper'
 import {StaticImageData} from 'next/image'
 import {getImageUrl} from 'helpers/getUrl'
 

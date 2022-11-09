@@ -7,21 +7,17 @@ import {
   ListCardContainer,
   ListCardDescContainer,
   ListCompContainer,
-  ReadMoreBtn,
-  TitleContainer,
-  Underline
+  ReadMoreBtn
 } from './listComp.styles'
 import {HiOutlineArrowLongRight} from 'react-icons/hi2'
 import Link from 'next/link'
+import {TitleContainer} from 'components/titleContainer'
 
 export function ListComp() {
   return (
     <ListCompContainer>
       {/* TITLE */}
-      <TitleContainer>
-        <Title text="Business Laws" size="xl" weight="semibold" />
-        <Underline />
-      </TitleContainer>
+      <TitleContainer title="Business Law" />
 
       {/* LISTS */}
       <ListCard />

@@ -24,15 +24,7 @@ export const ImgContainer = styled.div`
 export const ListCardDescContainer = styled.div`
   flex: 2;
 `
-export const Underline = styled.div`
-  width: calc(100% - 10px);
-  height: 4px;
-  background-color: #d9d9d9;
-`
-export const TitleContainer = styled.div`
-  margin-bottom: ${Theme.space.$8};
-  display: inline-block;
-`
+
 export const ReadMoreBtn = styled.div`
   display: flex;
   cursor: pointer;

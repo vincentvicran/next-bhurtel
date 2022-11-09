@@ -9,6 +9,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   gap: 10px;
+  flex: 1;
 `
 const ImgContainer = styled.div`
   position: relative;
