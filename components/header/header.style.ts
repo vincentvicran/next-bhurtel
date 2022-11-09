@@ -72,7 +72,9 @@ export const MainHoverContainer = styled.div<{style?: React.CSSProperties}>`
 
   width: 40vw;
   flex-direction: column;
-  height: 300px;
+
+  max-height: 380px;
+  min-height: max-content;
   gap: ${Theme.space.$3};
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -84,10 +86,10 @@ export const MainHoverContainer = styled.div<{style?: React.CSSProperties}>`
   opacity: 0;
   transition: 0.4s ease;
   transform: translateY(8px);
-  // width: max-content;
+
   box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
   border: 1px solid ${Theme.colors.$gray200};
-  /* overflow: hidden; */
+
   visibility: hidden;
   padding: 30px;
 
@@ -111,31 +113,19 @@ export const MainHoverContainer = styled.div<{style?: React.CSSProperties}>`
 export const HoverText = styled.div`
   font-size: ${Theme.fontSizes.$3};
   text-transform: capitalize;
-  // border-bottom: 1px solid ${Theme.colors.$gray100};
-  // padding: 7px 20px;
+
   color: ${Theme.colors.$gray600};
   position: relative;
 
   align-items: center;
   gap: 10px;
   justify-content: space-between;
-
-  &:hover {
-    color: ${Theme.colors.$pr};
-  }
-
-  // &:hover > div {
-  //   opacity: 1;
-  //   transform: translateY(0px);
-  //   visibility: visible;
-  // }
 `
 
 export const NestedHoverText = styled.p`
   font-size: ${Theme.fontSizes.$3};
   text-transform: capitalize;
-  // border-bottom: 1px solid ${Theme.colors.$gray100};
-  // padding: 7px 20px;
+
   color: ${Theme.colors.$gray400};
   position: relative;
 

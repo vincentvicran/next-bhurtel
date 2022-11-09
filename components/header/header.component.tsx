@@ -113,7 +113,10 @@ export const Header = ({image}: HeaderProps) => {
                 <HeaderItem>
                   <p>Personal Injury</p>
                   {/* MENU */}
-                  <HoverElement data={personalInjury} style={{width: '30vw'}} />
+                  <HoverElement
+                    data={personalInjury}
+                    style={{width: 'max-content'}}
+                  />
                   <FiChevronDown
                     style={{
                       cursor: 'pointer',
@@ -143,7 +146,20 @@ export const Header = ({image}: HeaderProps) => {
                 <HeaderItem>Case Results</HeaderItem>
               </Link>
               <Link href="/home">
-                <HeaderItem style={{right: '0'}}>Attorney Profile</HeaderItem>
+                <HeaderItem>
+                  <p>Attorney Profile</p>
+                  <FiChevronDown
+                    style={{
+                      cursor: 'pointer',
+                      height: '12px',
+                      width: '14px'
+                    }}
+                  />
+                  <HoverElement
+                    data={profiles}
+                    style={{right: '0', width: '20vw'}}
+                  />
+                </HeaderItem>
               </Link>
 
               <HeaderItem>
@@ -233,21 +249,3 @@ function HoverElement({
     </MainHoverContainer>
   )
 }
-
-// function HoverSubElement({data}: {data: Api.SubCategoriesInCatId[]}) {
-//   return (
-//     <HoverSubContainer>
-//       {!data || data.length === 0 ? (
-//         <HoverText
-//           style={{color: Theme.colors.$gray400, fontSize: Theme.fontSizes.$2}}
-//         >
-//           Categories not found
-//         </HoverText>
-//       ) : null}
-//       {data &&
-//         data.map((el, id) => {
-//           return <HoverText key={id}>{el.title}</HoverText>
-//         })}
-//     </HoverSubContainer>
-//   )
-// }
