@@ -11,7 +11,7 @@ import {
   HeaderLinks,
   MainHoverContainer,
   HoverText,
-  HoverSubContainer
+  NestedHoverText
 } from './header.style'
 import {CompWrapper} from 'common/compWrapper'
 import {HeaderDrawer} from 'components/headerDrawer'
@@ -113,7 +113,10 @@ export const Header = ({image}: HeaderProps) => {
                 <HeaderItem>
                   <p>Personal Injury</p>
                   {/* MENU */}
-                  <HoverElement data={personalInjury} />
+                  <HoverElement
+                    data={personalInjury}
+                    style={{width: 'max-content'}}
+                  />
                   <FiChevronDown
                     style={{
                       cursor: 'pointer',
@@ -133,7 +136,7 @@ export const Header = ({image}: HeaderProps) => {
                       width: '14px'
                     }}
                   />
-                  <HoverElement data={practiceAreas} />
+                  <HoverElement data={practiceAreas} style={{width: '55vw'}} />
                 </HeaderItem>
               </Link>
               <Link href="/contact-us">
@@ -143,7 +146,20 @@ export const Header = ({image}: HeaderProps) => {
                 <HeaderItem>Case Results</HeaderItem>
               </Link>
               <Link href="/home">
-                <HeaderItem>Attorney Profile</HeaderItem>
+                <HeaderItem>
+                  <p>Attorney Profile</p>
+                  <FiChevronDown
+                    style={{
+                      cursor: 'pointer',
+                      height: '12px',
+                      width: '14px'
+                    }}
+                  />
+                  <HoverElement
+                    data={profiles}
+                    style={{right: '0', width: '20vw'}}
+                  />
+                </HeaderItem>
               </Link>
 
               <HeaderItem>
@@ -156,7 +172,7 @@ export const Header = ({image}: HeaderProps) => {
                     width: '14px'
                   }}
                 />
-                <HoverElement data={news} />
+                <HoverElement data={news} style={{right: '0', width: '20vw'}} />
               </HeaderItem>
             </HeaderLinks>
           )}
@@ -169,64 +185,67 @@ export const Header = ({image}: HeaderProps) => {
   )
 }
 
-function HoverElement({data}: {data: Api.AllCategories | null}) {
+function HoverElement({
+  data,
+  style
+}: {
+  data: Api.AllCategories | null
+  style?: React.CSSProperties
+}) {
   const router = useRouter()
 
   const linkClickedHandler = (data: any) => {
     router.push({pathname: '/news', query: {id: data.category_details.id}})
   }
   return (
-    <MainHoverContainer>
-      <div>
-        {!data || data.rows.length === 0 ? (
-          <HoverText
-            style={{color: Theme.colors.$gray400, fontSize: Theme.fontSizes.$2}}
-          >
-            Categories not found
-          </HoverText>
-        ) : null}
-        {data &&
-          data.rows.map((el, id) => {
-            return (
-              <HoverText key={id} onClick={() => linkClickedHandler(el)}>
-                {el.category_details.title}
-
-                {el.category_details.sub_categories && (
-                  <>
-                    <FiChevronDown
-                      style={{
-                        cursor: 'pointer',
-
-                        transform: 'rotate(-90deg)'
-                      }}
-                    />
-                    <HoverSubElement
-                      data={el.category_details.sub_categories}
-                    />
-                  </>
-                )}
-              </HoverText>
-            )
-          })}
-      </div>
-    </MainHoverContainer>
-  )
-}
-
-function HoverSubElement({data}: {data: Api.SubCategoriesInCatId[]}) {
-  return (
-    <HoverSubContainer>
-      {!data || data.length === 0 ? (
+    <MainHoverContainer style={style}>
+      {/* <div> */}
+      {!data || data.rows.length === 0 ? (
         <HoverText
-          style={{color: Theme.colors.$gray400, fontSize: Theme.fontSizes.$2}}
+          style={{
+            color: Theme.colors.$gray600,
+            fontSize: Theme.fontSizes.$3,
+            alignSelf: 'center'
+          }}
         >
           Categories not found
         </HoverText>
       ) : null}
       {data &&
-        data.map((el, id) => {
-          return <HoverText key={id}>{el.title}</HoverText>
+        data.rows.map((el, id) => {
+          console.log(el, 'el called')
+          return (
+            <HoverText
+              key={id}
+              onClick={() => linkClickedHandler(el)}
+              style={{
+                color: Theme.colors.$primary,
+                fontSize: Theme.fontSizes.$3
+              }}
+            >
+              {el.category_details.title}
+
+              {el.category_details.sub_categories && (
+                <>
+                  {el.category_details.sub_categories.map((subitems, index) => {
+                    console.log(subitems, 'subitems called')
+                    return (
+                      <NestedHoverText
+                        style={{
+                          fontSize: Theme.fontSizes.$2,
+                          paddingLeft: Theme.space.$3
+                        }}
+                      >
+                        {subitems.title}
+                      </NestedHoverText>
+                    )
+                  })}
+                </>
+              )}
+            </HoverText>
+          )
         })}
-    </HoverSubContainer>
+      {/* </div> */}
+    </MainHoverContainer>
   )
 }

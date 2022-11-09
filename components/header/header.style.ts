@@ -1,3 +1,4 @@
+import React from 'react'
 import styled from 'styled-components'
 import Theme from 'theme'
 
@@ -64,21 +65,33 @@ export const HeaderItem = styled.div`
     color: ${Theme.colors.$primary};
   }
 `
-export const MainHoverContainer = styled.div`
+export const MainHoverContainer = styled.div<{style?: React.CSSProperties}>`
   position: absolute;
+  display: flex;
   top: 130%;
-  left: 0;
+
+  width: 40vw;
+  flex-direction: column;
+
+  max-height: 380px;
+  min-height: max-content;
+  gap: ${Theme.space.$3};
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
+  flex: 1;
   background: white;
   border-radius: ${Theme.radius.$default};
   z-index: 10;
   opacity: 0;
   transition: 0.4s ease;
   transform: translateY(8px);
-  width: max-content;
+
   box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
   border: 1px solid ${Theme.colors.$gray200};
-  /* overflow: hidden; */
+
   visibility: hidden;
+  padding: 30px;
 
   &::before {
     content: '';
@@ -87,7 +100,9 @@ export const MainHoverContainer = styled.div`
     height: 15px;
     position: absolute;
     top: -8px;
-    left: 20px;
+
+    right: ${(props) => props.style?.right && 'calc(20px)'};
+
     background: white;
     transform: rotate(45deg);
     border-top-left-radius: ${Theme.radius.$default};
@@ -98,37 +113,27 @@ export const MainHoverContainer = styled.div`
 export const HoverText = styled.div`
   font-size: ${Theme.fontSizes.$3};
   text-transform: capitalize;
-  border-bottom: 1px solid ${Theme.colors.$gray100};
-  padding: 7px 20px;
+
   color: ${Theme.colors.$gray600};
   position: relative;
-  display: flex;
+
   align-items: center;
   gap: 10px;
   justify-content: space-between;
+`
+
+export const NestedHoverText = styled.p`
+  font-size: ${Theme.fontSizes.$3};
+  text-transform: capitalize;
+
+  color: ${Theme.colors.$gray400};
+  position: relative;
+
+  align-items: center;
+  gap: 6px;
+  justify-content: space-between;
 
   &:hover {
-    background: ${Theme.colors.$white};
+    color: ${Theme.colors.$gray800};
   }
-
-  &:hover > div {
-    opacity: 1;
-    transform: translateY(0px);
-    visibility: visible;
-  }
-`
-export const HoverSubContainer = styled.div`
-  position: absolute;
-  top: 10px;
-  left: 101%;
-  background: white;
-  border-radius: ${Theme.radius.$default};
-  z-index: 10;
-  opacity: 0;
-  transition: 0.4s ease;
-  transform: translateY(8px);
-  width: 100%;
-  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
-  overflow: hidden;
-  visibility: hidden;
 `
