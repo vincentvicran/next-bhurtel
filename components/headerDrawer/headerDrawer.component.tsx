@@ -28,6 +28,7 @@ export const HeaderDrawer = ({
     personalInjury: Api.AllCategories | null
     practiceAreas: Api.AllCategories | null
     news: Api.AllCategories | null
+    profiles: Api.AllCategories | null
   }
 }) => {
   return (
@@ -94,7 +95,10 @@ export const HeaderDrawer = ({
               <HorizontalMenuBreak />
 
               <DrawerMenuItem>
-                <CollapseMenu menuType="attorney_profile" />
+                <CollapseMenu
+                  menuType="attorney_profile"
+                  menuList={data?.profiles?.rows}
+                />
               </DrawerMenuItem>
               <HorizontalMenuBreak />
 

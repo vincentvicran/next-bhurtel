@@ -108,4 +108,18 @@ declare namespace Api {
   }
 
   interface AllBanners extends PaginatedData<Banner> {}
+
+  interface Profile {
+    id: number
+    name: string
+    image: string
+    title: string
+    video_link: string | null
+    description: string
+    short_description: string | null
+    alternate_title: string | null
+  }
+
+  interface AllProfiles
+    extends PaginatedData<{total_count: string; profile_details: Profile}> {}
 }

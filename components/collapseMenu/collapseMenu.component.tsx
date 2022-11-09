@@ -19,6 +19,7 @@ interface CollapseMenuItemProps {
   iconVisible?: boolean
   childrenClassName?: string
   menuType: MenuType
+  defaultLink?: string
 }
 
 interface NestedCollapseMenuItemProps {
@@ -73,9 +74,38 @@ const MenuBodyStyled = styled.div`
 const MenuBodyContainer = makeAnimatedComponent(MenuBodyContainerStyled)
 const MenuBody = makeAnimatedComponent(MenuBodyStyled)
 
+const getMenuLink = (
+  menuType: MenuType,
+  menuList: Api.AllCategories['rows'] | undefined
+) => {
+  let linkId: number = 0
+
+  menuList?.map((menu, id) => {
+    if (id === 0) {
+      linkId = menu.category_details.id
+    }
+    return
+  })
+
+  const link = `${headerMenu[menuType].value}`
+
+  if (linkId === 0) {
+    return link
+  }
+
+  if (menuType === 'news') {
+    return link + `?id=${linkId}`
+  }
+  return link + `/${linkId}`
+}
+
 export const CollapseMenu = ({menuType, menuList}: CollapseMenuProps) => {
   return (
-    <CollapseMenuItem menuType={menuType} iconVisible={!!menuList}>
+    <CollapseMenuItem
+      menuType={menuType}
+      iconVisible={!!menuList}
+      defaultLink={getMenuLink(menuType, menuList)}
+    >
       {menuList?.map(({category_details: menu}) => {
         return menu?.sub_categories ? (
           <NestedCollapseMenuItem key={menu.id} menuTitle={menu.title}>
@@ -89,7 +119,7 @@ export const CollapseMenu = ({menuType, menuList}: CollapseMenuProps) => {
           </NestedCollapseMenuItem>
         ) : (
           <NestedHeaderMenuTitle key={menu.id.toString()}>
-            <Link href={headerMenu[menuType]?.link ?? '/'}>
+            <Link href={`${headerMenu[menuType].link}`}>
               <HeaderMenuTitle>{menu.title}</HeaderMenuTitle>
             </Link>
           </NestedHeaderMenuTitle>
@@ -106,7 +136,8 @@ const CollapseMenuItem = ({
   children,
   iconVisible = true,
   childrenClassName,
-  menuType
+  menuType,
+  defaultLink = '/'
 }: CollapseMenuItemProps) => {
   const [open, setOpen] = useState(false)
 
@@ -129,7 +160,7 @@ const CollapseMenuItem = ({
           >
             <HeaderMenuContainer onClick={() => setOpen((prev) => !prev)}>
               <div>
-                <Link href={headerMenu[menuType]?.link ?? '/'}>
+                <Link href={defaultLink}>
                   <HeaderMenuTitle>
                     {headerMenu[menuType].label}
                   </HeaderMenuTitle>
@@ -234,11 +265,13 @@ const NestedCollapseMenuItem = ({
 const headerMenu: HeaderMenuType = {
   personal_injury: {
     label: 'Personal Injury',
-    value: 'personal_injury'
+    value: 'personal-injury',
+    link: '/personal-injury'
   },
   practice_areas: {
     label: 'Practice Areas',
-    value: 'practice_areas'
+    value: 'practice-areas',
+    link: '/practice-areas'
   },
   contacts: {
     label: 'Contacts',
@@ -247,13 +280,13 @@ const headerMenu: HeaderMenuType = {
   },
   case_results: {
     label: 'Case Results',
-    value: 'case_results',
+    value: 'case-results',
     link: '/case-results'
   },
   attorney_profile: {
     label: 'Attorney Profile',
-    value: 'attorney_profile',
-    link: '/'
+    value: 'attorney-profile',
+    link: '/attorney-profile'
   },
   news: {
     label: 'News',
