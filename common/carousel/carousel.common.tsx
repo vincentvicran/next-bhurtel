@@ -81,7 +81,7 @@ export const MainCarousel = () => {
               style={
                 !media.lg
                   ? {
-                      height: `100%`
+                      height: `35vh`
                     }
                   : {
                       height: '45vh'
