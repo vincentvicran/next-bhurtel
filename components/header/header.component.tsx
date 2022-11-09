@@ -231,6 +231,7 @@ function HoverElement({
                     console.log(subitems, 'subitems called')
                     return (
                       <NestedHoverText
+                        key={subitems.id.toString()}
                         style={{
                           fontSize: Theme.fontSizes.$2,
                           paddingLeft: Theme.space.$3
