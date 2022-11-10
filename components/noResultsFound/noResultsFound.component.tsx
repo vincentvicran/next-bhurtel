@@ -10,6 +10,7 @@ const Container = styled.div`
   justify-content: center;
   gap: 10px;
   flex: 1;
+  margin: ${Theme.space.$10};
 `
 const ImgContainer = styled.div`
   position: relative;

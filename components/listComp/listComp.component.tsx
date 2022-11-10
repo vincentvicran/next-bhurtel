@@ -12,26 +12,53 @@ import {
 import {HiOutlineArrowLongRight} from 'react-icons/hi2'
 import Link from 'next/link'
 import {TitleContainer} from 'components/titleContainer'
+import {getImageUrl} from 'helpers/getUrl'
+import moment from 'moment'
 
-export function ListComp() {
+export function ListComp({
+  articleList,
+  title,
+  link
+}: {
+  articleList: Api.PaginatedCommonDescriptionIndividual[]
+  title: string
+  link: string
+}) {
   return (
     <ListCompContainer>
       {/* TITLE */}
-      <TitleContainer title="Business Law" />
+      <TitleContainer title={title} />
 
       {/* LISTS */}
-      <ListCard />
+      {articleList?.map((article) => {
+        return (
+          <ListCard
+            key={article.description_details.id.toString()}
+            article={article}
+            link={link}
+          />
+        )
+      })}
     </ListCompContainer>
   )
 }
 
-function ListCard() {
+function ListCard({
+  article,
+  link
+}: {
+  article: Api.PaginatedCommonDescriptionIndividual
+  link: string
+}) {
   return (
     <ListCardContainer>
       {/* IMAGE SECTION */}
       <ImgContainer>
         <Image
-          src="/assets/image/2.jpg"
+          src={getImageUrl(
+            'commonDescription',
+            article.description_details.thumbnail ?? ''
+          )}
           alt="list"
           layout="fill"
           objectFit="cover"
@@ -41,29 +68,29 @@ function ListCard() {
       {/* DESCRIPTION SECTION */}
       <ListCardDescContainer>
         <Title
-          text="20 Jun, 2022"
+          text={moment(article.description_details.posted_at).format(
+            'MMM DD, YYYY'
+          )}
           size="sm"
           weight="normal"
           style={{color: Theme.colors.$gray400, marginBottom: 5}}
         />
         <Title
-          text="Aggressive City of New York and State of New York, Commercial Law Firm Fights for Business Clients"
+          text={article.description_details.title}
           size="md"
           weight="bold"
           style={{marginBottom: 10}}
         />
-        <Paragraph color="light">
-          Commercial litigators protect clients rights in business contracts and
-          transactions A reputation for understanding business clients’ needs
-          The commercial marketplace is continually changing. Businesses in the
-          21st century need an experienced commercial
-        </Paragraph>
+        <Paragraph
+          dangerouslySetInnerHTML={{
+            __html: article.description_details.main_description
+          }}
+          color="light"
+        />
 
-        {/* <ReadMoreBtn href="/home">
-          <Title text="Read More" size="sm" />
-          <HiOutlineArrowLongRight />
-        </ReadMoreBtn> */}
-        <Link href="/">
+        <Link
+          href={`${link}/article?description=${article.description_details.slug}`}
+        >
           <ReadMoreBtn>
             <Title
               text="Read More"

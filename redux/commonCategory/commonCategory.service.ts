@@ -8,4 +8,15 @@ const getCommonCategoryByType = async (type: string) => {
   return response.data.data.data
 }
 
-export const commonCategoryServices = {getCommonCategoryByType}
+const getCommonCategoryById = async (id: number) => {
+  const response = await api<Api.Base<Api.CommonCategory>>('get')(
+    `common-category/${id}`
+  )
+
+  return response.data.data.data
+}
+
+export const commonCategoryServices = {
+  getCommonCategoryByType,
+  getCommonCategoryById
+}

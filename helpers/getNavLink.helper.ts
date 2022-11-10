@@ -21,7 +21,7 @@ export const getMenuLink = (
 ) => {
   let linkId: number = 0
 
-  const link = `${headerMenu[menuType].value}`
+  const link = `${headerMenu[menuType].link}`
 
   if (menuType === 'personal_injury' || menuType === 'practice_areas') {
     return null
@@ -51,12 +51,12 @@ export const getCategoryLink = (
   isDescription: boolean
 ) => {
   if (isDescription) {
-    const link = `${headerMenu[menuType].value}/article`
+    const link = `${headerMenu[menuType].link}/article`
 
     return link + `/${menuId}`
   }
 
-  const link = `${headerMenu[menuType].value}`
+  const link = `${headerMenu[menuType].link}`
 
   if (menuType === 'news') {
     return link + `?id=${menuId}`
@@ -77,7 +77,7 @@ export const getSubCategoryLink = (
     return
   })
 
-  const link = `${headerMenu[menuType].value}`
+  const link = `${headerMenu[menuType].link}`
 
   if (linkId === 0) {
     return link

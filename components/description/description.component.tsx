@@ -31,6 +31,7 @@ export const Description = ({article}: {article: Api.CommonDescription}) => {
           color="light"
           style={{fontStyle: 'italic', marginBottom: 10}}
         >
+          {article.posted_by && <>{article.posted_by}, </>}
           {moment(article.posted_at).format(`DD MMM, YYYY`)}
         </Paragraph>
         <Title
