@@ -15,6 +15,36 @@ export interface HeaderMenuType {
 
 export type MenuType = keyof typeof headerMenu
 
+export const getMenuLink = (
+  menuType: MenuType,
+  menuList: Api.AllCategories['rows'] | undefined
+) => {
+  let linkId: number = 0
+
+  menuList?.map((menu, id) => {
+    if (id === 0) {
+      linkId = menu.category_details.id
+    }
+    return
+  })
+
+  const link = `${headerMenu[menuType].value}`
+
+  if (menuType === 'personal_injury' || menuType === 'practice_areas') {
+    return null
+  }
+
+  if (linkId === 0) {
+    return link
+  }
+
+  if (menuType === 'news') {
+    return link + `?id=${linkId}`
+  }
+
+  return link + `/${linkId}`
+}
+
 export const getCategoryLink = (
   menuType: MenuType,
   menuList: Api.AllCategories['rows'] | undefined
@@ -41,9 +71,52 @@ export const getCategoryLink = (
         menu.category_details.title,
         menu.category_details.title.toLowerCase().includes('practice areas')
       )
-      if (menu.category_details.title.includes('practice areas')) {
-        linkId =
-          menu.category_details.common_category_id ?? menu.category_details.id
+      if (
+        menu.category_details.title.toLowerCase().includes('practice areas')
+      ) {
+        linkId = menu.category_details.id
+      }
+      return
+    })
+    return link + `/article/${linkId}`
+  }
+
+  if (menuType === 'news') {
+    return link + `?id=${linkId}`
+  }
+  return link + `/${linkId}`
+}
+
+export const getSubCategoryLink = (
+  menuType: MenuType,
+  menuList: Api.AllCategories['rows'] | undefined
+) => {
+  let linkId: number = 0
+
+  menuList?.map((menu, id) => {
+    if (id === 0) {
+      linkId = menu.category_details.id
+    }
+    return
+  })
+
+  const link = `${headerMenu[menuType].value}`
+
+  if (linkId === 0) {
+    return link
+  }
+
+  if (menuType === 'practice_areas') {
+    menuList?.map((menu) => {
+      console.log(
+        'menu title: ',
+        menu.category_details.title,
+        menu.category_details.title.toLowerCase().includes('practice areas')
+      )
+      if (
+        menu.category_details.title.toLowerCase().includes('practice areas')
+      ) {
+        linkId = menu.category_details.id
       }
       return
     })

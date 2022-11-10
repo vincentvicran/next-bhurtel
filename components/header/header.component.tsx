@@ -75,6 +75,15 @@ export const Header = ({image}: HeaderProps) => {
         setPracticeAreas(practice)
         setNews(news)
         setProfiles({total: '0', rows: remappedProfiles, isLast: false})
+
+        console.log('personal: ', personal)
+        console.log('practice: ', practice)
+        console.log('news: ', news)
+        console.log('profile: ', {
+          total: '0',
+          rows: remappedProfiles,
+          isLast: false
+        })
       } catch (err) {
         console.log(err)
       }

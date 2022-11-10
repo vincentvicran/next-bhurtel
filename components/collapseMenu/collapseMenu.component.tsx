@@ -1,4 +1,9 @@
-import {getCategoryLink, headerMenu, MenuType} from 'helpers/getNavLink.helper'
+import {
+  getCategoryLink,
+  getMenuLink,
+  headerMenu,
+  MenuType
+} from 'helpers/getNavLink.helper'
 import Link from 'next/link'
 import {useState} from 'react'
 import {FiChevronDown} from 'react-icons/fi'
@@ -20,7 +25,7 @@ interface CollapseMenuItemProps {
   iconVisible?: boolean
   childrenClassName?: string
   menuType: MenuType
-  defaultLink?: string
+  defaultLink: string | null
 }
 
 interface NestedCollapseMenuItemProps {
@@ -63,7 +68,7 @@ export const CollapseMenu = ({menuType, menuList}: CollapseMenuProps) => {
     <CollapseMenuItem
       menuType={menuType}
       iconVisible={!!menuList}
-      defaultLink={getCategoryLink(menuType, menuList)}
+      defaultLink={getMenuLink(menuType, menuList)}
     >
       {menuList?.map(({category_details: menu}) => {
         return menu?.sub_categories ? (
@@ -96,7 +101,7 @@ const CollapseMenuItem = ({
   iconVisible = true,
   childrenClassName,
   menuType,
-  defaultLink = '/'
+  defaultLink
 }: CollapseMenuItemProps) => {
   const [open, setOpen] = useState(false)
 
@@ -118,13 +123,17 @@ const CollapseMenuItem = ({
             }}
           >
             <HeaderMenuContainer onClick={() => setOpen((prev) => !prev)}>
-              <div>
-                <Link href={defaultLink}>
-                  <HeaderMenuTitle>
-                    {headerMenu[menuType].label}
-                  </HeaderMenuTitle>
-                </Link>
-              </div>
+              {defaultLink ? (
+                <div>
+                  <Link href={defaultLink}>
+                    <HeaderMenuTitle>
+                      {headerMenu[menuType].label}
+                    </HeaderMenuTitle>
+                  </Link>
+                </div>
+              ) : (
+                <HeaderMenuTitle>{headerMenu[menuType].label}</HeaderMenuTitle>
+              )}
               {iconVisible && (
                 <AnimatedBlock
                   style={{
