@@ -4,6 +4,8 @@ import {useMedia} from 'hooks'
 import {Paragraph} from 'components/Paragraph'
 import {Title} from 'components/title'
 import {useRouter} from 'next/router'
+import Image from 'next/image'
+import attorney from 'assets/images/attorney.png'
 import {
   FooterContainerStyled,
   FooterLogo,
@@ -42,7 +44,15 @@ export const Footer = ({image}: FooterProps) => {
       <CompWrapper>
         <FlexBox media={media}>
           <VericalFlex>
-            <FooterLogo src={image} />
+            <FooterLogo>
+              <Image
+                src={attorney}
+                alt="logo"
+                objectFit="contain"
+                width="150"
+                height="80"
+              />
+            </FooterLogo>
             <Paragraph color="light">
               Lorem ipsum dolor sit am et consectetur adi pisicing elit. Tempor
               ibus, eius? Consectetur eligendi vitae magni aliqui d maiores
