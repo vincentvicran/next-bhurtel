@@ -168,27 +168,31 @@ const ContactTitle = () => {
   )
 }
 
-const ContactPageContainer = styled.div`
+const ContactPageContainer = styled.div<MediaProps>`
   padding: ${Theme.space.$5} 0 0;
+  display: flex;
+  flex-direction: column;
+
+  gap: ${(props) => (props.media.md ? null : '30px')};
 `
 
 const Contact = () => {
   const media = useMedia()
   return (
-    <ContactPageContainer>
+    <ContactPageContainer media={media}>
       <div>
         <ContactTitle />
+
+        <HorStack media={media}>
+          <ContactLeft media={media}>
+            <ContactUs></ContactUs>
+          </ContactLeft>
+
+          <ContactRight>
+            <ContactUsDescription />
+          </ContactRight>
+        </HorStack>
       </div>
-
-      <HorStack media={media}>
-        <ContactLeft media={media}>
-          <ContactUs></ContactUs>
-        </ContactLeft>
-
-        <ContactRight>
-          <ContactUsDescription />
-        </ContactRight>
-      </HorStack>
 
       <MapWithNoSSR location={[51.505, -0.09]} popupText="Attorney Bhurtel" />
     </ContactPageContainer>
