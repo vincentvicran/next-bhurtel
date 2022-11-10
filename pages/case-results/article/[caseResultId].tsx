@@ -11,6 +11,7 @@ import {TestimonialCarousal} from 'components/testimonialCarousal'
 import {CompWrapper} from 'common/compWrapper'
 
 import {caseResultServices} from 'redux/caseResult/caseResult.service'
+import {DescParagraph} from 'components/descriptionCard/descriptionCard.styles'
 
 const DescriptionContainer = styled.div`
   padding: ${Theme.space.$10} ${Theme.space.$11};
@@ -48,7 +49,11 @@ function CaseResultDetail({caseResult}: {caseResult: Api.CaseResultsById}) {
             color="light"
             style={{marginBottom: media.sm ? 40 : 20, fontStyle: 'italic'}}
           >
-            {caseResult.case_result_details.description}
+            <DescParagraph
+              dangerouslySetInnerHTML={{
+                __html: caseResult.case_result_details.description
+              }}
+            ></DescParagraph>
           </Paragraph>
         )}
       </DescriptionContainer>
