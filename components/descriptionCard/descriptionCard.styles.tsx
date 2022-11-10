@@ -38,6 +38,8 @@ export const DescParagraph = styled.div`
   font-size: ${Theme.fontSizes.$3};
   color: ${Theme.colors.$gray600};
   margin-top: ${Theme.space.$3};
+  height: 220px;
+  overflow: hidden;
 `
 export const DescAuthor = styled.p`
   color: ${Theme.colors.$primary};
