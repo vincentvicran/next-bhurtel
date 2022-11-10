@@ -6,9 +6,11 @@ export const FooterContainerStyled = styled.div`
   padding: ${Theme.space.$15} 0;
   background-color: ${Theme.colors.$gray100};
 `
-export const FooterLogo = styled.img`
-  height: 30px;
-  width: 100px;
+export const FooterLogo = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: ${Theme.space.$10};
 `
 export const FooterText = styled.p`
   font-size: ${Theme.fontSizes.$4};
