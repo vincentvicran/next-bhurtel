@@ -19,10 +19,10 @@ const DescriptionContainer = styled.div`
   margin: ${Theme.space.$5} 0;
 `
 
-function caseResultDetail({caseResult}: {caseResult: Api.CaseResultsById}) {
+function CaseResultDetail({caseResult}: {caseResult: Api.CaseResultsById}) {
   const media = useMedia()
 
-  const testimonialData = caseResult.testimonial_details.map((el, any) => {
+  const testimonialData = caseResult.testimonial_details?.map((el, any) => {
     return {testimonial_details: el}
   })
 
@@ -52,10 +52,11 @@ function caseResultDetail({caseResult}: {caseResult: Api.CaseResultsById}) {
           </Paragraph>
         )}
       </DescriptionContainer>
-
-      <div style={{marginBottom: Theme.space.$15}}>
-        <TestimonialCarousal data={testimonialData as any} />
-      </div>
+      {testimonialData && (
+        <div style={{marginBottom: Theme.space.$15}}>
+          <TestimonialCarousal data={testimonialData as any} />
+        </div>
+      )}
     </CompWrapper>
   )
 }
@@ -70,4 +71,4 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 }
 
-export default caseResultDetail
+export default CaseResultDetail
