@@ -1,3 +1,4 @@
+import {GetServerSideProps} from 'next'
 import React from 'react'
 import {commonDescriptionServices} from 'redux/commonDescription/commonDescription.service'
 
@@ -10,9 +11,9 @@ const PracticeAreas = ({
   return <div>PracticeAreas</div>
 }
 
-export async function getServerSideProps() {
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const response = await commonDescriptionServices.getCommonDescriptionBySlug(
-    'practice-area'
+    String(ctx.params?.practiceAreasSlug)
   )
 
   console.log('----------------------: ', response)

@@ -1,6 +1,7 @@
 import {
   getCategoryLink,
   getMenuLink,
+  getSubCategoryLink,
   headerMenu,
   MenuType
 } from 'helpers/getNavLink.helper'
@@ -72,10 +73,14 @@ export const CollapseMenu = ({menuType, menuList}: CollapseMenuProps) => {
     >
       {menuList?.map(({category_details: menu}) => {
         return menu?.sub_categories ? (
-          <NestedCollapseMenuItem key={menu.id} menuTitle={menu.title}>
+          <NestedCollapseMenuItem
+            key={menu.id}
+            menuTitle={menu.title}
+            link={getCategoryLink(menuType, menu.id, menu.is_description_only)}
+          >
             {menu?.sub_categories?.map((item) => (
               <NestedHeaderMenuTitle key={item.id.toString()}>
-                <Link href={'/'}>
+                <Link href={getSubCategoryLink(menuType, menuList)}>
                   <HeaderMenuTitle>{item.title}</HeaderMenuTitle>
                 </Link>
               </NestedHeaderMenuTitle>
@@ -83,7 +88,13 @@ export const CollapseMenu = ({menuType, menuList}: CollapseMenuProps) => {
           </NestedCollapseMenuItem>
         ) : (
           <NestedHeaderMenuTitle key={menu.id.toString()}>
-            <Link href={`${headerMenu[menuType].link}`}>
+            <Link
+              href={getCategoryLink(
+                menuType,
+                menu.id,
+                menu.is_description_only
+              )}
+            >
               <HeaderMenuTitle>{menu.title}</HeaderMenuTitle>
             </Link>
           </NestedHeaderMenuTitle>
