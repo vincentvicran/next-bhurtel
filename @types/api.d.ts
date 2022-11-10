@@ -69,13 +69,19 @@ declare namespace Api {
     thumbnail: string | null
   }
 
+  interface CommonDescriptionIndividual {
+    description_details: CommonDescription
+    category_details: CommonCategory
+    user_details: User
+  }
+
+  interface PaginatedCommonDescriptionIndividual
+    extends CommonDescriptionIndividual {
+    total_count: string
+  }
+
   interface AllCommonDescription
-    extends PaginatedData<{
-      total_count: string
-      description_details: CommonDescription
-      category_details: CommonCategory
-      user_details: User
-    }> {}
+    extends PaginatedData<PaginatedCommonDescriptionIndividual> {}
 
   interface CaseResult {
     total_count: string
