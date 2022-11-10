@@ -8,7 +8,7 @@ import {commonDescriptionServices} from 'redux/commonDescription/commonDescripti
 const PracticeAreasArticle = ({
   practiceArea
 }: {
-  practiceArea: Api.PaginatedCommonDescriptionIndividual
+  practiceArea: Api.CommonDescriptionIndividual
 }) => {
   console.log('practice-areas: ', practiceArea)
   return (
@@ -31,8 +31,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       {}
     )
 
-  const practiceArea =
-    cmnDescription.rows.length > 0 ? cmnDescription.rows[0] : undefined
+  const practiceArea = context.query?.description
+    ? await commonDescriptionServices.getCommonDescriptionBySlug(
+        String(context.query?.description as string)
+      )
+    : cmnDescription.rows.length > 0
+    ? cmnDescription.rows[0]
+    : undefined
 
   return {
     props: {practiceArea} // will be passed to the page component as props
