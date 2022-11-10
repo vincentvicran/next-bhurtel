@@ -32,6 +32,8 @@ interface HeaderProps {
 
 export const Header = ({image}: HeaderProps) => {
   const media = useMedia()
+  const router = useRouter()
+  console.log(router, 'router called')
   const [personalInjury, setPersonalInjury] =
     useState<Api.AllCategories | null>(null)
   const [practiceAreas, setPracticeAreas] = useState<Api.AllCategories | null>(
@@ -111,57 +113,78 @@ export const Header = ({image}: HeaderProps) => {
               <Link href="/home">
                 <HeaderItem>Home</HeaderItem>
               </Link>
-              <Link href="home">
-                <HeaderItem>
-                  <p>Personal Injury</p>
-                  {/* MENU */}
-                  <HoverElement data={personalInjury} style={{width: '55vw'}} />
-                  <FiChevronDown
-                    style={{
-                      cursor: 'pointer',
-                      height: '12px',
-                      width: '14px'
-                    }}
-                  />
-                </HeaderItem>
-              </Link>
-              <Link href="home">
-                <HeaderItem>
-                  <p>Practice areas</p>
-                  <FiChevronDown
-                    style={{
-                      cursor: 'pointer',
-                      height: '12px',
-                      width: '14px'
-                    }}
-                  />
-                  <HoverElement data={practiceAreas} style={{width: '55vw'}} />
-                </HeaderItem>
-              </Link>
+
+              <HeaderItem
+                isActive={router.pathname === '/personal-injury' ? true : false}
+              >
+                <p>Personal Injury</p>
+                {/* MENU */}
+                <HoverElement
+                  data={personalInjury}
+                  style={{width: '55vw'}}
+                  pathname="/personal-injury"
+                />
+                <FiChevronDown
+                  style={{
+                    cursor: 'pointer',
+                    height: '12px',
+                    width: '14px'
+                  }}
+                />
+              </HeaderItem>
+
+              <HeaderItem
+                isActive={router.pathname === '/practice-area' ? true : false}
+              >
+                <p>Practice areas</p>
+                <FiChevronDown
+                  style={{
+                    cursor: 'pointer',
+                    height: '12px',
+                    width: '14px'
+                  }}
+                />
+                <HoverElement
+                  data={practiceAreas}
+                  style={{width: '55vw'}}
+                  pathname="/practice-areas"
+                />
+              </HeaderItem>
+
               <Link href="/contact-us">
-                <HeaderItem>Contacts</HeaderItem>
+                <HeaderItem
+                  isActive={router.pathname === '/contact-us' ? true : false}
+                >
+                  Contacts
+                </HeaderItem>
               </Link>
               <Link href="/case-results">
-                <HeaderItem>Case Results</HeaderItem>
-              </Link>
-              <Link href="/home">
-                <HeaderItem>
-                  <p>Attorney Profile</p>
-                  <FiChevronDown
-                    style={{
-                      cursor: 'pointer',
-                      height: '12px',
-                      width: '14px'
-                    }}
-                  />
-                  <HoverElement
-                    data={profiles}
-                    style={{right: '0', width: '20vw'}}
-                  />
+                <HeaderItem
+                  isActive={router.pathname === '/case-results' ? true : false}
+                >
+                  Case Results
                 </HeaderItem>
               </Link>
 
-              <HeaderItem>
+              <HeaderItem
+                isActive={router.pathname === '/profile' ? true : false}
+              >
+                <p>Attorney Profile</p>
+                <FiChevronDown
+                  style={{
+                    cursor: 'pointer',
+                    height: '12px',
+                    width: '14px'
+                  }}
+                />
+                <HoverElement
+                  data={profiles}
+                  style={{right: '0', width: '20vw'}}
+                  pathname="/profile"
+                />
+              </HeaderItem>
+
+              <HeaderItem isActive={router.pathname === '/news' ? true : false}>
                 <p>News</p>
 
                 <FiChevronDown
@@ -171,7 +194,11 @@ export const Header = ({image}: HeaderProps) => {
                     width: '14px'
                   }}
                 />
-                <HoverElement data={news} style={{right: '0', width: '20vw'}} />
+                <HoverElement
+                  data={news}
+                  style={{right: '0', width: '20vw'}}
+                  pathname="/news"
+                />
               </HeaderItem>
             </HeaderLinks>
           )}
@@ -189,15 +216,17 @@ export const Header = ({image}: HeaderProps) => {
 
 function HoverElement({
   data,
-  style
+  style,
+  pathname
 }: {
   data: Api.AllCategories | null
   style?: React.CSSProperties
+  pathname?: string
 }) {
   const router = useRouter()
 
   const linkClickedHandler = (data: any) => {
-    router.push({pathname: '/news', query: {id: data.category_details.id}})
+    router.push({pathname: pathname, query: {id: data.category_details.id}})
   }
   return (
     <MainHoverContainer style={style}>
@@ -215,14 +244,15 @@ function HoverElement({
       ) : null}
       {data &&
         data.rows.map((el, id) => {
-          console.log(el, 'el called')
+          // console.log(el, 'el called')
           return (
             <HoverText
               key={id}
               onClick={() => linkClickedHandler(el)}
               style={{
                 color: Theme.colors.$primary,
-                fontSize: Theme.fontSizes.$3
+                fontSize: Theme.fontSizes.$3,
+                fontWeight: 'normal'
               }}
             >
               {el.category_details.title}
