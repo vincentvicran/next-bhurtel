@@ -1,27 +1,39 @@
 import {GetServerSideProps} from 'next'
 import moment from 'moment'
 import {useMedia} from 'hooks'
-// import {getImageUrl} from 'helpers/getUrl'
+
 import Theme from 'theme'
 import styled from 'styled-components'
 import {Paragraph} from 'components/Paragraph'
-// import {Title} from 'components/title'
+import {Title} from 'components/title'
+import {TestimonialCarousal} from 'components/testimonialCarousal'
 
 import {CompWrapper} from 'common/compWrapper'
 
 import {caseResultServices} from 'redux/caseResult/caseResult.service'
 
 const DescriptionContainer = styled.div`
-  padding: ${Theme.space.$10} 0;
+  padding: ${Theme.space.$10} ${Theme.space.$11};
+  border-radius: ${Theme.radius.$default};
+  border: 1px solid ${Theme.colors.$gray200};
+  margin: ${Theme.space.$5} 0;
 `
 
 function caseResultDetail({caseResult}: {caseResult: Api.CaseResultsById}) {
   const media = useMedia()
-  console.log(caseResult, 'caseResult is consoled')
+
+  const testimonialData = caseResult.testimonial_details.map((el, any) => {
+    return {testimonial_details: el}
+  })
 
   return (
     <CompWrapper>
       <DescriptionContainer>
+        <Title
+          text={caseResult.case_result_details.title}
+          size="lg"
+          weight="bold"
+        ></Title>
         <Paragraph
           color="light"
           style={{fontStyle: 'italic', marginBottom: 10}}
@@ -40,6 +52,10 @@ function caseResultDetail({caseResult}: {caseResult: Api.CaseResultsById}) {
           </Paragraph>
         )}
       </DescriptionContainer>
+
+      <div style={{marginBottom: Theme.space.$15}}>
+        <TestimonialCarousal data={testimonialData as any} />
+      </div>
     </CompWrapper>
   )
 }

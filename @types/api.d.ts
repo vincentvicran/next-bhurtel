@@ -95,7 +95,7 @@ declare namespace Api {
       created_at: Date
       description: string
     }
-    testimonial_details: Testimonial
+    testimonial_details: Testimonial[]
   }
 
   interface Testimonial {

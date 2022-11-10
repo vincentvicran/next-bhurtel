@@ -6,6 +6,7 @@ import {TestimonialCard} from 'components/testimonialCard'
 import {IconButton} from 'common/button'
 import {Title} from 'components/title'
 import Theme from 'theme'
+import {useMedia} from 'hooks'
 
 import {
   ArrowBtnContainer,
@@ -16,7 +17,9 @@ import {
 } from './testimonialCarousal.styles'
 import {getImageUrl} from 'helpers/getUrl'
 
-export function TestimonialCarousal({data}: {data: any[]}) {
+export function TestimonialCarousal({data}: {data: unknown[]}) {
+  const media = useMedia()
+
   let ref: Slider | null
   const settings = {
     dots: true,
@@ -78,18 +81,20 @@ export function TestimonialCarousal({data}: {data: any[]}) {
           weight="bold"
         />
       </HeaderContainer>
-      <ArrowBtnContainer>
-        <IconButton
-          style={{width: 40, height: 40}}
-          onClick={() => ref?.slickPrev()}
-          icon={<IoIosArrowRoundBack size={24} />}
-        />
-        <IconButton
-          style={{width: 40, height: 40}}
-          onClick={() => ref?.slickNext()}
-          icon={<IoIosArrowRoundForward size={24} />}
-        />
-      </ArrowBtnContainer>
+      {media.lg && data && data.length <= 3 ? null : (
+        <ArrowBtnContainer>
+          <IconButton
+            style={{width: 40, height: 40}}
+            onClick={() => ref?.slickPrev()}
+            icon={<IoIosArrowRoundBack size={24} />}
+          />
+          <IconButton
+            style={{width: 40, height: 40}}
+            onClick={() => ref?.slickNext()}
+            icon={<IoIosArrowRoundForward size={24} />}
+          />
+        </ArrowBtnContainer>
+      )}
 
       <Slider {...settings} ref={(c) => (ref = c)}>
         {data &&
