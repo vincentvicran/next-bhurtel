@@ -4,6 +4,7 @@ import {Title} from 'components/title'
 import {caseResultServices} from 'redux/caseResult/caseResult.service'
 import styled from 'styled-components'
 import Theme from 'theme'
+import {useRouter} from 'next/router'
 
 const CaseResultContainer = styled.div`
   padding: ${Theme.space.$16} 0;
@@ -14,6 +15,7 @@ const CaseResultList = styled.div`
   grid-gap: ${Theme.space.$5};
 `
 function CaseResult({caseResults}: {caseResults: Api.AllCaseResults}) {
+  const router = useRouter()
   return (
     <CompWrapper>
       <CaseResultContainer>
@@ -35,11 +37,19 @@ function CaseResult({caseResults}: {caseResults: Api.AllCaseResults}) {
           {caseResults.rows &&
             caseResults.rows.map((el, id) => {
               return (
-                <CaseResultCard
-                  key={id}
-                  title={el.title}
-                  description={el.description}
-                />
+                <div
+                  onClick={() =>
+                    router.push({
+                      pathname: `/case-results/article/${el.id}`
+                    })
+                  }
+                >
+                  <CaseResultCard
+                    key={id}
+                    title={el.title}
+                    description={el.description}
+                  />
+                </div>
               )
             })}
         </CaseResultList>

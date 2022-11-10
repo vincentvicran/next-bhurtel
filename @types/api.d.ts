@@ -88,6 +88,16 @@ declare namespace Api {
 
   interface AllCaseResults extends PaginatedData<CaseResult> {}
 
+  interface CaseResultsById {
+    case_result_details: {
+      id: number
+      title: string
+      created_at: Date
+      description: string
+    }
+    testimonial_details: Testimonial
+  }
+
   interface Testimonial {
     total_count: string
     id: number

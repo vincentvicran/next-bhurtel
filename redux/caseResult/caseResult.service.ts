@@ -11,4 +11,12 @@ const getAllCaseResult = async (data: {
   return response.data.data.data
 }
 
-export const caseResultServices = {getAllCaseResult}
+const getCaseResultById = async (data: {caseResultId: number}) => {
+  const response = await api<Api.Base<Api.CaseResultsById>>('get')(
+    `case-result/${data.caseResultId}`
+  )
+
+  return response.data.data.data
+}
+
+export const caseResultServices = {getAllCaseResult, getCaseResultById}
