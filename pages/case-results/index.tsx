@@ -1,10 +1,11 @@
+import {useRouter} from 'next/router'
 import {CompWrapper} from 'common/compWrapper'
+
 import {CaseResultCard} from 'components/caseResultCard'
 import {Title} from 'components/title'
 import {caseResultServices} from 'redux/caseResult/caseResult.service'
 import styled from 'styled-components'
 import Theme from 'theme'
-import {useRouter} from 'next/router'
 
 const CaseResultContainer = styled.div`
   padding: ${Theme.space.$16} 0;
