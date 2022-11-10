@@ -15,7 +15,7 @@ export interface HeaderMenuType {
 
 export type MenuType = keyof typeof headerMenu
 
-export const getMenuLink = (
+export const getCategoryLink = (
   menuType: MenuType,
   menuList: Api.AllCategories['rows'] | undefined
 ) => {
@@ -32,6 +32,22 @@ export const getMenuLink = (
 
   if (linkId === 0) {
     return link
+  }
+
+  if (menuType === 'practice_areas') {
+    menuList?.map((menu) => {
+      console.log(
+        'menu title: ',
+        menu.category_details.title,
+        menu.category_details.title.toLowerCase().includes('practice areas')
+      )
+      if (menu.category_details.title.includes('practice areas')) {
+        linkId =
+          menu.category_details.common_category_id ?? menu.category_details.id
+      }
+      return
+    })
+    return link + `/article/${linkId}`
   }
 
   if (menuType === 'news') {

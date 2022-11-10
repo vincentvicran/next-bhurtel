@@ -1,4 +1,4 @@
-import {getMenuLink, headerMenu, MenuType} from 'helpers/getNavLink.helper'
+import {getCategoryLink, headerMenu, MenuType} from 'helpers/getNavLink.helper'
 import Link from 'next/link'
 import {useState} from 'react'
 import {FiChevronDown} from 'react-icons/fi'
@@ -63,7 +63,7 @@ export const CollapseMenu = ({menuType, menuList}: CollapseMenuProps) => {
     <CollapseMenuItem
       menuType={menuType}
       iconVisible={!!menuList}
-      defaultLink={getMenuLink(menuType, menuList)}
+      defaultLink={getCategoryLink(menuType, menuList)}
     >
       {menuList?.map(({category_details: menu}) => {
         return menu?.sub_categories ? (
