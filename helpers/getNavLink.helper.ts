@@ -66,44 +66,18 @@ export const getCategoryLink = (
 
 export const getSubCategoryLink = (
   menuType: MenuType,
-  menuList: Api.AllCategories['rows'] | undefined
+  menuId: number,
+  isDescription: boolean
 ) => {
-  let linkId: number = 0
+  if (isDescription) {
+    const link = `${headerMenu[menuType].link}/article`
 
-  menuList?.map((menu, id) => {
-    if (id === 0) {
-      linkId = menu.category_details.id
-    }
-    return
-  })
+    return link + `/${menuId}`
+  }
 
   const link = `${headerMenu[menuType].link}`
 
-  if (linkId === 0) {
-    return link
-  }
-
-  if (menuType === 'practice_areas') {
-    menuList?.map((menu) => {
-      console.log(
-        'menu title: ',
-        menu.category_details.title,
-        menu.category_details.title.toLowerCase().includes('practice areas')
-      )
-      if (
-        menu.category_details.title.toLowerCase().includes('practice areas')
-      ) {
-        linkId = menu.category_details.id
-      }
-      return
-    })
-    return link + `/article/${linkId}`
-  }
-
-  if (menuType === 'news') {
-    return link + `?id=${linkId}`
-  }
-  return link + `/${linkId}`
+  return link + `/list/${menuId}`
 }
 
 export const headerMenu: HeaderMenuType = {
