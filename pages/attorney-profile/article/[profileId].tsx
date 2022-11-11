@@ -1,19 +1,19 @@
 import styled from 'styled-components'
+import {GetServerSideProps} from 'next'
 import Image from 'next/image'
-
-import {useMedia} from 'hooks'
-import Theme from 'theme'
 
 import {Paragraph} from 'components/Paragraph'
 import {Title} from 'components/title'
 import {Youtube} from 'common/youtube'
-
-import {getImageUrl} from 'helpers/getUrl'
 import {TitleContainer} from 'components/titleContainer'
-import {GetServerSideProps} from 'next'
-import {profileServices} from 'redux/profile/profile.service'
 import {CompWrapper} from 'common/compWrapper'
 import {ResponsiveStack, VStack} from 'common/stack'
+import {NoResultFound} from 'components/noResultsFound'
+
+import {getImageUrl} from 'helpers/getUrl'
+import {profileServices} from 'redux/profile/profile.service'
+import {useMedia} from 'hooks'
+import Theme from 'theme'
 
 const ProfileContainer = styled.div`
   padding: ${Theme.space.$10} 0;
@@ -35,18 +35,26 @@ const DescriptionContainer = styled.div`
 
 const AttorneyProfile = ({profile}: {profile: Api.Profile}) => {
   const media = useMedia()
-  return (
+  return profile ? (
     <CompWrapper>
       <ProfileContainer>
         <DescriptionContainer>
-          <ResponsiveStack breakpoint="lg" gap="$6">
+          <ResponsiveStack breakpoint="lg">
             <ResponsiveStack
               breakpoint="lg"
-              switchDirection
-              justify="flex-start"
-              align="center"
+              switchDirection={(media.md && !media.lg) || media.lg}
+              justify={!media.md ? 'center' : 'flex-start'}
+              align={!media.md ? 'center' : 'flex-start'}
+              style={{
+                minWidth: media.lg ? 400 : 'auto'
+              }}
             >
-              <ImgContainer>
+              <ImgContainer
+                style={{
+                  marginRight:
+                    media.md && !media.lg ? Theme.space.$10 : Theme.space.$3
+                }}
+              >
                 <Image
                   alt="profile"
                   src={getImageUrl(`profile`, profile.image as string)}
@@ -54,7 +62,12 @@ const AttorneyProfile = ({profile}: {profile: Api.Profile}) => {
                   objectFit="cover"
                 />
               </ImgContainer>
-              <VStack>
+              <VStack
+                style={{
+                  marginTop:
+                    media.md && !media.lg ? Theme.space.$10 : Theme.space.$3
+                }}
+              >
                 <Title text={profile.name} size="lg" weight="bold" />
                 <Title text={profile.title} size="md" weight="bold" />
                 {profile.alternate_title && (
@@ -66,35 +79,47 @@ const AttorneyProfile = ({profile}: {profile: Api.Profile}) => {
                 )}
               </VStack>
             </ResponsiveStack>
-            <VStack>
-              <TitleContainer title="About" underlineWidth="50px" />
+            {profile.short_description && (
+              <VStack
+                style={{
+                  marginTop:
+                    (media.md && !media.lg) || !media.md
+                      ? Theme.space.$10
+                      : Theme.space.$3
+                }}
+              >
+                <TitleContainer title="About" underlineWidth="50px" />
 
-              {profile.short_description && (
                 <Paragraph
                   color="light"
                   style={{
+                    marginTop: 0,
                     marginBottom: media.sm ? 40 : 20,
                     fontStyle: 'italic'
                   }}
                 >
                   {profile.short_description}
                 </Paragraph>
-              )}
-            </VStack>
+              </VStack>
+            )}
           </ResponsiveStack>
         </DescriptionContainer>
-        <Paragraph
-          color="dark"
-          style={{margin: '40px 0px'}}
-          dangerouslySetInnerHTML={{
-            __html: profile.description
-          }}
-        />
+        <VStack style={{marginTop: Theme.space.$10}}>
+          <TitleContainer title="More Information" underlineWidth="150px" />
 
+          <Paragraph
+            color="dark"
+            dangerouslySetInnerHTML={{
+              __html: profile.description
+            }}
+          />
+        </VStack>
         {/* YOUTUBE COMPONENT */}
         {profile.video_link && <Youtube videoId={profile.video_link} />}
       </ProfileContainer>
     </CompWrapper>
+  ) : (
+    <NoResultFound />
   )
 }
 export const getServerSideProps: GetServerSideProps = async (context) => {
