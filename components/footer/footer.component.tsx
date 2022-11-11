@@ -1,5 +1,6 @@
 import React from 'react'
 import {FaFacebookF, FaTwitter, FaYoutube, FaLinkedinIn} from 'react-icons/fa'
+import {TbPhoneCall} from 'react-icons/tb'
 import {useMedia} from 'hooks'
 import {Paragraph} from 'components/Paragraph'
 import {Title} from 'components/title'
@@ -11,7 +12,8 @@ import {
   FooterLogo,
   FlexBox,
   HorizontalFlex,
-  VericalFlex
+  VericalFlex,
+  PhoneContainer
 } from './footer.style'
 import {HStack, VStack} from 'common/stack'
 import {CompWrapper} from 'common/compWrapper'
@@ -105,7 +107,14 @@ export const Footer = ({image}: FooterProps) => {
             <VStack gap="$3">
               <Title size="md" weight="semibold" text="Call Us" />
               <VStack gap="$1">
-                <Paragraph color="light">212-461-4628</Paragraph>
+                <Paragraph color="light">
+                  <a href="tel:+212-461-4628">
+                    <PhoneContainer>
+                      <TbPhoneCall size={16} />
+                      212-461-4628
+                    </PhoneContainer>
+                  </a>
+                </Paragraph>
               </VStack>
             </VStack>
 
