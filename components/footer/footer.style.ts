@@ -47,3 +47,8 @@ export const VericalFlex = styled.div`
   gap: 20px;
   flex: 1;
 `
+export const PhoneContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`

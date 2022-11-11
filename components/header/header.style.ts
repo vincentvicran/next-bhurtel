@@ -22,7 +22,10 @@ export const Menuitem = styled.a`
 
 export const Search = styled.div`
   margin-left: auto;
+  display: flex;
+
   cursor: pointer;
+  gap: 20px;
 `
 
 // REDO
