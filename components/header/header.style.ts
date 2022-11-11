@@ -40,14 +40,16 @@ export const HeaderLinks = styled.div`
   align-items: center;
   gap: ${Theme.space.$5};
 `
-export const HeaderItem = styled.div`
-  color: ${Theme.colors.$gray700};
+export const HeaderItem = styled.div<{isActive?: boolean}>`
+  color: ${(props) =>
+    props.isActive ? Theme.colors.$primary : Theme.colors.$gray700};
   text-transform: uppercase;
   font-size: ${Theme.fontSizes.$2};
   cursor: pointer;
   display: flex;
   align-items: center;
   position: relative;
+  font-weight: ${(props) => props.isActive && 600};
 
   &:hover > div {
     opacity: 1;
@@ -122,6 +124,11 @@ export const HoverText = styled.div`
   align-items: center;
   gap: 10px;
   justify-content: space-between;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    color: #297acc !important;
+  }
 `
 
 export const NestedHoverText = styled.p`
