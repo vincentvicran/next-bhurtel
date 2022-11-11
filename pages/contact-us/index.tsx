@@ -11,6 +11,8 @@ import {Paragraph} from 'components/Paragraph'
 import {Title} from 'components/title'
 
 import {ContactUs} from 'components/contactUs'
+import {TitleContainer} from 'components/titleContainer'
+import {HStack} from 'common/stack'
 
 const MapWithNoSSR = dynamic(() => import('../../common/map/map.common'), {
   ssr: false
@@ -156,18 +158,6 @@ const ContactUsDescription = () => {
   )
 }
 
-const ContactTitle = () => {
-  const media = useMedia()
-  return (
-    <TitleCon media={media}>
-      <div>
-        <Title size="lg" weight="bold" text="Contact Us" />
-        <Underline width="90px" />
-      </div>
-    </TitleCon>
-  )
-}
-
 const ContactPageContainer = styled.div<MediaProps>`
   padding: ${Theme.space.$5} 0 0;
   display: flex;
@@ -181,7 +171,13 @@ const Contact = () => {
   return (
     <ContactPageContainer media={media}>
       <div>
-        <ContactTitle />
+        <HStack
+          justify="center"
+          align="center"
+          style={{paddingTop: Theme.space.$5}}
+        >
+          <TitleContainer title="Contact Us" size="xl" />
+        </HStack>
 
         <HorStack media={media}>
           <ContactLeft media={media}>
