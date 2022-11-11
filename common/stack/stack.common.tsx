@@ -69,14 +69,16 @@ export const VStack = (props: VStackProps) => (
 
 interface ResponsiveStackProps extends Omit<StackProps, 'direction'> {
   breakpoint?: keyof ReturnType<typeof useMedia>
+  switchDirection?: boolean
 }
 
 export const ResponsiveStack = ({
   breakpoint = 'sm',
+  switchDirection,
   ...restProps
 }: ResponsiveStackProps) => {
   const media = useMedia()
-  const shouldBreak = !media[breakpoint]
+  const shouldBreak = switchDirection ? media[breakpoint] : !media[breakpoint]
 
   return (
     <Stack {...restProps} direction={shouldBreak ? 'vertical' : 'horizontal'} />

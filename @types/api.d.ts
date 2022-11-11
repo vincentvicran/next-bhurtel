@@ -136,6 +136,10 @@ declare namespace Api {
     alternate_title: string | null
   }
 
+  interface ProfileFromAPI {
+    profile_details: Profile
+  }
+
   interface AllProfiles
     extends PaginatedData<{total_count: string; profile_details: Profile}> {}
 }

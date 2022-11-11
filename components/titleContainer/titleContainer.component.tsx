@@ -5,21 +5,27 @@ import Theme from 'theme'
 
 export const TitleContainer = ({
   title,
-  size = 'lg'
+  size = 'lg',
+  underlineWidth
 }: {
   title: string
   size?: 'lg' | 'md' | 'sm' | 'xl'
+  underlineWidth?: string
 }) => {
   return (
     <TitleContainerStyled>
       <Title text={title} size={size} weight="semibold" />
-      <Underline />
+      <Underline underlineWidth={underlineWidth} />
     </TitleContainerStyled>
   )
 }
 
-export const Underline = styled.div`
-  width: calc(100% - 10px);
+interface UnderlineProps {
+  underlineWidth?: string
+}
+
+export const Underline = styled.div<UnderlineProps>`
+  width: ${({underlineWidth}) => underlineWidth ?? `calc(100% - 10px)`};
   height: 4px;
   background-color: #d9d9d9;
 `
