@@ -16,6 +16,7 @@ import {getImageUrl} from 'helpers/getUrl'
 import moment from 'moment'
 
 import articlePlaceholder from 'assets/images/article.jpg'
+import {NoResultFound} from 'components/noResultsFound'
 
 export function ListComp({
   articleList,
@@ -32,15 +33,19 @@ export function ListComp({
       <TitleContainer title={title} />
 
       {/* LISTS */}
-      {articleList?.map((article) => {
-        return (
-          <ListCard
-            key={article.description_details.id.toString()}
-            article={article}
-            link={link}
-          />
-        )
-      })}
+      {articleList && articleList.length > 0 ? (
+        articleList?.map((article) => {
+          return (
+            <ListCard
+              key={article.description_details.id.toString()}
+              article={article}
+              link={link}
+            />
+          )
+        })
+      ) : (
+        <NoResultFound />
+      )}
     </ListCompContainer>
   )
 }

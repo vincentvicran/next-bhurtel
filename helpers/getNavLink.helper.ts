@@ -56,12 +56,12 @@ export const getCategoryLink = (
     return link + `/${menuId}`
   }
 
-  const link = `${headerMenu[menuType].link}/list`
+  const link = `${headerMenu[menuType].link}`
 
   if (menuType === 'news') {
     return link + `?id=${menuId}`
   }
-  return link + `/${menuId}`
+  return link + `/list/${menuId}`
 }
 
 export const getSubCategoryLink = (

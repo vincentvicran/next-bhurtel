@@ -10,10 +10,12 @@ import {commonDescriptionServices} from 'redux/commonDescription/commonDescripti
 import {NoResultFound} from 'components/noResultsFound'
 import {GetServerSideProps} from 'next'
 import {useRouter} from 'next/router'
+import {commonCategoryServices} from 'redux/commonCategory/commonCategory.service'
+import {TitleContainer} from 'components/titleContainer'
 
 const NewsContainer = styled.div`
   /* padding: 40px; */
-  padding: ${Theme.space.$10} 0;
+  padding: ${Theme.space.$3} 0 ${Theme.space.$10};
 `
 
 const NewsBottomContainer = styled.div`
@@ -23,15 +25,27 @@ const NewsBottomContainer = styled.div`
   grid-gap: ${Theme.space.$10};
 `
 
-function News({news: fetchedNews}: {news: Api.AllCommonDescription[`rows`]}) {
+function News({
+  news: fetchedNews,
+  category
+}: {
+  news: Api.AllCommonDescription[`rows`]
+  category: string
+}) {
   const router = useRouter()
   const newsClickedHandler = (data: any) => {
     console.log(data)
-    router.push({pathname: `news/${data.description_details.id}`, query: {}})
+    router.push({
+      pathname: `news/article/${data.description_details.id}`,
+      query: {}
+    })
   }
 
   return (
     <CompWrapper>
+      <div style={{marginTop: 50}}>
+        <TitleContainer title={category} size="xl" />
+      </div>
       <NewsContainer>
         {!fetchedNews || fetchedNews.length === 0 ? <NoResultFound /> : null}
         {fetchedNews &&
@@ -82,8 +96,9 @@ function News({news: fetchedNews}: {news: Api.AllCommonDescription[`rows`]}) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  // const newsCategory = await newsServices.getNewsCategories()
-
+  const category = await commonCategoryServices.getCommonCategoryById(
+    Number(context.query.id as string)
+  )
   const cmnDescription =
     await commonDescriptionServices.getCommonDescriptionByCategoryId(
       Number(context.query.id as string),
@@ -91,7 +106,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     )
 
   return {
-    props: {news: cmnDescription.rows} // will be passed to the page component as props
+    props: {
+      news: cmnDescription.rows,
+      category: category.category_details.title
+    } // will be passed to the page component as props
   }
 }
 

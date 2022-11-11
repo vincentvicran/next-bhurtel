@@ -47,15 +47,19 @@ export const Description = ({article}: {article: Api.CommonDescription}) => {
             {article.short_description}
           </Paragraph>
         )}
-
-        <ImgContainer>
-          <Image
-            alt="accident"
-            src={getImageUrl(`commonDescription`, article.thumbnail as string)}
-            layout={`fill`}
-            objectFit="cover"
-          />
-        </ImgContainer>
+        {article.thumbnail && (
+          <ImgContainer>
+            <Image
+              alt="article image"
+              src={getImageUrl(
+                `commonDescription`,
+                article.thumbnail as string
+              )}
+              layout={`fill`}
+              objectFit="cover"
+            />
+          </ImgContainer>
+        )}
         <Paragraph
           color="dark"
           style={{margin: '40px 0px'}}

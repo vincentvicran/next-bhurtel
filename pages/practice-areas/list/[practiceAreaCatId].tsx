@@ -6,11 +6,14 @@ import {ListComp} from 'components/listComp'
 import {NoResultFound} from 'components/noResultsFound'
 
 import {commonDescriptionServices} from 'redux/commonDescription/commonDescription.service'
+import {commonCategoryServices} from 'redux/commonCategory/commonCategory.service'
 
 const PracticeAreas = ({
-  practiceArea
+  practiceArea,
+  category
 }: {
   practiceArea: Api.PaginatedCommonDescriptionIndividual[]
+  category: string
 }) => {
   console.log('practice-area: ', practiceArea)
   return (
@@ -18,7 +21,7 @@ const PracticeAreas = ({
       {practiceArea ? (
         <ListComp
           articleList={practiceArea}
-          title={'Title'}
+          title={category ?? 'Practice Areas'}
           link={'/practice-areas'}
         />
       ) : (
@@ -29,7 +32,9 @@ const PracticeAreas = ({
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  // const newsCategory = await newsServices.getNewsCategories()
+  const category = await commonCategoryServices.getCommonCategoryById(
+    Number(context.params?.practiceAreaCatId as string)
+  )
 
   const practiceArea =
     await commonDescriptionServices.getCommonDescriptionByCategoryId(
@@ -37,10 +42,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       {}
     )
 
-  console.log('888888888888888888888888888: ', practiceArea)
-
   return {
-    props: {practiceArea: practiceArea.rows} // will be passed to the page component as props
+    props: {
+      practiceArea: practiceArea.rows,
+      category: category.category_details.title
+    } // will be passed to the page component as props
   }
 }
 
