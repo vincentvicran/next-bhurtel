@@ -40,6 +40,10 @@ declare namespace Api {
     is_description_only: boolean
   }
 
+  interface CategoryFromAPI {
+    category_details: CommonCategory
+  }
+
   interface SubCategoriesInCatId {
     id: number
     type: string

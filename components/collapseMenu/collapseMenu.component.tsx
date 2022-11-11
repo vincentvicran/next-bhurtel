@@ -80,7 +80,13 @@ export const CollapseMenu = ({menuType, menuList}: CollapseMenuProps) => {
           >
             {menu?.sub_categories?.map((item) => (
               <NestedHeaderMenuTitle key={item.id.toString()}>
-                <Link href={getSubCategoryLink(menuType, menuList)}>
+                <Link
+                  href={getSubCategoryLink(
+                    menuType,
+                    item.id,
+                    item.is_description_only
+                  )}
+                >
                   <HeaderMenuTitle>{item.title}</HeaderMenuTitle>
                 </Link>
               </NestedHeaderMenuTitle>

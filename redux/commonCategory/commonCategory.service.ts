@@ -9,7 +9,7 @@ const getCommonCategoryByType = async (type: string) => {
 }
 
 const getCommonCategoryById = async (id: number) => {
-  const response = await api<Api.Base<Api.CommonCategory>>('get')(
+  const response = await api<Api.Base<Api.CategoryFromAPI>>('get')(
     `common-category/${id}`
   )
 
