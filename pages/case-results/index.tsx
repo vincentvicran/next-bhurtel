@@ -39,6 +39,7 @@ function CaseResult({caseResults}: {caseResults: Api.AllCaseResults}) {
             caseResults.rows.map((el, id) => {
               return (
                 <div
+                  key={el.id.toString()}
                   onClick={() =>
                     router.push({
                       pathname: `/case-results/article/${el.id}`

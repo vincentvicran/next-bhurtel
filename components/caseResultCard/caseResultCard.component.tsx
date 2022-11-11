@@ -13,9 +13,10 @@ export function CaseResultCard(props: CaseRes) {
         text={props.title}
         style={{marginBottom: 10, color: Theme.colors.$primary}}
       />
-      <Paragraph color="light">
-        <div dangerouslySetInnerHTML={{__html: props.description}} />
-      </Paragraph>
+      <Paragraph
+        color="light"
+        dangerouslySetInnerHTML={{__html: props.description}}
+      />
     </CaseResCard>
   )
 }

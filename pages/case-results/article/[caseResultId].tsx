@@ -1,6 +1,5 @@
 import {GetServerSideProps} from 'next'
 import moment from 'moment'
-import {useMedia} from 'hooks'
 
 import Theme from 'theme'
 import styled from 'styled-components'
@@ -21,8 +20,6 @@ const DescriptionContainer = styled.div`
 `
 
 function CaseResultDetail({caseResult}: {caseResult: Api.CaseResultsById}) {
-  const media = useMedia()
-
   const testimonialData = caseResult.testimonial_details?.map((el, any) => {
     return {testimonial_details: el}
   })
@@ -47,7 +44,7 @@ function CaseResultDetail({caseResult}: {caseResult: Api.CaseResultsById}) {
         {caseResult.case_result_details.description && (
           <Paragraph
             color="light"
-            style={{marginBottom: media.sm ? 40 : 20, fontStyle: 'italic'}}
+            style={{marginBottom: 20, fontStyle: 'italic'}}
           >
             <DescParagraph
               dangerouslySetInnerHTML={{

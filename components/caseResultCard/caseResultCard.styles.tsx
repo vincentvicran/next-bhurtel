@@ -6,6 +6,8 @@ export const CaseResCard = styled.div`
   border-radius: ${Theme.radius.$default};
   padding: ${Theme.space.$4};
   width: 100%;
+  height: 220px;
+  overflow: hidden;
   cursor: pointer;
   transition: 0.3s ease-in-out;
 
