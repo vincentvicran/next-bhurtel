@@ -3,6 +3,7 @@ import Link from 'next/link'
 import {useRouter} from 'next/router'
 import Image from 'next/image'
 import {FiSearch, FiChevronDown} from 'react-icons/fi'
+import {TbPhoneCall} from 'react-icons/tb'
 
 import {CompWrapper} from 'common/compWrapper'
 import {HeaderDrawer} from 'components/headerDrawer'
@@ -184,7 +185,10 @@ export const Header = ({image}: HeaderProps) => {
             </HeaderLinks>
           )}
           <Search>
-            <FiSearch style={{height: '19px', width: '19px'}} />
+            <FiSearch size={16} />
+            <a href="tel:+212-461-4628">
+              <TbPhoneCall size={16} />
+            </a>
           </Search>
         </HeaderContent>
       </CompWrapper>
