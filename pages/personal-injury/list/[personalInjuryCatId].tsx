@@ -8,19 +8,19 @@ import {NoResultFound} from 'components/noResultsFound'
 import {commonDescriptionServices} from 'redux/commonDescription/commonDescription.service'
 import {commonCategoryServices} from 'redux/commonCategory/commonCategory.service'
 
-const PracticeAreas = ({
-  practiceArea,
+const PersonalInjuryList = ({
+  personalInjury,
   category
 }: {
-  practiceArea: Api.PaginatedCommonDescriptionIndividual[]
+  personalInjury: Api.PaginatedCommonDescriptionIndividual[]
   category: string
 }) => {
-  console.log('practice-area: ', practiceArea)
+  console.log('practice-area: ', personalInjury)
   return (
     <CompWrapper>
-      {practiceArea ? (
+      {personalInjury ? (
         <ListComp
-          articleList={practiceArea}
+          articleList={personalInjury}
           title={category ?? 'Practice Areas'}
           link={'/practice-areas'}
         />
@@ -33,21 +33,21 @@ const PracticeAreas = ({
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const category = await commonCategoryServices.getCommonCategoryById(
-    Number(context.params?.practiceAreaCatId as string)
+    Number(context.params?.personalInjuryCatId as string)
   )
 
-  const practiceArea =
+  const personalInjury =
     await commonDescriptionServices.getCommonDescriptionByCategoryId(
-      Number(context.params?.practiceAreaCatId as string),
+      Number(context.params?.personalInjuryCatId as string),
       {}
     )
 
   return {
     props: {
-      practiceArea: practiceArea.rows,
+      personalInjury: personalInjury.rows,
       category: category.category_details.title
     } // will be passed to the page component as props
   }
 }
 
-export default PracticeAreas
+export default PersonalInjuryList
