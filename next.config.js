@@ -12,6 +12,10 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'static-cse.canva.com'
+      },
+      {
+        protocol: 'https',
+        hostname: 'attorneybhurtel.com/'
       }
     ]
   }

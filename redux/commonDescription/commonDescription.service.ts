@@ -20,6 +20,14 @@ const getCommonDescriptionById = async (id: number) => {
   return response.data.data.data
 }
 
+const getAllCommonDescription = async () => {
+  const response = await api<Api.Base<Api.AllCommonDescription>>(`get`)(
+    `common-description`
+  )
+
+  return response.data.data.data
+}
+
 const getCommonDescriptionBySlug = async (slug: string) => {
   const response = await api<Api.Base<Api.CommonDescriptionIndividual>>(`get`)(
     `common-description/content/${slug}`
@@ -30,5 +38,6 @@ const getCommonDescriptionBySlug = async (slug: string) => {
 export const commonDescriptionServices = {
   getCommonDescriptionByCategoryId,
   getCommonDescriptionById,
-  getCommonDescriptionBySlug
+  getCommonDescriptionBySlug,
+  getAllCommonDescription
 }
