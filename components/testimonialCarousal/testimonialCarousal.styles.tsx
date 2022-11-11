@@ -20,7 +20,6 @@ export const CarousalContainer = styled.div`
     > div
     > div {
     transition: all 0.8s ease-in-out;
-    border: 1px solid ${Theme.colors.$primary};
   }
 
   .slick-dots > li {
