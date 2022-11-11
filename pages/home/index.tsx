@@ -56,7 +56,9 @@ const HomePage = ({testimonials}: {testimonials: Api.AllTestimonials}) => {
           }}
         >
           <About text="Mr. Durga Prasad Bhurtel Successfully Represented Various Clients for Injury Claims. Affects, Signs & Sources of Lead Paint (Poisoning) in Children. Your first medical diagnosis is probably wrong, according to Mayo Clinic. Construction Worker Accident and Injury? Know your rights for help you may need." />
-          <TestimonialCarousal data={testimonials.rows} />
+          {testimonials && testimonials.rows.length > 0 && (
+            <TestimonialCarousal data={testimonials.rows} />
+          )}
           <ContactSection md={media.md}>
             <LeftContact md={media.md}>
               <MapWithNoSSR
