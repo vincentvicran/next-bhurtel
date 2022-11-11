@@ -21,8 +21,8 @@ const PersonalInjuryList = ({
       {personalInjury ? (
         <ListComp
           articleList={personalInjury}
-          title={category ?? 'Practice Areas'}
-          link={'/practice-areas'}
+          title={category ?? 'Personal Injury'}
+          link={'/personal-injury'}
         />
       ) : (
         <NoResultFound />
