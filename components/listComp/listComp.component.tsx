@@ -17,6 +17,7 @@ import moment from 'moment'
 
 import articlePlaceholder from 'assets/images/article.jpg'
 import {NoResultFound} from 'components/noResultsFound'
+import {useMedia} from 'hooks'
 
 export function ListComp({
   articleList,
@@ -57,10 +58,26 @@ function ListCard({
   article: Api.PaginatedCommonDescriptionIndividual
   link: string
 }) {
+  const media = useMedia()
   return (
-    <ListCardContainer>
+    <ListCardContainer
+      style={{
+        flexDirection: !media.md ? 'column' : 'row'
+      }}
+    >
       {/* IMAGE SECTION */}
-      <ImgContainer>
+      <ImgContainer
+        style={
+          !media.md
+            ? {
+                height: 160,
+                width: '100%'
+              }
+            : {
+                flex: 1
+              }
+        }
+      >
         <Image
           src={
             article.description_details.thumbnail
@@ -77,7 +94,15 @@ function ListCard({
       </ImgContainer>
 
       {/* DESCRIPTION SECTION */}
-      <ListCardDescContainer>
+      <ListCardDescContainer
+        style={
+          !media.md
+            ? {}
+            : {
+                flex: 2
+              }
+        }
+      >
         <Title
           text={moment(article.description_details.posted_at).format(
             'MMM DD, YYYY'

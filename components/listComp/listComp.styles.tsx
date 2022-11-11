@@ -17,7 +17,7 @@ export const ListCardContainer = styled.div`
 `
 export const ImgContainer = styled.div`
   position: relative;
-  flex: 1;
+  /* flex: 1; */
   border-radius: ${Theme.radius.$default};
   overflow: hidden;
 `
@@ -26,7 +26,7 @@ export const ListCardDescContainer = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
-  flex: 2;
+  /* flex: 2; */
 `
 
 export const ReadMoreBtn = styled.div`
