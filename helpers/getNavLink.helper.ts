@@ -39,7 +39,7 @@ export const getMenuLink = (
       return
     })
 
-    return link + `/${linkId}`
+    return link + `/article/${linkId}`
   }
 
   return link

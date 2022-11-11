@@ -7,7 +7,7 @@ const getProfiles = async () => {
 }
 
 const getProfileById = async ({profileId}: {profileId: number | string}) => {
-  const response = await api<Api.Base<Api.Profile>>('get')(
+  const response = await api<Api.Base<Api.ProfileFromAPI>>('get')(
     `profile/${profileId}`
   )
 
