@@ -111,11 +111,13 @@ export const Header = ({image}: HeaderProps) => {
           {media.lg && (
             <HeaderLinks>
               <Link href="/home">
-                <HeaderItem>Home</HeaderItem>
+                <HeaderItem isActive={router.pathname.includes('/home')}>
+                  Home
+                </HeaderItem>
               </Link>
 
               <HeaderItem
-                isActive={router.pathname === '/personal-injury' ? true : false}
+                isActive={router.pathname.includes('/personal-injury')}
               >
                 <p>Personal Injury</p>
                 {/* MENU */}
@@ -133,9 +135,7 @@ export const Header = ({image}: HeaderProps) => {
                 />
               </HeaderItem>
 
-              <HeaderItem
-                isActive={router.pathname === '/practice-area' ? true : false}
-              >
+              <HeaderItem isActive={router.pathname.includes('/practice-area')}>
                 <p>Practice areas</p>
                 <FiChevronDown
                   style={{
@@ -152,23 +152,19 @@ export const Header = ({image}: HeaderProps) => {
               </HeaderItem>
 
               <Link href="/contact-us">
-                <HeaderItem
-                  isActive={router.pathname === '/contact-us' ? true : false}
-                >
+                <HeaderItem isActive={router.pathname.includes('/contact-us')}>
                   Contacts
                 </HeaderItem>
               </Link>
               <Link href="/case-results">
                 <HeaderItem
-                  isActive={router.pathname === '/case-results' ? true : false}
+                  isActive={router.pathname.includes('/case-results')}
                 >
                   Case Results
                 </HeaderItem>
               </Link>
 
-              <HeaderItem
-                isActive={router.pathname === '/profile' ? true : false}
-              >
+              <HeaderItem isActive={router.pathname.includes('/profile')}>
                 <p>Attorney Profile</p>
                 <FiChevronDown
                   style={{
@@ -184,7 +180,7 @@ export const Header = ({image}: HeaderProps) => {
                 />
               </HeaderItem>
 
-              <HeaderItem isActive={router.pathname === '/news' ? true : false}>
+              <HeaderItem isActive={router.pathname.includes('/news')}>
                 <p>News</p>
 
                 <FiChevronDown

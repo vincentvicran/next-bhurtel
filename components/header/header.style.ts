@@ -124,6 +124,11 @@ export const HoverText = styled.div`
   align-items: center;
   gap: 10px;
   justify-content: space-between;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    color: #297acc !important;
+  }
 `
 
 export const NestedHoverText = styled.p`
