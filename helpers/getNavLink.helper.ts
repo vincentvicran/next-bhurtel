@@ -1,7 +1,7 @@
 type ValueObjType = {
   label: string
   value: string
-  link?: string
+  link: string
 }
 
 export interface HeaderMenuType {
@@ -24,7 +24,19 @@ export const getMenuLink = (
   const link = `${headerMenu[menuType].link}`
 
   if (menuType === 'personal_injury' || menuType === 'practice_areas') {
-    return null
+    let newLink: string = link
+    menuList?.map((menu, id) => {
+      if (id === 0) {
+        newLink = getCategoryLink(
+          menuType,
+          menu.category_details.id,
+          menu.category_details.is_description_only
+        )
+      }
+      return newLink
+    })
+
+    return newLink
   }
 
   if (menuType === 'news') {

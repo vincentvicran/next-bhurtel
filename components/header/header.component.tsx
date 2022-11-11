@@ -25,6 +25,13 @@ import {
   HoverText,
   NestedHoverText
 } from './header.style'
+import {
+  getCategoryLink,
+  getMenuLink,
+  getSubCategoryLink,
+  headerMenu,
+  MenuType
+} from 'helpers/getNavLink.helper'
 
 interface HeaderProps {
   image: string
@@ -116,46 +123,24 @@ export const Header = ({image}: HeaderProps) => {
                 </HeaderItem>
               </Link>
 
-              <HeaderItem
-                isActive={router.pathname.includes('/personal-injury')}
-              >
-                <p>Personal Injury</p>
-                {/* MENU */}
-                <HoverElement
-                  data={personalInjury}
-                  style={{width: '55vw'}}
-                  pathname="/personal-injury"
-                />
-                <FiChevronDown
-                  style={{
-                    cursor: 'pointer',
-                    height: '12px',
-                    width: '14px'
-                  }}
-                />
-              </HeaderItem>
+              <HeaderMenu
+                menuType="personal_injury"
+                data={personalInjury}
+                style={{width: '55vw'}}
+              />
 
-              <HeaderItem isActive={router.pathname.includes('/practice-area')}>
-                <p>Practice areas</p>
-                <FiChevronDown
-                  style={{
-                    cursor: 'pointer',
-                    height: '12px',
-                    width: '14px'
-                  }}
-                />
-                <HoverElement
-                  data={practiceAreas}
-                  style={{width: '55vw'}}
-                  pathname="/practice-areas"
-                />
-              </HeaderItem>
+              <HeaderMenu
+                menuType="practice_areas"
+                data={practiceAreas}
+                style={{width: '55vw'}}
+              />
 
               <Link href="/contact-us">
                 <HeaderItem isActive={router.pathname.includes('/contact-us')}>
                   Contacts
                 </HeaderItem>
               </Link>
+
               <Link href="/case-results">
                 <HeaderItem
                   isActive={router.pathname.includes('/case-results')}
@@ -164,38 +149,17 @@ export const Header = ({image}: HeaderProps) => {
                 </HeaderItem>
               </Link>
 
-              <HeaderItem isActive={router.pathname.includes('/profile')}>
-                <p>Attorney Profile</p>
-                <FiChevronDown
-                  style={{
-                    cursor: 'pointer',
-                    height: '12px',
-                    width: '14px'
-                  }}
-                />
-                <HoverElement
-                  data={profiles}
-                  style={{right: '0', width: '20vw'}}
-                  pathname="/profile"
-                />
-              </HeaderItem>
+              <HeaderMenu
+                menuType="attorney_profile"
+                data={profiles}
+                style={{right: '0', width: '20vw'}}
+              />
 
-              <HeaderItem isActive={router.pathname.includes('/news')}>
-                <p>News</p>
-
-                <FiChevronDown
-                  style={{
-                    cursor: 'pointer',
-                    height: '12px',
-                    width: '14px'
-                  }}
-                />
-                <HoverElement
-                  data={news}
-                  style={{right: '0', width: '20vw'}}
-                  pathname="/news"
-                />
-              </HeaderItem>
+              <HeaderMenu
+                menuType="news"
+                data={news}
+                style={{right: '0', width: '20vw'}}
+              />
             </HeaderLinks>
           )}
           <Search>
@@ -210,70 +174,98 @@ export const Header = ({image}: HeaderProps) => {
   )
 }
 
-function HoverElement({
+function HeaderMenu({
+  menuType,
   data,
-  style,
-  pathname
+  style
 }: {
+  menuType: MenuType
   data: Api.AllCategories | null
   style?: React.CSSProperties
   pathname?: string
 }) {
   const router = useRouter()
 
-  const linkClickedHandler = (data: any) => {
-    router.push({pathname: pathname, query: {id: data.category_details.id}})
-  }
   return (
-    <MainHoverContainer style={style}>
-      {/* <div> */}
-      {!data || data.rows.length === 0 ? (
-        <HoverText
-          style={{
-            color: Theme.colors.$gray600,
-            fontSize: Theme.fontSizes.$3,
-            alignSelf: 'center'
-          }}
-        >
-          Categories not found
-        </HoverText>
-      ) : null}
-      {data &&
-        data.rows.map((el, id) => {
-          // console.log(el, 'el called')
-          return (
-            <HoverText
-              key={id}
-              onClick={() => linkClickedHandler(el)}
-              style={{
-                color: Theme.colors.$primary,
-                fontSize: Theme.fontSizes.$3,
-                fontWeight: 'normal'
-              }}
-            >
-              {el.category_details.title}
+    <HeaderItem isActive={router.pathname.includes(headerMenu[menuType].link)}>
+      <Link href={getMenuLink(menuType, data?.rows)}>
+        <div>{headerMenu[menuType].label}</div>
+      </Link>
+      {/* MENU */}
+      <FiChevronDown
+        style={{
+          cursor: 'pointer',
+          height: '12px',
+          width: '14px'
+        }}
+      />
+      <MainHoverContainer style={style}>
+        {/* <div> */}
+        {!data || data.rows.length === 0 ? (
+          <HoverText
+            style={{
+              color: Theme.colors.$gray600,
+              fontSize: Theme.fontSizes.$3,
+              alignSelf: 'center'
+            }}
+          >
+            Categories not found
+          </HoverText>
+        ) : null}
+        {data &&
+          data.rows.map((el, id) => {
+            // console.log(el, 'el called')
+            return (
+              <HoverText
+                key={id}
+                style={{
+                  color: Theme.colors.$primary,
+                  fontSize: Theme.fontSizes.$3,
+                  fontWeight: 'normal'
+                }}
+              >
+                <Link
+                  href={getCategoryLink(
+                    menuType,
+                    el.category_details.id,
+                    el.category_details.is_description_only
+                  )}
+                >
+                  <div> {el.category_details.title}</div>
+                </Link>
 
-              {el.category_details.sub_categories && (
-                <>
-                  {el.category_details.sub_categories.map((subitems, index) => {
-                    return (
-                      <NestedHoverText
-                        key={subitems.id.toString()}
-                        style={{
-                          fontSize: Theme.fontSizes.$2,
-                          paddingLeft: Theme.space.$3
-                        }}
-                      >
-                        {subitems.title}
-                      </NestedHoverText>
-                    )
-                  })}
-                </>
-              )}
-            </HoverText>
-          )
-        })}
-      {/* </div> */}
-    </MainHoverContainer>
+                {el.category_details.sub_categories && (
+                  <>
+                    {el.category_details.sub_categories.map(
+                      (subitems, index) => {
+                        return (
+                          <NestedHoverText
+                            key={subitems.id.toString()}
+                            style={{
+                              fontSize: Theme.fontSizes.$2,
+                              paddingLeft: Theme.space.$3
+                            }}
+                          >
+                            <Link
+                              href={getSubCategoryLink(
+                                menuType,
+                                subitems.id,
+                                subitems.is_description_only
+                              )}
+                            >
+                              <div> {subitems.title}</div>
+                            </Link>
+                          </NestedHoverText>
+                        )
+                      }
+                    )}
+                  </>
+                )}
+              </HoverText>
+            )
+          })}
+        {/* </div> */}
+      </MainHoverContainer>
+    </HeaderItem>
   )
 }
