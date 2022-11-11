@@ -8,16 +8,16 @@ import {NoResultFound} from 'components/noResultsFound'
 import {commonDescriptionServices} from 'redux/commonDescription/commonDescription.service'
 
 const PracticeAreas = ({
-  practiceArea
+  practiceAreas
 }: {
-  practiceArea: Api.PaginatedCommonDescriptionIndividual[]
+  practiceAreas: Api.PaginatedCommonDescriptionIndividual[]
 }) => {
-  console.log('practice-area: ', practiceArea)
+  console.log('practice-areas: ', practiceAreas)
   return (
     <CompWrapper>
-      {practiceArea ? (
+      {practiceAreas ? (
         <ListComp
-          articleList={practiceArea}
+          articleList={practiceAreas}
           title={'Title'}
           link={'/practice-areas'}
         />
@@ -33,11 +33,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const practiceArea =
     await commonDescriptionServices.getCommonDescriptionByCategoryId(
-      Number(context.params?.practiceAreaCatId as string),
+      Number(context.params?.practiceAreaId as string),
       {}
     )
-
-  console.log('888888888888888888888888888: ', practiceArea)
 
   return {
     props: {practiceArea: practiceArea.rows} // will be passed to the page component as props

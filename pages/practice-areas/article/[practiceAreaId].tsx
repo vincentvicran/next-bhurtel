@@ -37,7 +37,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       )
     : cmnDescription.rows.length > 0
     ? cmnDescription.rows[0]
-    : undefined
+    : null
 
   return {
     props: {practiceArea} // will be passed to the page component as props

@@ -15,6 +15,8 @@ import {TitleContainer} from 'components/titleContainer'
 import {getImageUrl} from 'helpers/getUrl'
 import moment from 'moment'
 
+import articlePlaceholder from 'assets/images/article.jpg'
+
 export function ListComp({
   articleList,
   title,
@@ -55,10 +57,14 @@ function ListCard({
       {/* IMAGE SECTION */}
       <ImgContainer>
         <Image
-          src={getImageUrl(
-            'commonDescription',
-            article.description_details.thumbnail ?? ''
-          )}
+          src={
+            article.description_details.thumbnail
+              ? getImageUrl(
+                  'commonDescription',
+                  article.description_details.thumbnail
+                )
+              : articlePlaceholder.src
+          }
           alt="list"
           layout="fill"
           objectFit="cover"
@@ -83,13 +89,19 @@ function ListCard({
         />
         <Paragraph
           dangerouslySetInnerHTML={{
-            __html: article.description_details.main_description
+            __html:
+              article.description_details.short_description ??
+              article.description_details.main_description
           }}
           color="light"
+          style={{
+            height: 100,
+            overflow: 'hidden'
+          }}
         />
 
         <Link
-          href={`${link}/article?description=${article.description_details.slug}`}
+          href={`${link}/article/${article.category_details.id}?description=${article.description_details.slug}`}
         >
           <ReadMoreBtn>
             <Title

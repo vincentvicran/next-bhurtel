@@ -73,7 +73,7 @@ const AttorneyProfile = ({profile}: {profile: Api.Profile}) => {
                 {profile.alternate_title && (
                   <Title
                     text={profile.alternate_title}
-                    size="md"
+                    size="sm"
                     weight="bold"
                   />
                 )}
@@ -83,9 +83,7 @@ const AttorneyProfile = ({profile}: {profile: Api.Profile}) => {
               <VStack
                 style={{
                   marginTop:
-                    (media.md && !media.lg) || !media.md
-                      ? Theme.space.$10
-                      : Theme.space.$3
+                    (media.md && !media.lg) || !media.md ? Theme.space.$10 : 0
                 }}
               >
                 <TitleContainer title="About" underlineWidth="50px" />

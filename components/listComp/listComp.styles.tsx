@@ -22,6 +22,10 @@ export const ImgContainer = styled.div`
   overflow: hidden;
 `
 export const ListCardDescContainer = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
   flex: 2;
 `
 
