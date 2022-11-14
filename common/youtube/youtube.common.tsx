@@ -20,15 +20,19 @@ export const Youtube = ({videoId}: YoutubeUserProps) => {
   }
 
   const splittedVideoId = useMemo(() => {
-    const videoIdRegex =
+    const rx =
       /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/|shorts\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/
-    const newVideoId = videoId.match(videoIdRegex)?.toString()
-    return newVideoId
+    const newVideoId = videoId.match(rx)?.toString()
+    return newVideoId?.split(',')[1]
   }, [videoId])
 
   return (
     <YoutubeContainer>
-      <YouTube videoId={splittedVideoId} opts={opts} onReady={onPlayerReady} />
+      <YouTube
+        videoId={splittedVideoId?.toString()}
+        opts={opts}
+        onReady={onPlayerReady}
+      />
     </YoutubeContainer>
   )
 }
