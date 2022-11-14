@@ -19,7 +19,6 @@ interface DescProps {
   author: string
   date: Date
   isHorizontal?: boolean
-  truncateDesc?: boolean
   truncateSize?: number
 }
 export function DescriptionCard(props: DescProps) {
@@ -53,6 +52,7 @@ export function DescriptionCard(props: DescProps) {
           dangerouslySetInnerHTML={{
             __html: props.desc
           }}
+          truncateSize={props.truncateSize}
         ></DescParagraph>
         <DescAuthor>{props.author}</DescAuthor>
       </RightSection>

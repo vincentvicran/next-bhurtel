@@ -1,13 +1,5 @@
-import React from 'react'
-
-import {HStack, VStack} from 'common/stack'
-
 import {
   TestimonialCardContainer,
-  CircularImg,
-  TestimonialName,
-  TestimonialAddress,
-  TestimonialDescription,
   TopContainer,
   QuoteOpen,
   QuoteClose,
@@ -16,7 +8,6 @@ import {
 } from './testimonialCard.style'
 import {Paragraph} from 'components/Paragraph'
 import Image from 'next/image'
-import {getImageUrl} from 'helpers/getUrl'
 import {Title} from 'components/title'
 import Theme from 'theme'
 

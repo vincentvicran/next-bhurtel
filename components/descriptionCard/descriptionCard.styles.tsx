@@ -34,12 +34,21 @@ export const DescImg = styled(Image)`
   object-fit: cover;
   border-radius: ${Theme.radius.$default};
 `
-export const DescParagraph = styled.div`
+export const DescParagraph = styled.div<{truncateSize?: number}>`
   font-size: ${Theme.fontSizes.$3};
   color: ${Theme.colors.$gray600};
   margin-top: ${Theme.space.$3};
-  height: 220px;
+
+  ${(props) =>
+    props.truncateSize
+      ? `
+	display: -webkit-box;
+  -webkit-line-clamp: ${props.truncateSize};
+  -webkit-box-orient: vertical;
   overflow: hidden;
+	
+	`
+      : ``}
 `
 export const DescAuthor = styled.p`
   color: ${Theme.colors.$primary};
