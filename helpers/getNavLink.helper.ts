@@ -23,7 +23,11 @@ export const getMenuLink = (
 
   const link = `${headerMenu[menuType].link}`
 
-  if (menuType === 'personal_injury' || menuType === 'practice_areas') {
+  if (
+    menuType === 'personal_injury' ||
+    menuType === 'practice_areas' ||
+    menuType === 'news'
+  ) {
     let newLink: string = link
     menuList?.map((menu, id) => {
       if (id === 0) {
@@ -37,10 +41,6 @@ export const getMenuLink = (
     })
 
     return newLink
-  }
-
-  if (menuType === 'news') {
-    return link + `?id=${linkId}`
   }
 
   if (menuType === 'attorney_profile') {
