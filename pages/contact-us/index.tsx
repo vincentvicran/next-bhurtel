@@ -172,9 +172,9 @@ const Contact = () => {
     <ContactPageContainer media={media}>
       <div>
         <HStack
-          justify="center"
+          justify={media.md ? 'center' : 'flex-start'}
           align="center"
-          style={{paddingTop: Theme.space.$5}}
+          style={{paddingLeft: Theme.space.$9, paddingTop: Theme.space.$5}}
         >
           <TitleContainer title="Contact Us" size="xl" />
         </HStack>
