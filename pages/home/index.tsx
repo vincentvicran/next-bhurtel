@@ -21,14 +21,6 @@ const MainContainer = styled.div`
   margin: ${Theme.space.$10} 0;
 `
 
-const PersonalInjuryContainer = styled.div<{md: boolean}>`
-  display: flex;
-  /* justify-content: center;
-  align-items: center; */
-  flex-direction: ${(props) => (props.md ? 'row' : 'column')};
-  gap: ${(props) => (props.md ? '10px' : '50px')};
-`
-
 const ContactSection = styled.div<{md: boolean}>`
   display: flex;
 
