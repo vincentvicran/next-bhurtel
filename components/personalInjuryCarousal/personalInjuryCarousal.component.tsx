@@ -15,12 +15,14 @@ import {
   HeaderContainer
 } from './personalInjuryCarousal.styles'
 import {DescriptionCard} from 'components/descriptionCard'
+import {useRouter} from 'next/router'
 
 export function PersonalInjuryCarousal({
   data
 }: {
   data: Api.CommonDescriptionIndividual[]
 }) {
+  const router = useRouter()
   const media = useMedia()
   let ref: Slider | null
   const settings = {
@@ -64,6 +66,12 @@ export function PersonalInjuryCarousal({
     adaptiveHeight: true
   }
 
+  const clickHandler = (el: Api.CommonDescriptionIndividual) => {
+    router.push(
+      `personal-injury/article/${el.category_details.id}?description=${el.description_details.slug}`
+    )
+  }
+
   return (
     <CarousalContainer>
       <HeaderContainer>
@@ -101,7 +109,7 @@ export function PersonalInjuryCarousal({
         {data &&
           data.map((item, id) => {
             return (
-              <CarousalItem key={id}>
+              <CarousalItem key={id} onClick={() => clickHandler(item)}>
                 <DescriptionCard
                   key={item.description_details?.id}
                   isHorizontal={false}
