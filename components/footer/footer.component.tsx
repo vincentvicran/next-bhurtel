@@ -17,7 +17,6 @@ import {
 } from './footer.style'
 import {HStack, VStack} from 'common/stack'
 import {CompWrapper} from 'common/compWrapper'
-import Theme from 'theme'
 
 interface FooterProps {
   image: string
@@ -101,6 +100,13 @@ export const Footer = ({image}: FooterProps) => {
                 </Paragraph>
                 <Paragraph color="light" style={{cursor: 'pointer'}}>
                   News
+                </Paragraph>
+                <Paragraph
+                  color="light"
+                  style={{cursor: 'pointer'}}
+                  onClick={() => router.push({pathname: '/about'})}
+                >
+                  About
                 </Paragraph>
               </VStack>
             </VStack>
