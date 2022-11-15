@@ -76,6 +76,26 @@ export const getCategoryLink = (
   return link + `/list/${menuId}`
 }
 
+export const getListCompLink = (
+  menuType: MenuType,
+  menuId: number,
+  slug: string
+) => {
+  const link = `${headerMenu[menuType].link}/article`
+
+  if (menuType === 'personal_injury' || menuType === 'practice_areas') {
+    const newLink = `${link}/${menuId}?description=${slug}`
+
+    return newLink
+  }
+
+  if (menuType === 'news') {
+    return link + `/${menuId}`
+  }
+
+  return link
+}
+
 export const getSubCategoryLink = (
   menuType: MenuType,
   menuId: number,

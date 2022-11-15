@@ -160,7 +160,9 @@ export const Header = ({image}: HeaderProps) => {
             </HeaderLinks>
           )}
           <Search>
-            <FiSearch size={16} />
+            <Link href="/search">
+              <FiSearch size={16} />
+            </Link>
             <a href="tel:+212-461-4628">
               <TbPhoneCall size={16} color={Theme.colors.$gray800} />
             </a>

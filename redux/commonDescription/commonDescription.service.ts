@@ -24,8 +24,10 @@ const getCommonDescriptionById = async (id: number) => {
 }
 
 const getAllCommonDescription = async (query?: {
-  showHomepage?: boolean
+  page?: number
   limit?: number
+  showHomepage?: boolean
+  search?: string
 }) => {
   const response = await api<Api.Base<Api.AllCommonDescription>>(`get`)(
     `common-description`,
