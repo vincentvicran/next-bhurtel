@@ -60,11 +60,7 @@ export const QuoteOpen = styled(RiDoubleQuotesL)`
 export const QuoteClose = styled(RiDoubleQuotesR)`
   color: ${Theme.colors.$gray200};
   font-size: 20px;
-  position: absolute;
   z-index: 4;
-  /* bottom: -10px;
-  right: -5px; */
   display: inline;
-  margin-top: 7px;
   margin-left: 2px;
 `
