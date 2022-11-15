@@ -154,6 +154,8 @@ export const GlobalStyle = createGlobalStyle`
     * {
         margin: 0;
         padding: 0;
+				-webkit-tap-highlight-color:  transparent;
+
         box-sizing: border-box;
         ::-webkit-scrollbar {
           width: 10px;

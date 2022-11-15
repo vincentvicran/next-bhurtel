@@ -127,7 +127,7 @@ declare namespace Api {
     is_main: boolean
   }
 
-  interface AllBanners extends PaginatedData<Banner> {}
+  interface AllBanners extends PaginatedData<{banner_details: Banner}> {}
 
   interface Profile {
     id: number

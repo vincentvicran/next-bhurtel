@@ -1,4 +1,4 @@
-import React, {useRef} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import Slider from 'react-slick'
 
 import {useMedia} from 'hooks'
@@ -11,39 +11,27 @@ import {
   Dots
 } from './carousel.style'
 import {NavArrow} from './component/navArrow'
+import {bannerServices} from 'redux/banner/banner.service'
+import {modifyCarousalArray} from 'helpers/carousal.helper'
+import {getImageUrl} from 'helpers/getUrl'
 
 // import BackgroundImage from 'assets/images/about.jpg'
 // import BackgroundImage2 from 'assets/images/about.jpg'
 // import BackgroundImage3 from 'assets/images/about.jpg'
 
-const BackgroundImage = '/assets/image/H1.jpg'
-const BackgroundImage2 = '/assets/image/H2.jpg'
-const BackgroundImage3 = '/assets/image/H3.png'
-
-const SLIDER_IMAGES = [
-  {image: BackgroundImage},
-  {image: BackgroundImage2},
-  {image: BackgroundImage3}
-]
-
 export const MainCarousel = () => {
   const media = useMedia()
+  const [items, setItems] = useState<Api.AllBanners['rows'] | null>(null)
 
-  // const getImageBox = useCallback(() => {
-  //   let resolution: {width: number; height: number} = {width: 1280, height: 400}
-
-  //   if (media) {
-  //     if (media.xxl) return {width: 2000, height: 600}
-  //     if (media.xl) return {width: 1400, height: 400}
-  //     if (media.lg) return {width: 1200, height: 400}
-  //     if (media.md) return {width: 900, height: 400}
-  //     if (media.sm) return {width: 750, height: 400}
-  //     if (media.xs) return {width: 600, height: 400}
-  //   }
-  //   return resolution
-  // }, [media])
-
-  // const {width, height} = getImageBox()
+  useEffect(() => {
+    ;(async () => {
+      try {
+        const banners = await bannerServices.getBanners()
+        const data = modifyCarousalArray(banners.rows)
+        setItems(data)
+      } catch (err) {}
+    })()
+  }, [])
 
   const slider = useRef<Slider>(null)
 
@@ -71,25 +59,26 @@ export const MainCarousel = () => {
   return (
     <CarousalContainer media={media}>
       <CarouselSlider ref={slider} {...settings}>
-        {SLIDER_IMAGES.map(({image}, index) => (
-          <CarousalItem key={index}>
-            <CarousalImage
-              src={image}
-              alt=""
-              // height={'inherit'}
-              // width={'inherit'}
-              style={
-                !media.lg
-                  ? {
-                      height: `35vh`
-                    }
-                  : {
-                      height: '45vh'
-                    }
-              }
-            />
-          </CarousalItem>
-        ))}
+        {items &&
+          items.map(({banner_details: {image}}, index) => (
+            <CarousalItem key={index}>
+              <CarousalImage
+                src={getImageUrl('banner', image)}
+                alt=""
+                // height={'inherit'}
+                // width={'inherit'}
+                style={
+                  !media.lg
+                    ? {
+                        height: `45vh`
+                      }
+                    : {
+                        height: '64vh'
+                      }
+                }
+              />
+            </CarousalItem>
+          ))}
       </CarouselSlider>
     </CarousalContainer>
   )
