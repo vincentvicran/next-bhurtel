@@ -11,6 +11,7 @@ export const FooterLogo = styled.div`
   justify-content: flex-start;
   align-items: center;
   height: ${Theme.space.$10};
+  margin-top: -9px;
 `
 export const FooterText = styled.p`
   font-size: ${Theme.fontSizes.$4};
@@ -26,7 +27,7 @@ export const CategoryTitle = styled.p`
 `
 export const FlexBox = styled.div<MediaProps>`
   display: flex;
-  align-items: ${(props) => (props.media.md ? 'center' : 'space-between')};
+  align-items: ${(props) => (props.media.md ? 'stretch' : 'space-between')};
   justify-content: center;
   gap: ${(props) => (props.media.md ? '80px' : '40px')};
   flex-direction: ${(props) => (props.media.md ? 'row' : 'column')};
