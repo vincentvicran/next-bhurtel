@@ -25,8 +25,8 @@ const MainContainer = styled.div`
 
 const PersonalInjuryContainer = styled.div<{md: boolean}>`
   display: flex;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center;
+  align-items: center; */
   flex-direction: ${(props) => (props.md ? 'row' : 'column')};
   gap: ${(props) => (props.md ? '10px' : '50px')};
 `
@@ -74,24 +74,13 @@ const HomePage = ({
       <CompWrapper>
         <MainContainer
           style={{
-            marginTop: !media.md ? Theme.space.$10 : Theme.space.$17
+            marginTop: !media.md ? Theme.space.$10 : Theme.space.$12
           }}
         >
           <About text="Mr. Durga Prasad Bhurtel Successfully Represented Various Clients for Injury Claims. Affects, Signs & Sources of Lead Paint (Poisoning) in Children. Your first medical diagnosis is probably wrong, according to Mayo Clinic. Construction Worker Accident and Injury? Know your rights for help you may need." />
           {testimonials && testimonials.rows.length > 0 && (
             <TestimonialCarousal data={testimonials.rows} />
           )}
-          <ContactSection md={media.md}>
-            <LeftContact md={media.md}>
-              <MapWithNoSSR
-                location={[51.505, -0.09]}
-                popupText="Attorney Bhurtel"
-              />
-            </LeftContact>
-            <RightContact>
-              <ContactUs />
-            </RightContact>
-          </ContactSection>
 
           <HeaderContainer>
             <Title
@@ -103,32 +92,46 @@ const HomePage = ({
               }}
               weight="bold"
             />
+            <PersonalInjuryContainer md={media.md}>
+              {filtereddata.map((item: any, index: number) => {
+                return (
+                  <div
+                    key={index}
+                    // style={{
+                    //   minHeight: '465px',
+                    //   maxHeight: '465px',
+                    //   overflow: 'hidden'
+                    // }}
+                  >
+                    <DescriptionCard
+                      key={item.descritpion_details?.id}
+                      isHorizontal={false}
+                      date={item.description_details.posted_at}
+                      desc={item.description_details.main_description}
+                      title={item.description_details.title}
+                      imgUrl={
+                        item.description_details.thumbnail &&
+                        (item.description_details.thumbnail as string)
+                      }
+                      truncateSize={7}
+                    />
+                  </div>
+                )
+              })}
+            </PersonalInjuryContainer>
           </HeaderContainer>
-          <PersonalInjuryContainer md={media.md}>
-            {filtereddata.map((item: any, index: number) => {
-              return (
-                <div
-                  style={{
-                    minHeight: '465px',
-                    maxHeight: '465px',
-                    overflow: 'hidden'
-                  }}
-                >
-                  <DescriptionCard
-                    key={item.descritpion_details?.id}
-                    isHorizontal={false}
-                    date={item.description_details.posted_at}
-                    desc={item.description_details.main_description}
-                    title={item.description_details.title}
-                    imgUrl={
-                      item.description_details.thumbnail &&
-                      (item.description_details.thumbnail as string)
-                    }
-                  />
-                </div>
-              )
-            })}
-          </PersonalInjuryContainer>
+
+          <ContactSection md={media.md}>
+            <LeftContact md={media.md}>
+              <MapWithNoSSR
+                location={[51.505, -0.09]}
+                popupText="Attorney Bhurtel"
+              />
+            </LeftContact>
+            <RightContact>
+              <ContactUs />
+            </RightContact>
+          </ContactSection>
         </MainContainer>
       </CompWrapper>
     </HomeContainer>
