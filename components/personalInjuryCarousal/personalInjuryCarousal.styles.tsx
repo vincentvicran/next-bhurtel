@@ -3,7 +3,7 @@ import Theme from 'theme'
 
 export const CarousalContainer = styled.div`
   min-height: 100px;
-  margin-bottom: 40px;
+  margin-top: 80px;
   position: relative;
 
   .slick-dots {

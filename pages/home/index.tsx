@@ -18,14 +18,14 @@ const HomeContainer = styled.div`
 `
 
 const MainContainer = styled.div`
-  margin: ${Theme.space.$10} 0;
+  /* margin: ${Theme.space.$10} 0; */
 `
 
 const ContactSection = styled.div<{md: boolean}>`
   display: flex;
-
+  margin: 80px 0;
   gap: ${Theme.space.$8};
-  margin: ${Theme.space.$16} 5px;
+  /* margin: ${Theme.space.$17} 5px; */
   flex-direction: ${(props) => (props.md ? 'row' : 'column')};
 `
 const LeftContact = styled.div<{md: boolean}>`
@@ -64,54 +64,11 @@ const HomePage = ({
     <HomeContainer>
       <MainCarousel />
       <CompWrapper>
-        <MainContainer
-          style={{
-            marginTop: !media.md ? Theme.space.$10 : Theme.space.$12
-          }}
-        >
+        <MainContainer>
           <About text="Mr. Durga Prasad Bhurtel Successfully Represented Various Clients for Injury Claims. Affects, Signs & Sources of Lead Paint (Poisoning) in Children. Your first medical diagnosis is probably wrong, according to Mayo Clinic. Construction Worker Accident and Injury? Know your rights for help you may need." />
           {testimonials && testimonials.rows.length > 0 && (
             <TestimonialCarousal data={testimonials.rows} />
           )}
-
-          {/* <HeaderContainer>
-            <Title
-              text="Personal Injury"
-              size="lg"
-              style={{
-                color: Theme.colors.$black,
-                margin: `${Theme.space.$1} 0 ${Theme.space.$10}`
-              }}
-              weight="bold"
-            />
-            <PersonalInjuryContainer md={media.md}>
-              {filtereddata.map((item: any, index: number) => {
-                return (
-                  <div
-                    key={index}
-                    // style={{
-                    //   minHeight: '465px',
-                    //   maxHeight: '465px',
-                    //   overflow: 'hidden'
-                    // }}
-                  >
-                    <DescriptionCard
-                      key={item.descritpion_details?.id}
-                      isHorizontal={false}
-                      date={item.description_details.posted_at}
-                      desc={item.description_details.main_description}
-                      title={item.description_details.title}
-                      imgUrl={
-                        item.description_details.thumbnail &&
-                        (item.description_details.thumbnail as string)
-                      }
-                      truncateSize={7}
-                    />
-                  </div>
-                )
-              })}
-            </PersonalInjuryContainer>
-          </HeaderContainer> */}
 
           <PersonalInjuryCarousal data={filtereddata} />
 
