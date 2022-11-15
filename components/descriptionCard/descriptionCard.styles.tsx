@@ -16,7 +16,7 @@ export const DescContainer = styled.div<{isHorizontal: boolean}>`
       : `
 			cursor: pointer;
 			transition: 0.3s ease-in-out;
-			max-width: 500px;
+			max-width: 600px;
 
 			&:hover {
 				transform: translateY(-5px);

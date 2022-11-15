@@ -12,6 +12,7 @@ import {GetServerSideProps} from 'next'
 import {useRouter} from 'next/router'
 import {commonCategoryServices} from 'redux/commonCategory/commonCategory.service'
 import {TitleContainer} from 'components/titleContainer'
+import {useMedia} from 'hooks'
 
 const NewsContainer = styled.div`
   /* padding: 40px; */
@@ -33,6 +34,7 @@ function News({
   category: string
 }) {
   const router = useRouter()
+  const media = useMedia()
   const newsClickedHandler = (data: any) => {
     router.push({
       pathname: `news/article/${data.description_details.id}`,
@@ -46,7 +48,8 @@ function News({
       </div>
       <NewsContainer>
         {!fetchedNews || fetchedNews.length === 0 ? <NoResultFound /> : null}
-        {fetchedNews &&
+        {media.md &&
+          fetchedNews &&
           fetchedNews.map((el, id) => {
             if (id === 0)
               return (
@@ -59,6 +62,7 @@ function News({
                     desc={el.description_details.main_description}
                     title={el.description_details.title}
                     imgUrl={el.description_details.thumbnail as string}
+                    truncateSize={media.lg ? undefined : 6}
                   />
                 </div>
               )
