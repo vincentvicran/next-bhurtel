@@ -17,6 +17,7 @@ import {
 } from './footer.style'
 import {HStack, VStack} from 'common/stack'
 import {CompWrapper} from 'common/compWrapper'
+import Theme from 'theme'
 
 interface FooterProps {
   image: string
@@ -108,10 +109,10 @@ export const Footer = ({image}: FooterProps) => {
               <Title size="md" weight="semibold" text="Call Us" />
               <VStack gap="$1">
                 <Paragraph color="light">
-                  <a href="tel:+212-461-4628">
+                  <a href="tel:+212-461-4628" style={{color: 'inherit'}}>
                     <PhoneContainer>
                       <TbPhoneCall size={16} />
-                      212-461-4628
+                      +2124614628
                     </PhoneContainer>
                   </a>
                 </Paragraph>
