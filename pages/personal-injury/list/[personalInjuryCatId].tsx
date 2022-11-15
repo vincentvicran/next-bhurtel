@@ -23,7 +23,6 @@ const PersonalInjuryList = ({
         <ListComp
           articleList={personalInjury}
           title={category ?? 'Personal Injury'}
-          link={'/personal-injury'}
           total={total}
         />
       ) : (

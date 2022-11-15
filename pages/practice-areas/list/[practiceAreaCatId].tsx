@@ -23,7 +23,6 @@ const PracticeAreas = ({
         <ListComp
           articleList={practiceArea}
           title={category ?? 'Practice Areas'}
-          link={'/practice-areas'}
           total={Number(total ?? 1)}
         />
       ) : (
