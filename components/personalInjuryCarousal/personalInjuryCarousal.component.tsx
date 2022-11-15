@@ -14,7 +14,6 @@ import {
   Dots,
   HeaderContainer
 } from './personalInjuryCarousal.styles'
-import {getImageUrl} from 'helpers/getUrl'
 import {DescriptionCard} from 'components/descriptionCard'
 
 export function PersonalInjuryCarousal({
@@ -114,7 +113,7 @@ export function PersonalInjuryCarousal({
                       ? (item.description_details.thumbnail as string)
                       : ''
                   }
-                  truncateSize={7}
+                  truncateSize={5}
                   titleTruncateSize={2}
                 />
               </CarousalItem>
