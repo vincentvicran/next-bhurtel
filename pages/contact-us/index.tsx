@@ -166,7 +166,7 @@ const ContactPageContainer = styled.div<MediaProps>`
   gap: ${(props) => (props.media.md ? null : '30px')};
 `
 
-const Contact = () => {
+const Contact = ({toast}: any) => {
   const media = useMedia()
   return (
     <ContactPageContainer media={media}>
@@ -181,7 +181,7 @@ const Contact = () => {
 
         <HorStack media={media}>
           <ContactLeft media={media}>
-            <ContactUs></ContactUs>
+            <ContactUs toast={toast}></ContactUs>
           </ContactLeft>
 
           <ContactRight>

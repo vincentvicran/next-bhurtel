@@ -44,13 +44,13 @@ export const InputField = ({
           {labelName} {required ? '*' : null}
         </InputLabel>
       )}
-      {error && <InputError style={{margin: '4px 0'}}>{error}</InputError>}
 
       <InputContainerStyled style={containerStyle}>
         {prepend}
         <InputFieldStyled {...restProps} />
         {append}
       </InputContainerStyled>
+      {error && <InputError style={{margin: '4px 0'}}>{error}</InputError>}
     </VStack>
   )
 }
@@ -71,13 +71,13 @@ export const Textarea = ({
           {labelName} {required ? '*' : null}
         </InputLabel>
       )}
-      {error && <InputError style={{margin: '4px 0'}}>{error}</InputError>}
 
       <InputContainerStyled style={containerStyle}>
         {prepend}
         <TextareaStyled {...restProps} />
         {append}
       </InputContainerStyled>
+      {error && <InputError style={{margin: '4px 0'}}>{error}</InputError>}
     </VStack>
   )
 }
