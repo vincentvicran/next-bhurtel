@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 
 import Theme from 'theme'
-import {Button} from 'common/button'
-import {HStack} from 'common/stack'
 
 import {DescriptionCard} from 'components/descriptionCard'
 import {CompWrapper} from 'common/compWrapper'
@@ -13,6 +11,9 @@ import {useRouter} from 'next/router'
 import {commonCategoryServices} from 'redux/commonCategory/commonCategory.service'
 import {TitleContainer} from 'components/titleContainer'
 import {useMedia} from 'hooks'
+import {HStack} from 'common/stack'
+import {useEffect, useState} from 'react'
+import {Paginate} from 'components/paginate/paginate.component'
 
 const NewsContainer = styled.div`
   /* padding: 40px; */
@@ -28,11 +29,14 @@ const NewsBottomContainer = styled.div`
 
 function News({
   news: fetchedNews,
-  category
+  category,
+  newsTotal
 }: {
   news: Api.AllCommonDescription[`rows`]
   category: string
+  newsTotal: number
 }) {
+  const [allNews, setAllNews] = useState(fetchedNews)
   const router = useRouter()
   const media = useMedia()
   const newsClickedHandler = (data: any) => {
@@ -41,16 +45,34 @@ function News({
       query: {}
     })
   }
+
+  useEffect(() => {
+    ;(async () => {
+      try {
+        const cmnDescription =
+          await commonDescriptionServices.getCommonDescriptionByCategoryId(
+            Number(router.query.id as string),
+            {
+              page: Number(router.query.page ?? 1),
+              limit: Number(process.env.NEXT_PUBLIC_LIMIT)
+            }
+          )
+        setAllNews(cmnDescription.rows)
+      } catch (err) {}
+    })()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router.query.page])
+
   return (
     <CompWrapper>
       <div style={{marginTop: 50}}>
         <TitleContainer title={category} size="xl" />
       </div>
       <NewsContainer>
-        {!fetchedNews || fetchedNews.length === 0 ? <NoResultFound /> : null}
+        {!allNews || allNews.length === 0 ? <NoResultFound /> : null}
         {media.md &&
-          fetchedNews &&
-          fetchedNews.map((el, id) => {
+          allNews &&
+          allNews.map((el, id) => {
             if (id === 0)
               return (
                 <div key={id} onClick={() => newsClickedHandler(el)}>
@@ -69,8 +91,8 @@ function News({
           })}
 
         <NewsBottomContainer>
-          {fetchedNews &&
-            fetchedNews.map((el, id) => {
+          {allNews &&
+            allNews.map((el, id) => {
               return (
                 <div key={id} onClick={() => newsClickedHandler(el)}>
                   <DescriptionCard
@@ -88,11 +110,9 @@ function News({
               )
             })}
         </NewsBottomContainer>
-        {fetchedNews && fetchedNews.length !== 0 && (
-          <HStack justify={'center'} style={{marginTop: 40}}>
-            <Button title="LOAD MORE" color="primary" />
-          </HStack>
-        )}
+        <HStack justify={'center'} style={{marginTop: 40}}>
+          <Paginate total={newsTotal} />
+        </HStack>
       </NewsContainer>
     </CompWrapper>
   )
@@ -111,7 +131,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
     props: {
       news: cmnDescription.rows,
-      category: category.category_details.title
+      category: category.category_details.title,
+      newsTotal: cmnDescription.total
     } // will be passed to the page component as props
   }
 }

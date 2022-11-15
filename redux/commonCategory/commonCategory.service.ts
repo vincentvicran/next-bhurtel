@@ -10,7 +10,8 @@ const getCommonCategoryByType = async (type: string) => {
 
 const getCommonCategoryById = async (id: number) => {
   const response = await api<Api.Base<Api.CategoryFromAPI>>('get')(
-    `common-category/${id}`
+    `common-category/${id}`,
+    {limit: process.env.NEXT_LIMIT}
   )
 
   return response.data.data.data
