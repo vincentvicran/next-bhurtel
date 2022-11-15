@@ -35,7 +35,7 @@ export const CarousalContainer = styled.div`
 `
 export const CarousalItem = styled.div`
   padding: 5px;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 `
 export const Dots = styled.div`
   width: 7px;

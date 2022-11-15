@@ -58,8 +58,8 @@ export function TestimonialCarousal({data}: {data: unknown[]}) {
     displayArrowRight: false,
     arrows: false,
     appendDots: (dots: any) => <div>{dots}</div>,
-    customPaging: () => <Dots></Dots>,
-    adaptiveHeight: true
+    customPaging: () => <Dots></Dots>
+    // adaptiveHeight: true
   }
 
   return (

@@ -6,6 +6,9 @@ import {Title} from 'components/title'
 import {caseResultServices} from 'redux/caseResult/caseResult.service'
 import styled from 'styled-components'
 import Theme from 'theme'
+import {useEffect, useState} from 'react'
+import {Paginate} from 'components/paginate/paginate.component'
+import {HStack} from 'common/stack'
 
 const CaseResultContainer = styled.div`
   padding: ${Theme.space.$16} 0;
@@ -16,7 +19,23 @@ const CaseResultList = styled.div`
   grid-gap: ${Theme.space.$5};
 `
 function CaseResult({caseResults}: {caseResults: Api.AllCaseResults}) {
+  const [allCaseResults, setAllCaseResults] =
+    useState<Api.AllCaseResults | null>(caseResults)
   const router = useRouter()
+
+  useEffect(() => {
+    ;(async () => {
+      try {
+        const response = await caseResultServices.getAllCaseResult({
+          query: {
+            page: Number(router.query.page ?? 1)
+          }
+        })
+
+        setAllCaseResults(response)
+      } catch (err) {}
+    })()
+  }, [router.query.page])
   return (
     <CompWrapper>
       <CaseResultContainer>
@@ -35,8 +54,9 @@ function CaseResult({caseResults}: {caseResults: Api.AllCaseResults}) {
 
         {/* CASE RESULT LISTS */}
         <CaseResultList>
-          {caseResults.rows &&
-            caseResults.rows.map((el, id) => {
+          {allCaseResults &&
+            allCaseResults.rows &&
+            allCaseResults.rows.map((el, id) => {
               return (
                 <div
                   key={el.id.toString()}
@@ -55,13 +75,18 @@ function CaseResult({caseResults}: {caseResults: Api.AllCaseResults}) {
               )
             })}
         </CaseResultList>
+        <HStack justify={'center'} style={{marginTop: 40}}>
+          <Paginate total={Number(caseResults.total)} />
+        </HStack>
       </CaseResultContainer>
     </CompWrapper>
   )
 }
 
 export const getServerSideProps = async () => {
-  const response = await caseResultServices.getAllCaseResult({query: {}})
+  const response = await caseResultServices.getAllCaseResult({
+    query: {limit: 3}
+  })
   return {props: {caseResults: response}}
 }
 

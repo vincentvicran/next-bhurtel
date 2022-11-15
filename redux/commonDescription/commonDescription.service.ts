@@ -2,7 +2,10 @@ import {api} from 'api'
 
 export const getCommonDescriptionByCategoryId = async (
   categoryId: number,
-  {page, limit}: {page?: number; limit?: number}
+  {
+    page = 1,
+    limit = Number(process.env.NEXT_PUBLIC_LIMIT ?? 6)
+  }: {page?: number; limit?: number}
 ) => {
   const response = await api<Api.Base<Api.AllCommonDescription>>('get')(
     `common-description/common-category/${categoryId}`,
