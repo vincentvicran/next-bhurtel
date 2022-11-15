@@ -20,9 +20,13 @@ const getCommonDescriptionById = async (id: number) => {
   return response.data.data.data
 }
 
-const getAllCommonDescription = async () => {
+const getAllCommonDescription = async (query?: {
+  showHomepage?: boolean
+  limit?: number
+}) => {
   const response = await api<Api.Base<Api.AllCommonDescription>>(`get`)(
-    `common-description`
+    `common-description`,
+    query
   )
 
   return response.data.data.data

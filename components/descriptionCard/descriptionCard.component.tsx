@@ -21,6 +21,7 @@ interface DescProps {
   date: Date
   isHorizontal?: boolean
   truncateSize?: number
+  titleTruncateSize?: number
 }
 export function DescriptionCard(props: DescProps) {
   return (
@@ -50,7 +51,12 @@ export function DescriptionCard(props: DescProps) {
             display: 'block'
           }}
         />
-        <Title text={props.title} size="md" weight="semibold" />
+        <Title
+          text={props.title}
+          truncateSize={props.titleTruncateSize}
+          size="md"
+          weight="semibold"
+        />
         <DescParagraph
           dangerouslySetInnerHTML={{
             __html: props.desc

@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 import {CompWrapper} from 'common/compWrapper'
-import {DescriptionCard} from 'components/descriptionCard'
 import {MainCarousel} from 'common/carousel'
 import {About} from 'components/about'
 import {TestimonialCarousal} from 'components/testimonialCarousal'
@@ -11,8 +10,7 @@ import {useMedia} from 'hooks'
 import {ContactUs} from 'components/contactUs'
 import dynamic from 'next/dynamic'
 import {commonDescriptionServices} from 'redux/commonDescription/commonDescription.service'
-import {Title} from 'components/title'
-import {HeaderContainer} from 'components/testimonialCarousal/testimonialCarousal.styles'
+import {PersonalInjuryCarousal} from 'components/personalInjuryCarousal'
 
 const HomeContainer = styled.div`
   width: 100%;
@@ -57,14 +55,16 @@ const MapWithNoSSR = dynamic(() => import('../../common/map/map.common'), {
 
 const HomePage = ({
   testimonials,
-  news
+  news,
+  toast
 }: {
   testimonials: Api.AllTestimonials
   news: Api.AllCommonDescription['rows']
+  toast: any
 }) => {
   const media = useMedia()
 
-  const filtereddata = news.filter((item: any, index: number) => {
+  const filtereddata = news.filter((item: any) => {
     return item.category_details.type === 'personal_injury'
   })
 
@@ -82,7 +82,7 @@ const HomePage = ({
             <TestimonialCarousal data={testimonials.rows} />
           )}
 
-          <HeaderContainer>
+          {/* <HeaderContainer>
             <Title
               text="Personal Injury"
               size="lg"
@@ -119,7 +119,9 @@ const HomePage = ({
                 )
               })}
             </PersonalInjuryContainer>
-          </HeaderContainer>
+          </HeaderContainer> */}
+
+          <PersonalInjuryCarousal data={filtereddata} />
 
           <ContactSection md={media.md}>
             <LeftContact md={media.md}>
@@ -129,7 +131,7 @@ const HomePage = ({
               />
             </LeftContact>
             <RightContact>
-              <ContactUs />
+              <ContactUs toast={toast} />
             </RightContact>
           </ContactSection>
         </MainContainer>
@@ -141,7 +143,10 @@ const HomePage = ({
 export const getServerSideProps = async () => {
   const testimonials = await testimonialServices.getAllTestimonialsHomepage()
   const cmnDescription =
-    await commonDescriptionServices.getAllCommonDescription()
+    await commonDescriptionServices.getAllCommonDescription({
+      limit: 5,
+      showHomepage: true
+    })
 
   return {props: {testimonials: testimonials, news: cmnDescription.rows}}
 }
