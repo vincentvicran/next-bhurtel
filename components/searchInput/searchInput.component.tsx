@@ -2,7 +2,7 @@ import {ChangeEvent, ReactNode, useEffect, useState, useRef} from 'react'
 import {MdSearch} from 'react-icons/md'
 
 import {InputField} from 'components/inputField'
-import {useDebounceValue} from 'hooks'
+import {useDebounceValue, useMedia} from 'hooks'
 
 export const SearchInput = ({
   title,
@@ -15,6 +15,7 @@ export const SearchInput = ({
   onChangeHandler?: (arg?: any) => void
   onFocusHandler?: (arg?: any) => void
 }) => {
+  const media = useMedia()
   const [searchInput, setSearchInput] = useState('')
   const searchFlag = useRef(false)
   const searchValue = useDebounceValue(searchInput)
@@ -38,7 +39,7 @@ export const SearchInput = ({
       }}
     >
       <InputField
-        style={{width: 400}}
+        style={{width: !media.md ? '' : 400}}
         prepend={<MdSearch style={{margin: '0 0 0 10px '}} size={20} />}
         name="Search"
         placeholder={`Search ${title ?? `item`}`}
