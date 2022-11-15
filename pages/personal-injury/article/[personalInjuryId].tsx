@@ -10,7 +10,6 @@ const PersonalInjuryArticle = ({
 }: {
   personalInjury: Api.CommonDescriptionIndividual
 }) => {
-  console.log('practice-areas: ', personalInjury)
   return (
     <CompWrapper>
       {personalInjury ? (

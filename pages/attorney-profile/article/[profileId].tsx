@@ -125,8 +125,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     profileId: context?.params?.profileId as string
   })
 
-  console.log('profile: ', profile)
-
   return {
     props: {profile: profile.profile_details} // will be passed to the page component as props
   }

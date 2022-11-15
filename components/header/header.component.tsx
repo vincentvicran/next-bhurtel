@@ -40,7 +40,6 @@ interface HeaderProps {
 export const Header = ({image}: HeaderProps) => {
   const media = useMedia()
   const router = useRouter()
-  console.log(router, 'router called')
   const [personalInjury, setPersonalInjury] =
     useState<Api.AllCategories | null>(null)
   const [practiceAreas, setPracticeAreas] = useState<Api.AllCategories | null>(
@@ -85,9 +84,7 @@ export const Header = ({image}: HeaderProps) => {
         setPracticeAreas(practice)
         setNews(news)
         setProfiles({total: '0', rows: remappedProfiles, isLast: false})
-      } catch (err) {
-        console.log(err)
-      }
+      } catch (err) {}
     })()
   }, [])
 
@@ -214,7 +211,6 @@ function HeaderMenu({
         ) : null}
         {data &&
           data.rows.map((el, id) => {
-            // console.log(el, 'el called')
             return (
               <HoverText
                 key={id}

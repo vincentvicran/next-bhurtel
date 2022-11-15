@@ -15,7 +15,6 @@ const PracticeAreas = ({
   practiceArea: Api.PaginatedCommonDescriptionIndividual[]
   category: string
 }) => {
-  console.log('practice-area: ', practiceArea)
   return (
     <CompWrapper>
       {practiceArea ? (

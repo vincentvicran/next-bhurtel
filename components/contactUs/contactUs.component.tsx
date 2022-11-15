@@ -39,7 +39,6 @@ export const ContactUs = () => {
       try {
         await contactServices.createContact(values)
       } catch (err: any) {
-        console.log(err)
       } finally {
         setLoading(false)
       }

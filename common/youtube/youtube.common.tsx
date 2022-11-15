@@ -23,7 +23,6 @@ export const Youtube = ({videoId}: YoutubeUserProps) => {
     const videoIdRegex =
       /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/|shorts\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/
     const newVideoId = videoId.match(videoIdRegex)?.toString()
-    console.log('newVideoId: ', videoId, newVideoId)
     return newVideoId
   }, [videoId])
 

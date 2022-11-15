@@ -34,13 +34,11 @@ function News({
 }) {
   const router = useRouter()
   const newsClickedHandler = (data: any) => {
-    console.log(data)
     router.push({
       pathname: `news/article/${data.description_details.id}`,
       query: {}
     })
   }
-  console.log(fetchedNews, 'fetched news called')
   return (
     <CompWrapper>
       <div style={{marginTop: 50}}>

@@ -169,15 +169,9 @@ const TableComponent = () => {
         .map((d) => d)}
       loading={false}
       actions={{
-        onEdit: (data) => {
-          console.log('EDIT', data)
-        },
-        onView: (data) => {
-          console.log('VIEW', data)
-        },
-        onDelete: (data) => {
-          console.log('DELETE', data)
-        }
+        onEdit: (data) => {},
+        onView: (data) => {},
+        onDelete: (data) => {}
       }}
       pagination={{
         perPage: 5,
