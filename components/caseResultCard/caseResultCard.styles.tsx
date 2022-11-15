@@ -6,8 +6,6 @@ export const CaseResCard = styled.div`
   border-radius: ${Theme.radius.$default};
   padding: ${Theme.space.$4};
   width: 100%;
-  height: 220px;
-  overflow: hidden;
   cursor: pointer;
   transition: 0.3s ease-in-out;
 
@@ -16,4 +14,10 @@ export const CaseResCard = styled.div`
     -webkit-box-shadow: 4px 5px 4px -4px rgba(89, 57, 57, 0.75);
     -moz-box-shadow: 4px 5px 4px -4px rgba(89, 57, 57, 0.75);
   }
+`
+export const CaseResDesc = styled.div`
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 `

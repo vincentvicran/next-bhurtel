@@ -80,6 +80,7 @@ function News({
                     title={el.description_details.title}
                     imgUrl={el.description_details.thumbnail as string}
                     isHorizontal={false}
+                    truncateSize={4}
                   />
                 </div>
               )
