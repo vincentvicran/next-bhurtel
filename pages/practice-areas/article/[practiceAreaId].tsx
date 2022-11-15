@@ -10,7 +10,6 @@ const PracticeAreasArticle = ({
 }: {
   practiceArea: Api.CommonDescriptionIndividual
 }) => {
-  console.log('practice-areas: ', practiceArea)
   return (
     <CompWrapper>
       {practiceArea ? (

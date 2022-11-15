@@ -53,14 +53,18 @@ export const QuoteOpen = styled(RiDoubleQuotesL)`
   font-size: 20px;
   position: absolute;
   z-index: 4;
-  top: -10px;
-  left: -5px;
+  display: inline;
+  margin-left: -20px;
+  margin-top: -10px;
 `
 export const QuoteClose = styled(RiDoubleQuotesR)`
   color: ${Theme.colors.$gray200};
   font-size: 20px;
   position: absolute;
   z-index: 4;
-  bottom: -10px;
-  right: -5px;
+  /* bottom: -10px;
+  right: -5px; */
+  display: inline;
+  margin-top: 7px;
+  margin-left: 2px;
 `

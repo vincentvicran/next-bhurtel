@@ -11,7 +11,7 @@ import {useFormik} from 'formik'
 import {useMedia} from 'hooks'
 import {contactServices} from 'redux/contact/contact.service'
 
-export const ContactUs = () => {
+export const ContactUs = ({toast}: any) => {
   const [loading, setLoading] = useState(false)
   const contactSchema = Yup.object().shape({
     subject: Yup.string().min(6, 'Too Short!').required('Required'),
@@ -38,10 +38,11 @@ export const ContactUs = () => {
       setLoading(true)
       try {
         await contactServices.createContact(values)
+        toast.success('Successfully sent!!!. We will reach out to you soon.')
       } catch (err: any) {
-        console.log(err)
       } finally {
         setLoading(false)
+        formik.resetForm()
       }
     },
     validationSchema: contactSchema

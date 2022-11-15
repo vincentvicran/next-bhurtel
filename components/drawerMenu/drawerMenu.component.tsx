@@ -56,7 +56,6 @@ export const DrawerMenu: React.FC<DrawerMenuProps> = ({
     setOpen(false)
   }
 
-  console.log('media: ', media)
   useDisableScroll(open && !!disableScroll)
 
   return (
@@ -108,7 +107,7 @@ export const DrawerMenu: React.FC<DrawerMenuProps> = ({
                         closeMenu()
                       }}
                     >
-                      <CgClose size={20}/>
+                      <CgClose size={20} />
                     </CloseIcon>
                   </DrawerMenuHeader>
                   {children(closeMenu)}

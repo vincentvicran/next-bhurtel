@@ -15,7 +15,6 @@ const PersonalInjuryList = ({
   personalInjury: Api.PaginatedCommonDescriptionIndividual[]
   category: string
 }) => {
-  console.log('practice-area: ', personalInjury)
   return (
     <CompWrapper>
       {personalInjury ? (

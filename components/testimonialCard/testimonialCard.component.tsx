@@ -37,16 +37,15 @@ export const TestimonialCard = ({
         </ImgContainer>
         <div>
           <Title text={name} size={`sm`} weight={`bold`} />
-          <Paragraph
+          {/* <Paragraph
             color={`light`}
             style={{fontSize: Theme.fontSizes.$2, marginTop: -4}}
           >
             Chandragiri-14, Kathmandu
-          </Paragraph>
+          </Paragraph> */}
         </div>
       </BottomContainer>
       <TopContainer>
-        <QuoteOpen />
         <Paragraph
           color={`light`}
           style={{
@@ -59,14 +58,16 @@ export const TestimonialCard = ({
             margin: '0 auto'
           }}
         >
-          This is demo testimonial for Bhurtel Law firm website produced by
+          <QuoteOpen />
+          {/* This is demo testimonial for Bhurtel Law firm website produced by
           Codniv Innovations Pvt. Ltd., Nepal. the main purpose of this demo
           testimonial is to test how it appears in the actual design This is
           demo testimonial for Bhurtel Law firm website produced by Codniv
           Innovations Pvt. Ltd., Nepal. the main purpose of this demo
-          testimonial is to test how it appears in the actual design
+          testimonial is to test how it appears in the actual design */}
+          {description}
+          <QuoteClose />
         </Paragraph>
-        <QuoteClose />
       </TopContainer>
     </TestimonialCardContainer>
   )
