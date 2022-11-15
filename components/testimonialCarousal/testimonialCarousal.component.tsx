@@ -26,7 +26,7 @@ export function TestimonialCarousal({data}: {data: unknown[]}) {
     // infinite: true,
     speed: 900,
 
-    // autoplay: true,
+    autoplay: true,
     autoplaySpeed: 6000,
     slidesToShow: 3,
     slidesToScroll: 1,

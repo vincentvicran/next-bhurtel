@@ -19,7 +19,6 @@ import {
 } from './footer.style'
 import {HStack, VStack} from 'common/stack'
 import {CompWrapper} from 'common/compWrapper'
-import Theme from 'theme'
 import {getCommonDescription} from 'redux/commonDescription/commonDescription.slice'
 import Link from 'next/link'
 import {getMenuLink} from 'helpers/getNavLink.helper'
@@ -48,6 +47,7 @@ export const Footer = ({image}: FooterProps) => {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getCommonDescription())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const media = useMedia()
@@ -68,10 +68,11 @@ export const Footer = ({image}: FooterProps) => {
               />
             </FooterLogo>
             <Paragraph color="light">
-              Lorem ipsum dolor sit am et consectetur adi pisicing elit. Tempor
-              ibus, eius? Consectetur eligendi vitae magni aliqui d maiores
-              molestiae sunt sed unde optio omnis quos doloru m iste at, dolore
-              possimus? Vitae, quae?
+              Mr. Durga Prasad Bhurtel Successfully Represented Various Clients
+              for Injury Claims. Affects, Signs & Sources of Lead Paint
+              (Poisoning) in Children. Your first medical diagnosis is probably
+              wrong, according to Mayo Clinic. Construction Worker Accident and
+              Injury? Know your rights for help you may need.
             </Paragraph>
             <HStack gap="$8" align="center">
               <SocialIcon
