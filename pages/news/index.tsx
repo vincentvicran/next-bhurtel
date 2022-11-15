@@ -40,7 +40,7 @@ function News({
       query: {}
     })
   }
-
+  console.log(fetchedNews, 'fetched news called')
   return (
     <CompWrapper>
       <div style={{marginTop: 50}}>
