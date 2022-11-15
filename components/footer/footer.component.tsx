@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {FaFacebookF, FaTwitter, FaYoutube, FaLinkedinIn} from 'react-icons/fa'
 import {TbPhoneCall} from 'react-icons/tb'
 import {useMedia} from 'hooks'
@@ -7,6 +7,8 @@ import {Title} from 'components/title'
 import {useRouter} from 'next/router'
 import Image from 'next/image'
 import attorney from 'assets/images/attorney.png'
+import {useDispatch, useSelector} from 'store'
+
 import {
   FooterContainerStyled,
   FooterLogo,
@@ -17,6 +19,10 @@ import {
 } from './footer.style'
 import {HStack, VStack} from 'common/stack'
 import {CompWrapper} from 'common/compWrapper'
+import Theme from 'theme'
+import {getCommonDescription} from 'redux/commonDescription/commonDescription.slice'
+import Link from 'next/link'
+import {getMenuLink} from 'helpers/getNavLink.helper'
 
 interface FooterProps {
   image: string
@@ -39,8 +45,14 @@ export interface MediaProps {
 
 export const Footer = ({image}: FooterProps) => {
   const router = useRouter()
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getCommonDescription())
+  }, [])
 
   const media = useMedia()
+  const quickLinks = useSelector((state) => state.commonDescription)
+  console.log(quickLinks.commonDescriptionData.data, 'quicklinks is called')
   return (
     <FooterContainerStyled>
       <CompWrapper>
@@ -89,8 +101,28 @@ export const Footer = ({image}: FooterProps) => {
             <VStack gap="$3">
               <Title size="md" text="Quick Links" weight="semibold" />
               <VStack gap="$1">
-                <Paragraph color="light">Personal Injury</Paragraph>
-                <Paragraph color="light">Practice Areas</Paragraph>
+                <Link
+                  href={getMenuLink(
+                    'practice_areas',
+                    quickLinks?.commonDescriptionData?.data?.practice?.rows
+                  )}
+                >
+                  <Paragraph color="light" style={{cursor: 'pointer'}}>
+                    Practice Areas
+                  </Paragraph>
+                </Link>
+
+                <Link
+                  href={getMenuLink(
+                    'personal_injury',
+                    quickLinks?.commonDescriptionData?.data?.personal?.rows
+                  )}
+                >
+                  <Paragraph color="light" style={{cursor: 'pointer'}}>
+                    Personal Injury
+                  </Paragraph>
+                </Link>
+
                 <Paragraph
                   color="light"
                   style={{cursor: 'pointer'}}
@@ -98,9 +130,7 @@ export const Footer = ({image}: FooterProps) => {
                 >
                   Case Results
                 </Paragraph>
-                <Paragraph color="light" style={{cursor: 'pointer'}}>
-                  News
-                </Paragraph>
+
                 <Paragraph
                   color="light"
                   style={{cursor: 'pointer'}}
@@ -108,6 +138,16 @@ export const Footer = ({image}: FooterProps) => {
                 >
                   About
                 </Paragraph>
+                <Link
+                  href={getMenuLink(
+                    'news',
+                    quickLinks?.commonDescriptionData?.data?.news?.rows
+                  )}
+                >
+                  <Paragraph color="light" style={{cursor: 'pointer'}}>
+                    News
+                  </Paragraph>
+                </Link>
               </VStack>
             </VStack>
 
