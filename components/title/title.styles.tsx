@@ -26,4 +26,14 @@ export const TitleContainer = styled.h1<TitleProps>`
       return Theme.fontSizes.$6
     }
   }};
+  ${(props) =>
+    props.truncateSize
+      ? `
+	display: -webkit-box;
+  -webkit-line-clamp: ${props.truncateSize};
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+	
+	`
+      : ``}
 `

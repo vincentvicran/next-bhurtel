@@ -38,6 +38,7 @@ export const ContactUs = ({toast}: any) => {
       setLoading(true)
       try {
         await contactServices.createContact(values)
+
         toast.success('Successfully sent!!!. We will reach out to you soon.')
       } catch (err: any) {
       } finally {

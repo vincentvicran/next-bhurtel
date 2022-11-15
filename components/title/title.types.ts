@@ -5,4 +5,5 @@ export interface TitleProps {
   style?: React.CSSProperties
   weight?: 'bold' | 'semibold' | 'normal'
   text: string
+  truncateSize?: number
 }
