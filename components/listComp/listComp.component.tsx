@@ -1,7 +1,23 @@
+import {useEffect, useState} from 'react'
+import {HiOutlineArrowLongRight} from 'react-icons/hi2'
+import {useRouter} from 'next/router'
+import Image from 'next/image'
+import Link from 'next/link'
+import moment from 'moment'
+
+import {HStack} from 'common/stack'
+import {Paginate} from 'components/paginate/paginate.component'
+import {NoResultFound} from 'components/noResultsFound'
 import {Paragraph} from 'components/Paragraph'
 import {Title} from 'components/title'
-import Image from 'next/image'
+import {TitleContainer} from 'components/titleContainer'
+import {getImageUrl} from 'helpers/getUrl'
+import {commonDescriptionServices} from 'redux/commonDescription/commonDescription.service'
+import {getListCompLink, MenuType} from 'helpers/getNavLink.helper'
+import articlePlaceholder from 'assets/images/article.jpg'
 import Theme from 'theme'
+import {useMedia} from 'hooks'
+
 import {
   ImgContainer,
   ListCardContainer,
@@ -9,20 +25,6 @@ import {
   ListCompContainer,
   ReadMoreBtn
 } from './listComp.styles'
-import {HiOutlineArrowLongRight} from 'react-icons/hi2'
-import Link from 'next/link'
-import {TitleContainer} from 'components/titleContainer'
-import {getImageUrl} from 'helpers/getUrl'
-import moment from 'moment'
-
-import articlePlaceholder from 'assets/images/article.jpg'
-import {NoResultFound} from 'components/noResultsFound'
-import {useMedia} from 'hooks'
-import {HStack} from 'common/stack'
-import {Paginate} from 'components/paginate/paginate.component'
-import {useEffect, useState} from 'react'
-import {commonDescriptionServices} from 'redux/commonDescription/commonDescription.service'
-import {useRouter} from 'next/router'
 
 export function ListComp({
   articleList,
@@ -32,8 +34,8 @@ export function ListComp({
   disablePagination
 }: {
   articleList: Api.PaginatedCommonDescriptionIndividual[]
-  title: string
-  link: string
+  title?: string
+  link?: string
   total?: number
   disablePagination?: boolean
 }) {
@@ -41,6 +43,10 @@ export function ListComp({
 
   const [articles, setArticles] =
     useState<Api.PaginatedCommonDescriptionIndividual[]>(articleList)
+
+  useEffect(() => {
+    articleList && setArticles(articleList)
+  }, [articleList])
 
   useEffect(() => {
     ;(async () => {
@@ -61,7 +67,7 @@ export function ListComp({
   return (
     <ListCompContainer>
       {/* TITLE */}
-      <TitleContainer title={title} />
+      {title && <TitleContainer title={title} />}
 
       {/* LISTS */}
       {articles && articles.length > 0 ? (
@@ -70,7 +76,14 @@ export function ListComp({
             <ListCard
               key={article.description_details.id.toString()}
               article={article}
-              link={link}
+              link={
+                link ??
+                getListCompLink(
+                  article.category_details.type as MenuType,
+                  article.description_details.id,
+                  article.description_details.slug
+                )
+              }
             />
           )
         })
@@ -78,9 +91,11 @@ export function ListComp({
         <NoResultFound />
       )}
 
-      <HStack justify={'center'} style={{marginTop: 40}}>
-        {!disablePagination && <Paginate total={total ?? 0} />}
-      </HStack>
+      {!disablePagination && (
+        <HStack justify={'center'} style={{marginTop: 40}}>
+          <Paginate total={total ?? 0} />
+        </HStack>
+      )}
     </ListCompContainer>
   )
 }
@@ -165,7 +180,8 @@ function ListCard({
         />
 
         <Link
-          href={`${link}/article/${article.category_details.id}?description=${article.description_details.slug}`}
+          // href={`${link}/article/${article.category_details.id}?description=${article.description_details.slug}`}
+          href={link}
         >
           <ReadMoreBtn>
             <Title
