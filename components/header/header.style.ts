@@ -131,7 +131,7 @@ export const HoverText = styled.div`
   }
 `
 
-export const NestedHoverText = styled.p`
+export const NestedHoverText = styled.div`
   font-size: ${Theme.fontSizes.$3};
   text-transform: capitalize;
 

@@ -27,7 +27,11 @@ export const InputFieldStyled = styled.input`
   border: none;
   background-color: transparent;
   color: ${Theme.colors.$gray600};
-  font-size: ${Theme.fontSizes.$3};
+  font-size: ${Theme.fontSizes.$2};
+
+  &::placeholder {
+    font-size: ${Theme.fontSizes.$2};
+  }
 `
 
 export const InputError = styled.div`
@@ -49,4 +53,9 @@ export const TextareaStyled = styled.textarea`
   font-size: inherit;
   font-family: inherit;
   resize: none;
+  font-size: ${Theme.fontSizes.$2};
+
+  &::placeholder {
+    font-size: ${Theme.fontSizes.$2};
+  }
 `

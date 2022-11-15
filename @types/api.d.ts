@@ -87,6 +87,20 @@ declare namespace Api {
   interface AllCommonDescription
     extends PaginatedData<PaginatedCommonDescriptionIndividual> {}
 
+  interface About {
+    id: number
+    type: 'about'
+    created_at: string
+    main_description: string
+    short_description: string
+  }
+
+  interface GeneralAbout {
+    general_details: About
+  }
+
+  type AboutFromAPI = Array<GeneralAbout>
+
   interface CaseResult {
     total_count: string
     id: number
