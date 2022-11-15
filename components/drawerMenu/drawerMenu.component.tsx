@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import {CgClose} from 'react-icons/cg'
 import {AiOutlineMenu} from 'react-icons/ai'
 import {
@@ -31,6 +31,9 @@ interface DrawerMenuProps {
   inDismiss?: boolean
   children: (closeModal?: () => void) => React.ReactNode
   disableScroll?: boolean
+
+  open: boolean
+  setOpen: (value: boolean) => void
 }
 
 export const DrawerMenu: React.FC<DrawerMenuProps> = ({
@@ -39,9 +42,10 @@ export const DrawerMenu: React.FC<DrawerMenuProps> = ({
   containerStyle,
   trigger = <AiOutlineMenu size={24} />,
   inDismiss = false,
+  open,
+  setOpen,
   disableScroll
 }) => {
-  const [open, setOpen] = useState<boolean>(false)
   const media = useMedia()
   const openMenu = useMountedValue(open, {
     from: 0,
