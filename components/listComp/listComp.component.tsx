@@ -28,12 +28,14 @@ export function ListComp({
   articleList,
   title,
   link,
-  total
+  total,
+  disablePagination
 }: {
   articleList: Api.PaginatedCommonDescriptionIndividual[]
   title: string
   link: string
-  total: number
+  total?: number
+  disablePagination?: boolean
 }) {
   const router = useRouter()
 
@@ -77,7 +79,7 @@ export function ListComp({
       )}
 
       <HStack justify={'center'} style={{marginTop: 40}}>
-        <Paginate total={total} />
+        {!disablePagination && <Paginate total={total ?? 0} />}
       </HStack>
     </ListCompContainer>
   )
