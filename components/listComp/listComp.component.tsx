@@ -45,7 +45,10 @@ export function ListComp({
       try {
         const personalInjury =
           await commonDescriptionServices.getCommonDescriptionByCategoryId(
-            Number(router.query?.personalInjuryCatId as string),
+            Number(
+              (router.query?.personalInjuryCatId ??
+                router.query?.practiceAreaCatId) as string
+            ),
             {page: Number(router.query.page ?? 1)}
           )
         setArticles(personalInjury.rows)
