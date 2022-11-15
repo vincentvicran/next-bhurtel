@@ -18,24 +18,49 @@ import moment from 'moment'
 import articlePlaceholder from 'assets/images/article.jpg'
 import {NoResultFound} from 'components/noResultsFound'
 import {useMedia} from 'hooks'
+import {HStack} from 'common/stack'
+import {Paginate} from 'components/paginate/paginate.component'
+import {useEffect, useState} from 'react'
+import {commonDescriptionServices} from 'redux/commonDescription/commonDescription.service'
+import {useRouter} from 'next/router'
 
 export function ListComp({
   articleList,
   title,
-  link
+  link,
+  total
 }: {
   articleList: Api.PaginatedCommonDescriptionIndividual[]
   title: string
   link: string
+  total: number
 }) {
+  const router = useRouter()
+
+  const [articles, setArticles] =
+    useState<Api.PaginatedCommonDescriptionIndividual[]>(articleList)
+
+  useEffect(() => {
+    ;(async () => {
+      try {
+        const personalInjury =
+          await commonDescriptionServices.getCommonDescriptionByCategoryId(
+            Number(router.query?.personalInjuryCatId as string),
+            {page: Number(router.query.page ?? 1)}
+          )
+        setArticles(personalInjury.rows)
+      } catch (err) {}
+    })()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router.query.page])
   return (
     <ListCompContainer>
       {/* TITLE */}
       <TitleContainer title={title} />
 
       {/* LISTS */}
-      {articleList && articleList.length > 0 ? (
-        articleList?.map((article) => {
+      {articles && articles.length > 0 ? (
+        articles?.map((article) => {
           return (
             <ListCard
               key={article.description_details.id.toString()}
@@ -47,6 +72,10 @@ export function ListComp({
       ) : (
         <NoResultFound />
       )}
+
+      <HStack justify={'center'} style={{marginTop: 40}}>
+        <Paginate total={total} />
+      </HStack>
     </ListCompContainer>
   )
 }

@@ -1,11 +1,13 @@
 import {api} from 'api'
 
-const getAllCaseResult = async (data: {
+const getAllCaseResult = async ({
+  query: {page = 1, limit = Number(process.env.NEXT_PUBLIC_LIMIT)}
+}: {
   query: {page?: number; limit?: number}
 }) => {
   const response = await api<Api.Base<Api.AllCaseResults>>('get')(
     'case-result',
-    data.query
+    {page, limit}
   )
 
   return response.data.data.data

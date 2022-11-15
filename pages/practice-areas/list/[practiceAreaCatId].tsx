@@ -10,10 +10,12 @@ import {commonCategoryServices} from 'redux/commonCategory/commonCategory.servic
 
 const PracticeAreas = ({
   practiceArea,
-  category
+  category,
+  total
 }: {
   practiceArea: Api.PaginatedCommonDescriptionIndividual[]
   category: string
+  total: string
 }) => {
   return (
     <CompWrapper>
@@ -22,6 +24,7 @@ const PracticeAreas = ({
           articleList={practiceArea}
           title={category ?? 'Practice Areas'}
           link={'/practice-areas'}
+          total={Number(total ?? 1)}
         />
       ) : (
         <NoResultFound />
@@ -44,7 +47,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
     props: {
       practiceArea: practiceArea.rows,
-      category: category.category_details.title
+      category: category.category_details.title,
+      total: practiceArea.total
     } // will be passed to the page component as props
   }
 }
