@@ -38,6 +38,8 @@ export function DescriptionCard(props: DescProps) {
           alt="car"
           objectFit="cover"
           layout="fill"
+          placeholder="blur"
+          blurDataURL={articlePlaceholder.src}
         />
       </ImgContainer>
       <RightSection style={{flex: props.isHorizontal ? 1.5 : 1}}>

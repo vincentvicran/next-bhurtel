@@ -1,3 +1,10 @@
+import Image from 'next/image'
+
+import {Paragraph} from 'components/Paragraph'
+import {Title} from 'components/title'
+import user from 'assets/images/user.png'
+import Theme from 'theme'
+
 import {
   TestimonialCardContainer,
   TopContainer,
@@ -6,22 +13,16 @@ import {
   BottomContainer,
   ImgContainer
 } from './testimonialCard.style'
-import {Paragraph} from 'components/Paragraph'
-import Image from 'next/image'
-import {Title} from 'components/title'
-import Theme from 'theme'
 
 interface TestimonialCardProps {
   image: string
   name: string
-  address: string
   description: string
 }
 
 export const TestimonialCard = ({
   image,
   name,
-  address,
   description
 }: TestimonialCardProps) => {
   return (
@@ -33,16 +34,12 @@ export const TestimonialCard = ({
             alt={`testimonial`}
             layout={`fill`}
             objectFit={`cover`}
+            blurDataURL={user.src}
+            placeholder="blur"
           />
         </ImgContainer>
         <div>
           <Title text={name} size={`sm`} weight={`bold`} />
-          {/* <Paragraph
-            color={`light`}
-            style={{fontSize: Theme.fontSizes.$2, marginTop: -4}}
-          >
-            Chandragiri-14, Kathmandu
-          </Paragraph> */}
         </div>
       </BottomContainer>
       <TopContainer>
@@ -59,12 +56,6 @@ export const TestimonialCard = ({
           }}
         >
           <QuoteOpen />
-          {/* This is demo testimonial for Bhurtel Law firm website produced by
-          Codniv Innovations Pvt. Ltd., Nepal. the main purpose of this demo
-          testimonial is to test how it appears in the actual design This is
-          demo testimonial for Bhurtel Law firm website produced by Codniv
-          Innovations Pvt. Ltd., Nepal. the main purpose of this demo
-          testimonial is to test how it appears in the actual design */}
           {description}
           <QuoteClose />
         </Paragraph>

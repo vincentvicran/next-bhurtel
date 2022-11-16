@@ -139,6 +139,8 @@ function ListCard({
           alt="list"
           layout="fill"
           objectFit="cover"
+          placeholder="blur"
+          blurDataURL={articlePlaceholder.src}
         />
       </ImgContainer>
 
