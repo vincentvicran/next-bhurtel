@@ -87,11 +87,6 @@ export const HeaderDrawer = ({
               <HorizontalMenuBreak />
 
               <DrawerMenuItem onClick={closeMenu}>
-                <CollapseMenu menuType="contacts" setMenu={closeMenu} />
-              </DrawerMenuItem>
-              <HorizontalMenuBreak />
-
-              <DrawerMenuItem onClick={closeMenu}>
                 <CollapseMenu menuType="case_results" setMenu={closeMenu} />
               </DrawerMenuItem>
               <HorizontalMenuBreak />
@@ -111,6 +106,11 @@ export const HeaderDrawer = ({
                   menuList={data?.news?.rows}
                   setMenu={closeMenu}
                 />
+              </DrawerMenuItem>
+              <HorizontalMenuBreak />
+
+              <DrawerMenuItem onClick={closeMenu}>
+                <CollapseMenu menuType="contacts" setMenu={closeMenu} />
               </DrawerMenuItem>
               <HorizontalMenuBreak />
             </DrawerMenuItemsContainer>

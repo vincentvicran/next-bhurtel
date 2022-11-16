@@ -128,12 +128,6 @@ export const Header = () => {
                 style={{width: '55vw'}}
               />
 
-              <Link href="/contact-us">
-                <HeaderItem isActive={router.pathname.includes('/contact-us')}>
-                  Contacts
-                </HeaderItem>
-              </Link>
-
               <Link href="/case-results">
                 <HeaderItem
                   isActive={router.pathname.includes('/case-results')}
@@ -153,6 +147,12 @@ export const Header = () => {
                 data={news}
                 style={{right: '0', width: '20vw'}}
               />
+
+              <Link href="/contact-us">
+                <HeaderItem isActive={router.pathname.includes('/contact-us')}>
+                  Contacts
+                </HeaderItem>
+              </Link>
             </HeaderLinks>
           )}
           <Search>
