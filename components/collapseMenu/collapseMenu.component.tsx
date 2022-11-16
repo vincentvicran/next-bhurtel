@@ -38,7 +38,7 @@ interface NestedCollapseMenuItemProps {
 interface CollapseMenuProps {
   menuType: MenuType
   menuList?: Api.AllCategories['rows']
-  setMenu: (value: boolean) => void
+  setMenu?: () => void
 }
 
 const HeaderMenuContainer = styled.div`
@@ -92,7 +92,7 @@ export const CollapseMenu = ({
                     item.is_description_only
                   )}
                 >
-                  <HeaderMenuTitle onClick={() => setMenu(false)}>
+                  <HeaderMenuTitle onClick={() => setMenu?.()}>
                     {item.title}
                   </HeaderMenuTitle>
                 </Link>
@@ -108,7 +108,7 @@ export const CollapseMenu = ({
                 menu.is_description_only
               )}
             >
-              <HeaderMenuTitle onClick={() => setMenu(false)}>
+              <HeaderMenuTitle onClick={() => setMenu?.()}>
                 {menu.title}
               </HeaderMenuTitle>
             </Link>
