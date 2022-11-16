@@ -28,7 +28,7 @@ export function TestimonialCarousal({data}: {data: Api.TestimonialFromAPI[]}) {
 
     autoplay: true,
     autoplaySpeed: 6000,
-    slidesToShow: 3,
+    slidesToShow: data.length < 3 ? data.length : 3,
     slidesToScroll: 1,
     initialSlide: 0,
     responsive: [
@@ -36,14 +36,14 @@ export function TestimonialCarousal({data}: {data: Api.TestimonialFromAPI[]}) {
         breakpoint: 1024,
         settings: {
           initialSlide: 0,
-          slidesToShow: 2
+          slidesToShow: data.length < 2 ? 1 : 2
         }
       },
       {
         breakpoint: 600,
         settings: {
           initialSlide: 0,
-          slidesToShow: 2
+          slidesToShow: data.length < 2 ? 1 : 2
         }
       },
       {
@@ -81,7 +81,9 @@ export function TestimonialCarousal({data}: {data: Api.TestimonialFromAPI[]}) {
           weight="bold"
         />
       </HeaderContainer>
-      {media.lg && data && data.length <= 3 ? null : (
+      {!data || data.length === 0 ? null : (!media.lg && data.length < 3) ||
+        (!media.md && data.length < 2) ||
+        (!media.sm && data.length < 2) ? null : (
         <ArrowBtnContainer>
           <IconButton
             style={{width: 40, height: 40}}

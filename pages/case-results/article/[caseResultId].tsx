@@ -20,9 +20,14 @@ const DescriptionContainer = styled.div`
 `
 
 function CaseResultDetail({caseResult}: {caseResult: Api.CaseResultsById}) {
-  const testimonialData = caseResult.testimonial_details?.map((el, any) => {
-    return {testimonial_details: el}
-  })
+  const testimonialData: Api.TestimonialFromAPI[] =
+    caseResult.testimonial_details?.map((el) => {
+      return {
+        total_count: '0',
+        case_result_details: caseResult.case_result_details,
+        testimonial_details: el
+      }
+    })
 
   return (
     <CompWrapper>
@@ -56,7 +61,7 @@ function CaseResultDetail({caseResult}: {caseResult: Api.CaseResultsById}) {
       </DescriptionContainer>
       {testimonialData && (
         <div style={{marginBottom: Theme.space.$15}}>
-          <TestimonialCarousal data={testimonialData as any} />
+          <TestimonialCarousal data={testimonialData} />
         </div>
       )}
     </CompWrapper>
