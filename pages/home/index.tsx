@@ -92,10 +92,12 @@ const HomePage = ({
 export const getServerSideProps = async () => {
   const testimonials = await testimonialServices.getAllTestimonialsHomepage()
   const cmnDescription =
-    await commonDescriptionServices.getAllCommonDescription({
-      limit: 5,
-      showHomepage: true
-    })
+    await commonDescriptionServices.getCommonDescriptionByCategoryType(
+      'personal_injury',
+      1,
+      10,
+      'true'
+    )
 
   return {props: {testimonials: testimonials, news: cmnDescription.rows}}
 }
