@@ -91,7 +91,7 @@ export function ListComp({
         <NoResultFound />
       )}
 
-      {!disablePagination && (
+      {!disablePagination && articles && articles.length > 0 && (
         <HStack justify={'center'} style={{marginTop: 40}}>
           <Paginate total={total ?? 0} />
         </HStack>

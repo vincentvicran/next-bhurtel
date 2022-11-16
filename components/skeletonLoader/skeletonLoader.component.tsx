@@ -15,15 +15,15 @@ export const SkeletonLoader = () => {
         gap="$10"
       >
         <VStack justify="center" align="center">
-          <HStack justify="center" align="center">
+          <HStack justify="center" align="center" gap="$2">
             <Skeleton circle height={40} width={40} />{' '}
             <Skeleton height={30} width={200} />
           </HStack>
-          <HStack justify="center" align="center">
+          <HStack justify="center" align="center" gap="$2">
             <Skeleton circle height={40} width={40} />{' '}
             <Skeleton height={30} width={200} />
           </HStack>
-          <HStack justify="center" align="center">
+          <HStack justify="center" align="center" gap="$2">
             <Skeleton circle height={40} width={40} />{' '}
             <Skeleton height={30} width={200} />
           </HStack>
