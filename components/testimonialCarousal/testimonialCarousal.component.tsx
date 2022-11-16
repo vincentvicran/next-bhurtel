@@ -17,7 +17,7 @@ import {
 } from './testimonialCarousal.styles'
 import {getImageUrl} from 'helpers/getUrl'
 
-export function TestimonialCarousal({data}: {data: unknown[]}) {
+export function TestimonialCarousal({data}: {data: Api.TestimonialFromAPI[]}) {
   const media = useMedia()
 
   let ref: Slider | null
@@ -102,7 +102,6 @@ export function TestimonialCarousal({data}: {data: unknown[]}) {
             return (
               <CarousalItem key={id}>
                 <TestimonialCard
-                  address="chandragiri-14, Kathamandu"
                   description={el.testimonial_details.quote}
                   name={el.testimonial_details.name}
                   image={getImageUrl(

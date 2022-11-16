@@ -110,6 +110,9 @@ declare namespace Api {
     description: string
   }
 
+  interface CaseResultIndividual
+    extends Omit<CaseResult, 'total_count' | 'updated_at'> {}
+
   interface AllCaseResults extends PaginatedData<CaseResult> {}
 
   interface CaseResultsById {
@@ -130,9 +133,18 @@ declare namespace Api {
     quote: string
     created_at: Date
     case_result_id: number | null
+    display_to_homepage: boolean
   }
 
-  interface AllTestimonials extends PaginatedData<Testimonial> {}
+  interface TestimonialIndividual extends Omit<Testimonial, 'total_count'> {}
+
+  interface TestimonialFromAPI {
+    total_count: string
+    testimonial_details: TestimonialIndividual
+    case_result_details: CaseResultIndividual
+  }
+
+  interface AllTestimonials extends PaginatedData<TestimonialFromAPI> {}
 
   interface Banner {
     id: number
