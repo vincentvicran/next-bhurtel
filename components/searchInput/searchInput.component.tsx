@@ -3,17 +3,20 @@ import {MdSearch} from 'react-icons/md'
 
 import {InputField} from 'components/inputField'
 import {useDebounceValue, useMedia} from 'hooks'
+import {ButtonLoader} from 'common/button/components'
 
 export const SearchInput = ({
   title,
   append,
   onChangeHandler,
-  onFocusHandler
+  onFocusHandler,
+  loading
 }: {
   title?: string
   append?: ReactNode
   onChangeHandler?: (arg?: any) => void
   onFocusHandler?: (arg?: any) => void
+  loading?: boolean
 }) => {
   const media = useMedia()
   const [searchInput, setSearchInput] = useState('')
@@ -48,6 +51,15 @@ export const SearchInput = ({
         onChange={(e: ChangeEvent<HTMLInputElement>) => {
           setSearchInput(e.target.value)
         }}
+        append={
+          loading ? (
+            <ButtonLoader color="secondary" variant="text" disabled />
+          ) : (
+            <div style={{opacity: 0}}>
+              <ButtonLoader color="secondary" />
+            </div>
+          )
+        }
       />
       {append}
     </div>
