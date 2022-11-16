@@ -46,7 +46,7 @@ export const HeaderDrawer = ({
         </HStack>
       }
       header={
-        <Link href={'/'}>
+        <Link href={'/home'}>
           <Logo>
             <Image
               src={image}

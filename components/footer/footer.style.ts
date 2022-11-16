@@ -7,6 +7,7 @@ export const FooterContainerStyled = styled.div`
   background-color: ${Theme.colors.$gray100};
 `
 export const FooterLogo = styled.div`
+  cursor: pointer;
   display: flex;
   justify-content: flex-start;
   align-items: center;

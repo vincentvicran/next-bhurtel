@@ -6,6 +6,7 @@ export const HeaderContainer = styled.div`
   background-color: ${Theme.colors.$gray100};
 `
 export const HeaderLogo = styled.div`
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;

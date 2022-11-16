@@ -53,7 +53,7 @@ export const Footer = () => {
       <CompWrapper>
         <FlexBox media={media}>
           <VericalFlex>
-            <FooterLogo>
+            <FooterLogo onClick={() => router.push('/home')}>
               <Image
                 src={attorney}
                 alt="logo"

@@ -98,7 +98,7 @@ export const Header = () => {
                 profiles
               }}
             />
-            <HeaderLogo>
+            <HeaderLogo onClick={() => router.push('/home')}>
               <Image
                 src={attorney}
                 alt="logo"
