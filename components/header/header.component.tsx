@@ -33,11 +33,7 @@ import {
   MenuType
 } from 'helpers/getNavLink.helper'
 
-interface HeaderProps {
-  image: string
-}
-
-export const Header = ({image}: HeaderProps) => {
+export const Header = () => {
   const media = useMedia()
   const router = useRouter()
   const [personalInjury, setPersonalInjury] =

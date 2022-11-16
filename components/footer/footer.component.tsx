@@ -23,10 +23,6 @@ import {getCommonDescription} from 'redux/commonDescription/commonDescription.sl
 import Link from 'next/link'
 import {getMenuLink} from 'helpers/getNavLink.helper'
 
-interface FooterProps {
-  image: string
-}
-
 interface SocialIconsProps {
   icons: React.ReactNode
   bgcolor: string
@@ -42,7 +38,7 @@ export interface MediaProps {
   }
 }
 
-export const Footer = ({image}: FooterProps) => {
+export const Footer = () => {
   const router = useRouter()
   const dispatch = useDispatch()
   useEffect(() => {
