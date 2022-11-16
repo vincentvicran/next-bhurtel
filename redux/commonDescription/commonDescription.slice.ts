@@ -12,7 +12,6 @@ const getCommonDescription = createAsyncThunk(
         'practice_areas'
       )
       const news = await commonCategoryServices.getCommonCategoryByType('news')
-      console.log(personal, practice, news, 'response')
 
       return {
         data: {

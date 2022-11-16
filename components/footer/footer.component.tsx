@@ -48,7 +48,6 @@ export const Footer = () => {
 
   const media = useMedia()
   const quickLinks = useSelector((state) => state.commonDescription)
-  console.log(quickLinks.commonDescriptionData.data, 'quicklinks is called')
   return (
     <FooterContainerStyled>
       <CompWrapper>
