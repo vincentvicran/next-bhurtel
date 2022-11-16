@@ -49,19 +49,20 @@ export function ListComp({
   }, [articleList])
 
   useEffect(() => {
-    ;(async () => {
-      try {
-        const personalInjury =
-          await commonDescriptionServices.getCommonDescriptionByCategoryId(
-            Number(
-              (router.query?.personalInjuryCatId ??
-                router.query?.practiceAreaCatId) as string
-            ),
-            {page: Number(router.query.page ?? 1)}
-          )
-        setArticles(personalInjury.rows)
-      } catch (err) {}
-    })()
+    if (router.query?.personalInjuryCatId || router.query?.practiceAreaCatId)
+      (async () => {
+        try {
+          const personalInjury =
+            await commonDescriptionServices.getCommonDescriptionByCategoryId(
+              Number(
+                (router.query?.personalInjuryCatId ??
+                  router.query?.practiceAreaCatId) as string
+              ),
+              {page: Number(router.query.page ?? 1)}
+            )
+          setArticles(personalInjury.rows)
+        } catch (err) {}
+      })()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.query.page])
   return (
