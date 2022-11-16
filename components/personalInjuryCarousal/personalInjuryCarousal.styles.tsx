@@ -27,7 +27,7 @@ export const CarousalContainer = styled.div`
     height: 100%;
   }
   .slick-dots > li > div {
-    transition: all 0.3s 0.1s ease-in-out;
+    transition: all 0.5s 0.1s ease-in-out;
   }
 
   .slick-dots > li.slick-active > div {
