@@ -10,9 +10,11 @@ import 'slick-carousel/slick/slick-theme.css'
 import {Toast, useToast} from 'common/toast'
 import {Header} from 'components/header'
 import {Footer} from 'components/footer'
+
 import {usePageLoading} from 'hooks'
 import {store} from 'store'
 import {GlobalStyle} from 'theme'
+import {SkeletonLoader} from 'components/skeletonLoader'
 
 function MyApp({Component, pageProps}: AppProps) {
   const {toast, handler} = useToast()
@@ -30,8 +32,11 @@ function MyApp({Component, pageProps}: AppProps) {
       <Provider store={store}>
         <GlobalStyle />
         <Header />
-
-        <Component {...pageProps} toast={toast} isPageLoading={isPageLoading} />
+        {isPageLoading ? (
+          <SkeletonLoader />
+        ) : (
+          <Component {...pageProps} toast={toast} />
+        )}
         <Footer />
         <Toast {...handler} />
       </Provider>
