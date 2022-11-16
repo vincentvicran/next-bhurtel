@@ -59,6 +59,12 @@ export const DrawerMenuBody = styled(VStack)`
   padding: 30px 0;
   font-size: ${Theme.fontSizes.$3};
   font-weight: ${Theme.fontWeights.$normal};
+
+  &::-webkit-scrollbar {
+    width: 0px;
+    height: 2px;
+    display: none !important;
+  }
 `
 
 export const DrawerMenuItem = styled(HStack)`

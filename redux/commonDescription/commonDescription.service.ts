@@ -44,9 +44,24 @@ const getCommonDescriptionBySlug = async (slug: string) => {
   return response.data.data.data
 }
 
+const getCommonDescriptionByCategoryType = async (
+  type: string,
+  page?: number,
+  limit?: number,
+  showHomepage?: 'true' | 'false'
+) => {
+  const response = await api<Api.Base<Api.AllCommonDescription>>('get')(
+    `common-description/common-category/type/${type}`,
+    {page, limit, showHomepage}
+  )
+
+  return response.data.data.data
+}
+
 export const commonDescriptionServices = {
   getCommonDescriptionByCategoryId,
   getCommonDescriptionById,
   getCommonDescriptionBySlug,
-  getAllCommonDescription
+  getAllCommonDescription,
+  getCommonDescriptionByCategoryType
 }
