@@ -4,9 +4,10 @@ import {TiSocialFacebook} from 'react-icons/ti'
 import Link from 'next/link'
 import {AiOutlineMenu} from 'react-icons/ai'
 
-import {DrawerMenu} from 'components/drawerMenu'
 import {HStack, VStack} from 'common/stack'
-import {useState} from 'react'
+import {CollapseMenu} from 'components/collapseMenu'
+import {DrawerMenu} from 'components/drawerMenu'
+import Theme from 'theme'
 
 import {
   Logo,
@@ -17,8 +18,6 @@ import {
   DrawerMenuItemsContainer,
   DrawerMenuFooter
 } from './headerDrawer.style'
-import {CollapseMenu} from 'components/collapseMenu'
-import Theme from 'theme'
 
 export const HeaderDrawer = ({
   image,
@@ -32,9 +31,6 @@ export const HeaderDrawer = ({
     profiles: Api.AllCategories | null
   }
 }) => {
-  const [open, setOpen] = useState<boolean>(false)
-  console.log(open)
-
   return (
     <DrawerMenu
       disableScroll
@@ -62,19 +58,13 @@ export const HeaderDrawer = ({
           </Logo>
         </Link>
       }
-      open={open}
-      setOpen={setOpen}
     >
-      {() => (
+      {(closeMenu) => (
         <>
           <DrawerMenuBody>
             <DrawerMenuItemsContainer>
               <Link href="/">
-                <DrawerMenuItem
-                  onClick={() => setOpen((prev: boolean) => !prev)}
-                >
-                  Home
-                </DrawerMenuItem>
+                <DrawerMenuItem onClick={closeMenu}>Home</DrawerMenuItem>
               </Link>
               <HorizontalMenuBreak />
 
@@ -82,7 +72,7 @@ export const HeaderDrawer = ({
                 <CollapseMenu
                   menuType="personal_injury"
                   menuList={data?.personalInjury?.rows}
-                  setMenu={setOpen}
+                  setMenu={closeMenu}
                 />
               </DrawerMenuItem>
               <HorizontalMenuBreak />
@@ -91,18 +81,18 @@ export const HeaderDrawer = ({
                 <CollapseMenu
                   menuType="practice_areas"
                   menuList={data?.practiceAreas?.rows}
-                  setMenu={setOpen}
+                  setMenu={closeMenu}
                 />
               </DrawerMenuItem>
               <HorizontalMenuBreak />
 
-              <DrawerMenuItem onClick={() => setOpen((prev: boolean) => !prev)}>
-                <CollapseMenu menuType="contacts" setMenu={setOpen} />
+              <DrawerMenuItem onClick={closeMenu}>
+                <CollapseMenu menuType="contacts" setMenu={closeMenu} />
               </DrawerMenuItem>
               <HorizontalMenuBreak />
 
-              <DrawerMenuItem onClick={() => setOpen((prev: boolean) => !prev)}>
-                <CollapseMenu menuType="case_results" setMenu={setOpen} />
+              <DrawerMenuItem onClick={closeMenu}>
+                <CollapseMenu menuType="case_results" setMenu={closeMenu} />
               </DrawerMenuItem>
               <HorizontalMenuBreak />
 
@@ -110,7 +100,7 @@ export const HeaderDrawer = ({
                 <CollapseMenu
                   menuType="attorney_profile"
                   menuList={data?.profiles?.rows}
-                  setMenu={setOpen}
+                  setMenu={closeMenu}
                 />
               </DrawerMenuItem>
               <HorizontalMenuBreak />
@@ -119,7 +109,7 @@ export const HeaderDrawer = ({
                 <CollapseMenu
                   menuType="news"
                   menuList={data?.news?.rows}
-                  setMenu={setOpen}
+                  setMenu={closeMenu}
                 />
               </DrawerMenuItem>
               <HorizontalMenuBreak />
