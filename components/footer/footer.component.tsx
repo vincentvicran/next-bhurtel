@@ -164,7 +164,14 @@ export const Footer = () => {
             <VStack gap="$3">
               <Title size="md" weight="semibold" text="Email Us" />
               <VStack gap="$1">
-                <Paragraph color="light">info@attorneybhurtel.com</Paragraph>
+                <Paragraph color="light">
+                  <a
+                    href="mailto:info@attorneybhurtel.com"
+                    style={{color: 'inherit'}}
+                  >
+                    <PhoneContainer>info@attorneybhurtel.com</PhoneContainer>
+                  </a>
+                </Paragraph>
               </VStack>
             </VStack>
             <VStack gap="$3">
