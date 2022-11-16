@@ -34,8 +34,8 @@ export const TestimonialCard = ({
             alt={`testimonial`}
             layout={`fill`}
             objectFit={`cover`}
-            placeholder="blur"
             blurDataURL={user.src}
+            placeholder="blur"
           />
         </ImgContainer>
         <div>

@@ -10,6 +10,7 @@ import {Youtube} from 'common/youtube'
 
 import moment from 'moment'
 import {getImageUrl} from 'helpers/getUrl'
+import articlePlaceholder from 'assets/images/personalInjuryPlaceholder.jpg'
 
 const DescriptionContainer = styled.div`
   padding: ${Theme.space.$10} 0;
@@ -57,6 +58,8 @@ export const Description = ({article}: {article: Api.CommonDescription}) => {
               )}
               layout={`fill`}
               objectFit="cover"
+              placeholder="blur"
+              blurDataURL={articlePlaceholder.src}
             />
           </ImgContainer>
         )}
