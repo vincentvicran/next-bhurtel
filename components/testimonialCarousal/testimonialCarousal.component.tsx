@@ -72,7 +72,7 @@ export function TestimonialCarousal({data}: {data: Api.TestimonialFromAPI[]}) {
         />
 
         <Title
-          text="Trusted by Hundreds of Happy Customers"
+          text="Trusted by Hundreds of Happy Clients"
           size="lg"
           style={{
             color: Theme.colors.$black,

@@ -115,6 +115,7 @@ export const ContactUs = ({toast}: any) => {
               color="primary"
               variant="contained"
               disabled={loading}
+              loading={loading}
             ></Button>
           </VStack>
         </form>
