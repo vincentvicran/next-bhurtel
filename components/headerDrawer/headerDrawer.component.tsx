@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import {RiInstagramLine} from 'react-icons/ri'
 import {TiSocialFacebook} from 'react-icons/ti'
 import Link from 'next/link'
 import {AiOutlineMenu} from 'react-icons/ai'
@@ -18,6 +17,7 @@ import {
   DrawerMenuItemsContainer,
   DrawerMenuFooter
 } from './headerDrawer.style'
+import {FaLinkedinIn, FaTwitter, FaYoutube} from 'react-icons/fa'
 
 export const HeaderDrawer = ({
   image,
@@ -118,9 +118,23 @@ export const HeaderDrawer = ({
 
           <DrawerMenuFooter>
             <VStack gap="$2">
-              <HStack gap="$4">
-                <TiSocialFacebook size={24} />
-                <RiInstagramLine size={24} />
+              <HStack gap="$4" align="center">
+                <SocialIcon
+                  icons={<FaTwitter size={24} color="gray" />}
+                  link="https://twitter.com/bhurtellawfirm"
+                />
+                <SocialIcon
+                  icons={<TiSocialFacebook size={24} color="gray" />}
+                  link="https://www.facebook.com/PersonalInjuryLawyerNY"
+                />
+                <SocialIcon
+                  icons={<FaYoutube size={24} color="gray" />}
+                  link="https://www.youtube.com/channel/UCild3wNg6GYOFyaDh4HRtuw"
+                />
+                <SocialIcon
+                  icons={<FaLinkedinIn size={24} color="gray" />}
+                  link="https://www.linkedin.com/company/bhurtel-law-firm"
+                />
               </HStack>
 
               <div>
@@ -138,3 +152,25 @@ export const HeaderDrawer = ({
     </DrawerMenu>
   )
 }
+
+interface SocialIconsProps {
+  icons: React.ReactNode
+  link: string
+}
+
+const SocialIcon = ({icons, link}: SocialIconsProps) => (
+  <a href={link} target="__blank" rel="noreferrer">
+    <HStack
+      justify="center"
+      align="center"
+      style={{
+        width: '40px',
+        height: '40px',
+        cursor: 'pointer',
+        borderRadius: '50%'
+      }}
+    >
+      {icons}
+    </HStack>
+  </a>
+)

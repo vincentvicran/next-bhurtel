@@ -26,6 +26,7 @@ import {getMenuLink} from 'helpers/getNavLink.helper'
 interface SocialIconsProps {
   icons: React.ReactNode
   bgcolor: string
+  link: string
 }
 
 export interface MediaProps {
@@ -73,18 +74,22 @@ export const Footer = () => {
               <SocialIcon
                 bgcolor="#1DA1F2"
                 icons={<FaTwitter color="white" />}
+                link="https://twitter.com/bhurtellawfirm"
               />
               <SocialIcon
                 bgcolor="#4267B2"
                 icons={<FaFacebookF color="white" />}
+                link="https://www.facebook.com/PersonalInjuryLawyerNY"
               />
               <SocialIcon
                 bgcolor="#FF0000"
                 icons={<FaYoutube color="white" />}
+                link="https://www.youtube.com/channel/UCild3wNg6GYOFyaDh4HRtuw"
               />
               <SocialIcon
                 bgcolor="#0A66C2"
                 icons={<FaLinkedinIn color="white" />}
+                link="https://www.linkedin.com/company/bhurtel-law-firm"
               />
             </HStack>
 
@@ -192,18 +197,20 @@ export const Footer = () => {
   )
 }
 
-const SocialIcon = ({icons, bgcolor}: SocialIconsProps) => (
-  <HStack
-    justify="center"
-    align="center"
-    style={{
-      backgroundColor: bgcolor,
-      width: '40px',
-      height: '40px',
-      cursor: 'pointer',
-      borderRadius: '50%'
-    }}
-  >
-    {icons}
-  </HStack>
+const SocialIcon = ({icons, bgcolor, link}: SocialIconsProps) => (
+  <a href={link} target="__blank" rel="noreferrer">
+    <HStack
+      justify="center"
+      align="center"
+      style={{
+        backgroundColor: bgcolor,
+        width: '40px',
+        height: '40px',
+        cursor: 'pointer',
+        borderRadius: '50%'
+      }}
+    >
+      {icons}
+    </HStack>
+  </a>
 )
