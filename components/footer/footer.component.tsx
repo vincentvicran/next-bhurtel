@@ -22,6 +22,7 @@ import {CompWrapper} from 'common/compWrapper'
 import {getCommonDescription} from 'redux/commonDescription/commonDescription.slice'
 import Link from 'next/link'
 import {getMenuLink} from 'helpers/getNavLink.helper'
+import {FiMail} from 'react-icons/fi'
 
 interface SocialIconsProps {
   icons: React.ReactNode
@@ -174,6 +175,7 @@ export const Footer = () => {
                     href="mailto:info@attorneybhurtel.com"
                     style={{color: 'inherit'}}
                   >
+                    <FiMail size={16} />
                     <PhoneContainer>info@attorneybhurtel.com</PhoneContainer>
                   </a>
                 </Paragraph>
