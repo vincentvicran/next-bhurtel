@@ -8,6 +8,7 @@ export const TestimonialCardContainer = styled.div`
   border-radius: ${Theme.radius.$default};
   padding: ${Theme.space.$4} ${Theme.space.$6};
   min-height: 250px;
+  max-width: 350px;
 `
 
 export const ImgContainer = styled.div`

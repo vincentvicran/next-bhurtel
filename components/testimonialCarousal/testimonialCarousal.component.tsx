@@ -81,7 +81,7 @@ export function TestimonialCarousal({data}: {data: Api.TestimonialFromAPI[]}) {
           weight="bold"
         />
       </HeaderContainer>
-      {!data || data.length === 0 ? null : (!media.lg && data.length < 3) ||
+      {!data || data.length <= 1 ? null : (!media.lg && data.length < 3) ||
         (!media.md && data.length < 2) ||
         (!media.sm && data.length < 2) ? null : (
         <ArrowBtnContainer>
