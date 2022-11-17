@@ -22,7 +22,6 @@ const PersonalInjuryArticle = ({
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  // const newsCategory = await newsServices.getNewsCategories()
 
   const cmnDescription =
     await commonDescriptionServices.getCommonDescriptionByCategoryId(
