@@ -92,7 +92,11 @@ function News({
 
         <NewsBottomContainer>
           {allNews &&
+            allNews.length !== 1 &&
             allNews.map((el, id) => {
+              if (id === 0) {
+                return
+              }
               return (
                 <div key={id} onClick={() => newsClickedHandler(el)}>
                   <DescriptionCard
