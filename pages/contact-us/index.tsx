@@ -84,16 +84,6 @@ const ContactRight = styled.div`
   flex: 1;
 `
 
-const TitleCon = styled.div<MediaProps>`
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: column;
-  padding: ${Theme.space.$7} 0;
-
-  margin: ${(props) => (props.media.sm ? '0' : '0px 30px')};
-  align-items: ${(props) => (props.media.sm ? 'center' : 'flex-start')};
-`
-
 const ContactusTitle = ({
   title,
   description,

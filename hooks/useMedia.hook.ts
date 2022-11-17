@@ -1,6 +1,6 @@
 import {useEffect, useState, useMemo} from 'react'
 
-export interface UseMediaReturn {
+export interface MediaReturn {
   xxl?: boolean
   xl: boolean
   lg: boolean
@@ -9,7 +9,7 @@ export interface UseMediaReturn {
   xs: boolean
 }
 
-export const useMedia = (): UseMediaReturn => {
+export const useMedia = (): MediaReturn => {
   const xs = useGenericMedia(`(max-width: 480px)`)
   const sm = useGenericMedia(`(min-width: 640px)`)
   const md = useGenericMedia(`(min-width: 768px)`)

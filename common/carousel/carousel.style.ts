@@ -1,8 +1,9 @@
-import {UseMediaReturn} from 'hooks'
 import React from 'react'
 import Slider from 'react-slick'
 import styled from 'styled-components'
+
 import Theme from 'theme'
+import {MediaReturn} from 'hooks'
 
 export const CarouselSlider = styled(Slider)`
   position: relative;
@@ -14,7 +15,7 @@ export const CarouselSlider = styled(Slider)`
 `
 
 interface CarousalContainerProps extends React.ComponentPropsWithoutRef<'div'> {
-  media: UseMediaReturn
+  media: MediaReturn
 }
 
 export const CarousalContainer = styled.div<CarousalContainerProps>`

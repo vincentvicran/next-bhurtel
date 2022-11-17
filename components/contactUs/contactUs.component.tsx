@@ -1,15 +1,16 @@
-import {VStack} from 'common/stack'
-import * as Yup from 'yup'
-import {InputField, Textarea} from 'components/inputField'
 import React, {useState} from 'react'
-import {ContactContainer, HFlex} from './contactUs.styled'
-import {Button} from 'common/button'
+import * as Yup from 'yup'
+import {useFormik} from 'formik'
 
+import {VStack} from 'common/stack'
+import {InputField, Textarea} from 'components/inputField'
+import {Button} from 'common/button'
 import {Paragraph} from 'components/Paragraph'
 import {Title} from 'components/title'
-import {useFormik} from 'formik'
 import {useMedia} from 'hooks'
 import {contactServices} from 'redux/contact/contact.service'
+
+import {ContactContainer, HFlex} from './contactUs.styled'
 
 export const ContactUs = ({toast}: any) => {
   const [loading, setLoading] = useState(false)
