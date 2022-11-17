@@ -175,8 +175,10 @@ export const Footer = () => {
                     href="mailto:info@attorneybhurtel.com"
                     style={{color: 'inherit'}}
                   >
-                    <FiMail size={16} />
-                    <PhoneContainer>info@attorneybhurtel.com</PhoneContainer>
+                    <PhoneContainer>
+                      <FiMail size={16} />
+                      info@attorneybhurtel.com
+                    </PhoneContainer>
                   </a>
                 </Paragraph>
               </VStack>
